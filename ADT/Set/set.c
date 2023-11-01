@@ -4,6 +4,7 @@
 #include "boolean.h"
 #include "set.h"
 
+
 void CreateSet(Set *s) {
     Length(*s) = 0;
 }
@@ -21,19 +22,27 @@ int length(Set s)
 void add(Set *s, char Elmt[])
 {
     if (!isIn(*s, Elmt)) {
-        strcpy(s->buffer[length(*s)], Elmt);
+        int i = 0;
+        while (Elmt[i] != '\0') {
+            s->buffer[length(*s)][i] = Elmt[i];
+            i++;
+        }
         s->length = s->length + 1;
     }
 }
 
 void removeElmt(Set *s, char Elmt[])
 {
-    int i = 0, j;
+    int i = 0, j, it;
     boolean found = false;
     while (!found && i < Length(*s)) {
         if (s->buffer[i] == Elmt) {
             for (j = i; j < (Length(*s) - 1); j++) {
-                strcpy(s->buffer[i], s->buffer[i+1]);
+                it = 0;
+                while (s->buffer[j+1][it] != '\0') {
+                    s->buffer[j][it] = s->buffer[j+1][it];
+                    it++;
+                }
             }
             s->length = s->length - 1;
             found = true;
