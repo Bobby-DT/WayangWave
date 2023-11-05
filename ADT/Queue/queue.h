@@ -5,8 +5,6 @@
 #define QUEUE_H
 
 #include "boolean.h"
-#include "map.h"
-#include "set.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 100
