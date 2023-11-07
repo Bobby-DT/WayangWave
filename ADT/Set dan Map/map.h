@@ -1,7 +1,7 @@
 #ifndef map_H
 #define map_H
 #include <stdio.h>
-#include "boolean.h"
+#include "../../src/boolean.h"
 #include "set.h"
 
 /* MODUL Map

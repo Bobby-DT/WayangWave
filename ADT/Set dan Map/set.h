@@ -1,7 +1,7 @@
 #ifndef SET_H
 #define SET_H
 
-#include "boolean.h"
+#include "../../src/boolean.h"
 
 #define CAPACITY 100
 #define Max_Length 100
