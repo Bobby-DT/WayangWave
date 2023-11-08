@@ -18,10 +18,23 @@ boolean IsEmpty(Stack S)
     return (Top(S) == Nil);
 }
 
-boolean IsFull(Stack S)
+boolean IsFullStack(Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
     return (Top(S) == MaxEl - 1);
+}
+
+/****************** Proses semua elemen Stack ******************/
+int NbElmtStack(Stack S)
+/* Mengirimkan banyaknya elemen Stack; mengirimkan 0 jika Stack kosong */
+{
+    int count = 0;
+    infotype dump;
+    while (!IsEmptyStack(S)) {
+        Pop(&S, &dump);
+        count++;
+    }
+    return count;
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
