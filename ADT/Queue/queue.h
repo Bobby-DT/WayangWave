@@ -5,24 +5,16 @@
 #define QUEUE_H
 
 #include "../../src/boolean.h"
+#include "../MesinKata/mesinkata.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 100
 
+typedef Word ElType;
+
 /* Definisi elemen dan address */
-typedef int ElType;
-
-typedef int ElType;
-typedef int KEY;
-
 typedef struct {
-    ElType penyanyi;
-    ElType album;
-    KEY lagu;
-} idxBuffer;
-
-typedef struct {
-	idxBuffer buffer[CAPACITY]; 
+	ElType buffer[CAPACITY]; 
 	int idxHead;
 	int idxTail;
 } Queue;
@@ -54,17 +46,17 @@ int length(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElType alb, ElType peny, ElType lag);
+void enqueue(Queue *q, ElType val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void insert(Queue *q, ElType alb, ElType peny, ElType lag);
+void insert(Queue *q, ElType X);
 /* Proses: Menambahkan val pada q sebagai indeks pertama */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi HEAD yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeue(Queue *q, ElType *alb, ElType *peny, ElType *lag);
+void dequeue(Queue *q, ElType *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
