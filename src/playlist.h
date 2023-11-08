@@ -6,6 +6,6 @@
 #include "ADT/Set dan Map/set.h"
 #include "ADT/List Berkait/listlinier.h"
 
-void playlist(MapPlaylist *Playlist);
+void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, Map *Album, MapPlaylist *Playlist);
 
 #endif
