@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "console.h"
 
-void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, Map *Album) {
+void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, Map *Album, MapPlaylist *Playlist) {
     printf(">> ");
     GetCommand();
     //clear();
@@ -18,7 +18,7 @@ void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, M
     } else if (IsWordEq(toKata("SONG"), AccessCommand(currentWord, 0))) {
         
     } else if (IsWordEq(toKata("PLAYLIST"), AccessCommand(currentWord, 0))) {
-        
+        playlist(*Playlist);
     } else if (IsWordEq(toKata("STATUS"), currentWord)) {
         
     } else if (IsWordEq(toKata("SAVE"), AccessCommand(currentWord, 0))) {

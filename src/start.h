@@ -6,6 +6,6 @@
 
 extern boolean stateWayangWave;
 
-void start(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, Map *Album);
+void start(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, Map *Album, Set *PlaylistTitle, List *PlaylistData);
 
 #endif

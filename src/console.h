@@ -3,6 +3,7 @@
 #include "boolean.h"
 
 #include "./ADT/List/array.h"
+#include "./ADT/List Berkait/listlinier.h"
 #include "./ADT/MesinK/mesinkarakter.h"
 #include "./ADT/MesinK/mesinkata.h"
 #include "./ADT/MesinK/queue.h"
@@ -13,4 +14,4 @@
 #include "start.h"
 #include "playlist.h"
 
-void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, Map *Album);
+void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, Map *Album, MapPlaylist *Playlist);

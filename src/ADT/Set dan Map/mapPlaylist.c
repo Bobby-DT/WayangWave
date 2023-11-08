@@ -1,11 +1,9 @@
 #include <stdio.h>
 #include "../../boolean.h"
-#include "map.h"
-#include "set.h"
+#include "mapPlaylist.h"
 
-Set Undefined;
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Map *M)
+void CreateEmptyPlaylist(MapPlaylist *M)
 {
     (*M).Count = Nil;
 }
@@ -14,13 +12,13 @@ void CreateEmpty(Map *M)
 /* Ciri Map kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Map M) {
+boolean IsEmptyPlaylist(MapPlaylist M) {
     return M.Count == Nil;
 }
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 
-boolean IsFull(Map M)
+boolean IsFullPlaylist(MapPlaylist M)
 {
     return M.Count == MaxEl;
 }
@@ -28,7 +26,8 @@ boolean IsFull(Map M)
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-void Value(Map M, keytype k, valuetype *val)
+// Prekondisi: k member dari M
+void ValuePlaylist(MapPlaylist M, tipekey k, tipevalue *val)
 {
     boolean KeyFound = false;
     int i = 0;
@@ -40,15 +39,11 @@ void Value(Map M, keytype k, valuetype *val)
         }
         i++;
     }
-    if (!KeyFound) {
-        Undefined.length = -1;
-        *val = Undefined;
-    }
 }
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void Insert(Map *M, keytype k, valuetype v)
+void InsertPlaylist(MapPlaylist *M, tipekey k, tipevalue v)
 {
     infotype El;
     if (!IsMember(*M, k))
@@ -56,8 +51,8 @@ void Insert(Map *M, keytype k, valuetype v)
         if (IsEmpty(*M)) {
             (*M).Count = 0;
         }
-        copyKey(k, El.Key); // Tipe key (String) perlu fungsi copyKey
-        El.Value = v; // Tipe set bisa langsung diassign
+        El.Key = k;
+        El.Value = v;
         (*M).Elements[(*M).Count] = El;
         (*M).Count++;
     }
@@ -67,7 +62,7 @@ void Insert(Map *M, keytype k, valuetype v)
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void Delete(Map *M, keytype k) 
+void DeletePlaylist(MapPlaylist *M, tipekey k) 
 {
     int i = 0;
     boolean found = false;
@@ -87,12 +82,12 @@ void Delete(Map *M, keytype k)
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMember(Map M, keytype k) {
+boolean IsMemberPlaylist(MapPlaylist M, tipekey k) {
     boolean found = false;
     int i = 0;
 
     while (!found && i < M.Count)  {
-        if (equalKey(M.Elements[i].Key, k)) {
+        if (IsWordEq(M.Elements[i].Key, k)) {
             found = true;
         }
         i++;
@@ -100,31 +95,3 @@ boolean IsMember(Map M, keytype k) {
     return found;
 }
 /* Mengembalikan true jika k adalah member dari M */
-
-
-/* ********** Operator Terkait Key ********* */
-
-void copyKey(char *key1, char *key2) {
-    /* Copy key1 ke key2 */
-    int i;
-    for (i = 0; key1[i] != '\0'; i++) {
-        key2[i] = key1[i];
-    } 
-    key2[i] = '\0';
-}
-
-boolean equalKey(char *key1, char *key2) {
-    /* Compare key1 dengan key2 */
-    int i;
-    boolean equal = true;
-    for (i = 0; key1[i] != '\0'; i++) {
-        if (key1[i] != key2[i]) {
-            equal = false;
-        }
-    } 
-    if (key1[i] != key2[i]) {
-        equal = false;
-    }
-    return equal;
-}
-

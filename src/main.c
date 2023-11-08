@@ -8,6 +8,7 @@ int main() {
     Stack Riwayat;
     Map MapPenyanyi;
     Map Album;
+    MapPlaylist Playlist;
 
     wayangwaveStarted = false;
 
@@ -16,6 +17,7 @@ int main() {
     CreateEmptyStack(&Riwayat);
     CreateEmptyMap(&MapPenyanyi);
     CreateEmptyMap(&Album);
+    CreateEmptyPlaylist(&Playlist);
     
     printf("Welcome to WayangWave\n");
 
@@ -30,7 +32,7 @@ int main() {
             }
         } while (!IsWordEq(toKata("START"), currentWord) && !IsWordEq(toKata("LOAD"), AccessCommand(currentWord, 0)));
         
-        if (IsWordEq(toKata("START"), currentWord)) start(&Penyanyi, &Antrian, &Riwayat, &MapPenyanyi, &Album);
+        if (IsWordEq(toKata("START"), currentWord)) start(&Penyanyi, &Antrian, &Riwayat, &MapPenyanyi, &Album, &Playlist);
         //else load();
     }
   
