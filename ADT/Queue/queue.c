@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include "../../src/boolean.h"
+#include "boolean.h"
 #include "queue.h"
+#include "../MesinKata/mesinkata.h"
 
 void CreateQueue(Queue *q){
     IDX_HEAD(*q) = IDX_UNDEF;
@@ -31,46 +32,20 @@ int length(Queue q){
     return length;
 }
 
-/* Gabung Set?*/
-void enqueue(Queue *q, ElType alb, ElType peny, ElType lag){
+void enqueue(Queue *q, ElType val){
     if (isEmpty(*q)){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
-        (*q).buffer[(*q).idxTail].album = alb;
-        (*q).buffer[(*q).idxTail].penyanyi = peny;
-        (*q).buffer[(*q).idxTail].lagu = lag;
+        TAIL(*q) = val;
     }
     else{
         IDX_TAIL(*q) = (IDX_HEAD(*q) + length(*q)) % CAPACITY;
-        (*q).buffer[(*q).idxTail].album = alb;
-        (*q).buffer[(*q).idxTail].penyanyi = peny;
-        (*q).buffer[(*q).idxTail].lagu = lag;
+        TAIL(*q) = val;
     }
 }
 
-void insert(Queue *q, ElType alb, ElType peny, ElType lag){
-    if (isEmpty(*q)){
-        IDX_HEAD(*q) = 0;
-        IDX_TAIL(*q) = 0;
-        (*q).buffer[(*q).idxTail].album = alb;
-        (*q).buffer[(*q).idxTail].penyanyi = peny;
-        (*q).buffer[(*q).idxTail].lagu = lag;
-    }
-    else{
-        IDX_TAIL(*q) = (IDX_HEAD(*q) + length(*q)) % CAPACITY;
-        for (int i = (*q).idxTail-1 ; i >= 0; i--){
-            (*q).buffer[i+1] = (*q).buffer[i];
-        }
-        (*q).buffer[(*q).idxTail].album = alb;
-        (*q).buffer[(*q).idxTail].penyanyi = peny;
-        (*q).buffer[(*q).idxTail].lagu = lag;
-    }
-}
-
-void dequeue(Queue *q, ElType *alb, ElType *peny, ElType *lag){
-    *alb = HEAD(*q).album;
-    *peny = HEAD(*q).penyanyi;
-    *lag = HEAD(*q).lagu;
+void dequeue(Queue *q, ElType *val){
+    *val = HEAD(*q);
     if (length(*q) == 1){
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
@@ -80,8 +55,23 @@ void dequeue(Queue *q, ElType *alb, ElType *peny, ElType *lag){
     }
 }
 
+void insert(Queue *q, ElType X){
+    if (isEmpty(*q)){
+        enqueue(q, X);
+    }
+    else{
+        IDX_TAIL(*q) = (IDX_HEAD(*q) + length(*q)) % CAPACITY;
+        for (int i = (*q).idxTail-1 ; i >= 0; i--){
+            (*q).buffer[i+1] = (*q).buffer[i];
+        }
+        HEAD(*q) = X;
+    }
+}
+
+/* not ready
 void displayQueue(Queue q){
     int i;
+    Word input;
     if (isEmpty(q)){
         printf("[]");
     }
@@ -89,18 +79,23 @@ void displayQueue(Queue q){
         printf("[");
         if (q.idxHead > q.idxTail){
             for (i = q.idxHead; i <= CAPACITY-1; i++){
-                printf("(");
-                printf("%d,", q.buffer[i].album);
-                printf("%d,", q.buffer[i].penyanyi);
-                printf("%d", q.buffer[i].lagu);
-                printf(")");
+                input = (q).buffer[i];
+                while (!EndWord){
+                    concatWord(&input, currentWord);
+                    ADVWORD();
+                }
+                PrintWord(input);
+                if (i != q.idxTail){
+                    printf(",");
+                }
             }
             for (i = 0; i <= q.idxTail; i++){
-                printf("(");
-                printf("%d,", q.buffer[i].album);
-                printf("%d,", q.buffer[i].penyanyi);
-                printf("%d", q.buffer[i].lagu);
-                printf(")");
+                input = (q).buffer[i];
+                while (!EndWord){
+                    concatWord(&input, currentWord);
+                    ADVWORD();
+                }
+                PrintWord(input);
                 if (i != q.idxTail){
                     printf(",");
                 }
@@ -108,11 +103,12 @@ void displayQueue(Queue q){
         }
         else{
             for (i = q.idxHead; i <= q.idxTail; i++){
-                printf("(");
-                printf("%d,", q.buffer[i].album);
-                printf("%d,", q.buffer[i].penyanyi);
-                printf("%d", q.buffer[i].lagu);
-                printf(")");
+                input = (q).buffer[i];
+                while (!EndWord){
+                    concatWord(&input, currentWord);
+                    ADVWORD();
+                }
+                PrintWord(input);
                 if (i != q.idxTail){
                     printf(",");
                 }
@@ -121,3 +117,4 @@ void displayQueue(Queue q){
         printf("]\n");
     }
 }
+*/
