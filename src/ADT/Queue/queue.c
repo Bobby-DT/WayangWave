@@ -6,15 +6,15 @@ void CreateQueue(Queue *q){
     IDX_TAIL(*q) = IDX_UNDEF;
 }
 
-boolean isEmpty(Queue q){
+boolean queue_isEmpty(Queue q){
     return ((q.idxHead == IDX_UNDEF) && (q.idxTail == IDX_UNDEF));
 }
 
-boolean isFull(Queue q){
+boolean queue_isFull(Queue q){
     return (length(q) == CAPACITY);
 }
 
-int length(Queue q){
+int queue_length(Queue q){
     int length;
     if (isEmpty(q)){
         length = 0;
@@ -53,7 +53,7 @@ void dequeue(Queue *q, ElType *val){
     }
 }
 
-void deleteAt(Queue *q, int idx){
+void queue_deleteAt(Queue *q, int idx){
     if (idx < length(*q)){
         // for (int i = 0; i < length(*q); i++){
         //     if (idx)
@@ -61,7 +61,7 @@ void deleteAt(Queue *q, int idx){
     }
 }
 
-void insert(Queue *q, ElType X){
+void queue_insert(Queue *q, ElType X){
     if (isEmpty(*q)){
         enqueue(q, X);
     }
@@ -73,54 +73,3 @@ void insert(Queue *q, ElType X){
         HEAD(*q) = X;
     }
 }
-
-/* not ready
-void displayQueue(Queue q){
-    int i;
-    Word input;
-    if (isEmpty(q)){
-        printf("[]");
-    }
-    else{
-        printf("[");
-        if (q.idxHead > q.idxTail){
-            for (i = q.idxHead; i <= CAPACITY-1; i++){
-                input = (q).buffer[i];
-                while (!EndWord){
-                    concatWord(&input, currentWord);
-                    ADVWORD();
-                }
-                PrintWord(input);
-                if (i != q.idxTail){
-                    printf(",");
-                }
-            }
-            for (i = 0; i <= q.idxTail; i++){
-                input = (q).buffer[i];
-                while (!EndWord){
-                    concatWord(&input, currentWord);
-                    ADVWORD();
-                }
-                PrintWord(input);
-                if (i != q.idxTail){
-                    printf(",");
-                }
-            }
-        }
-        else{
-            for (i = q.idxHead; i <= q.idxTail; i++){
-                input = (q).buffer[i];
-                while (!EndWord){
-                    concatWord(&input, currentWord);
-                    ADVWORD();
-                }
-                PrintWord(input);
-                if (i != q.idxTail){
-                    printf(",");
-                }
-            }
-        }
-        printf("]\n");
-    }
-}
-*/
