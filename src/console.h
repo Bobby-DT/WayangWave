@@ -4,12 +4,12 @@
 
 #include "./ADT/List/array.h"
 #include "./ADT/List Berkait/listlinier.h"
-#include "./ADT/MesinK/mesinkarakter.h"
-#include "./ADT/MesinK/mesinkata.h"
-#include "./ADT/MesinK/queue.h"
-#include "./ADT/MesinK/set.h"
-#include "./ADT/MesinK/map.h"
-#include "./ADT/MesinK/stack.h"
+#include "./ADT/Mesin Karakter/mesinkarakter.h"
+#include "./ADT/Mesin Kata/mesinkata.h"
+#include "./ADT/Queue/queue.h"
+#include "./ADT/Set dan Map/set.h"
+#include "./ADT/Set dan Map/map.h"
+#include "./ADT/Stack/stack.h"
 
 #include "start.h"
 #include "playlist.h"

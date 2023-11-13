@@ -111,7 +111,7 @@ void TulisWord(Word kata) {
     }
 }
 
-boolean IsWordEq (Word kata1, Word kata2) {
+boolean WordCompare(Word kata1, Word kata2) {
     if (kata1.Length != kata2.Length) {
         return false;
     }

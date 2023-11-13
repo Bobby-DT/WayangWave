@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include "../../boolean.h"
-#include "mesinkarakter.h"
+#include "../Mesin Karakter/mesinkarakter.h"
 
 #define NMax 50
 #define BLANK '\n'
@@ -56,7 +56,7 @@ Word AccessCommand(Word comm, int Idx);
 
 void TulisWord(Word kata);
 
-boolean IsWordEq (Word kata1, Word kata2);
+boolean WordCompare(Word kata1, Word kata2);
 
 boolean IsWordNumber (Word kata);
 
