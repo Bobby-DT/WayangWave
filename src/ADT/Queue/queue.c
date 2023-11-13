@@ -1,7 +1,5 @@
 #include <stdio.h>
-#include "boolean.h"
 #include "queue.h"
-#include "../MesinKata/mesinkata.h"
 
 void CreateQueue(Queue *q){
     IDX_HEAD(*q) = IDX_UNDEF;
@@ -52,6 +50,14 @@ void dequeue(Queue *q, ElType *val){
     }
     else{
         IDX_HEAD(*q) = ((IDX_HEAD(*q)+1) % CAPACITY);
+    }
+}
+
+void deleteAt(Queue *q, int idx){
+    if (idx < length(*q)){
+        // for (int i = 0; i < length(*q); i++){
+        //     if (idx)
+        // }
     }
 }
 

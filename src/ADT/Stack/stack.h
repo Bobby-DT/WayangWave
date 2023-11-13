@@ -6,12 +6,13 @@
 #define stackt_H
 
 #include "../../boolean.h"
+#include "../Mesin/MesinKata.h"
 
 #define Nil -1
 #define MaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
 
-typedef int infotype;
+typedef Word infotype;
 typedef int address;   /* indeks tabel */
 
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
@@ -55,7 +56,7 @@ void Push(Stack * S, infotype X);
 /* F.S. TOP bertambah 1, X menjadi TOP yang baru, */
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void Pop(Stack * S, infotype* X);
+void Pop(Stack * S, infotype * X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */

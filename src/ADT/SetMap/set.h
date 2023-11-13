@@ -1,5 +1,5 @@
-#ifndef SET_H
-#define SET_H
+#ifndef _SET_H
+#define _SET_H
 
 #include "../../boolean.h"
 
@@ -13,7 +13,7 @@ typedef struct {
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika s adalah Set, maka akses elemen : */
-#define Length(s) (s).length
+#define SetLength(s) (s).length
 
 /* *** Kreator *** */
 void CreateSet(Set *s);
