@@ -62,7 +62,7 @@ void InsertPlaylist(MapPlaylist *M, tipekey k, tipevalue v)
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void DeletePlaylist(MapPlaylist *M, tipekey k) 
+void DeletePlaylistByName(MapPlaylist *M, tipekey k) 
 {
     int i = 0;
     boolean found = false;
@@ -81,6 +81,19 @@ void DeletePlaylist(MapPlaylist *M, tipekey k)
 /* I.S. M tidak kosong
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
+
+void DeletePlaylistByID(MapPlaylist *M, int n){
+    if (n < (*M).Count) {
+        for (int j = n; j < ((*M).Count-1); j++) {
+            (*M).Elements[j] = (*M).Elements[j+1];
+        }
+        (*M).Count--;
+    }
+}
+/* Menghapus Elmt dari Map M. */
+/* I.S. M tidak kosong
+        element dengan id n mungkin anggota / bukan anggota dari M */
+/* F.S. element dengan id n bukan anggota dari M */
 
 boolean IsMemberPlaylist(MapPlaylist M, tipekey k) {
     boolean found = false;
