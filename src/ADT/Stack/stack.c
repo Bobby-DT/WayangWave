@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "../../src/boolean.h"
 #include "stack.h"
 
 void CreateEmpty(Stack *S)

@@ -1,5 +1,5 @@
 #include "../../boolean.h"
-#include "../MesinK/mesinkata.h"
+#include "../Mesin Kata/mesinkata.h"
 
 #ifndef ARRAY_H
 #define ARRAY_H

@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../../boolean.h"
-#include "../MesinK/mesinkata.h"
+#include "../Mesin Kata/mesinkata.h"
 
 typedef Word infotypeList;
 typedef struct tElmtlist *address;
