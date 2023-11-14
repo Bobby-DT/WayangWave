@@ -13,39 +13,39 @@ typedef struct {
 
 /* ********* AKSES (Selektor) ********* */
 /* Jika s adalah Set, maka akses elemen : */
-#define SetLength(s) (s).length
+#define Length(s) (s).length
 
 /* *** Kreator *** */
-void CreateSet(Set *s);
+void SetCreateEmpty(Set *s);
 /* I.S. sembarang */
 /* F.S. Sebuah s kosong terbentuk dengan kondisi sbb: */
 /* - length bernilai 0; */
 /* Proses : Melakukan alokasi, membuat sebuah skosong */
 
 /* *** Predikat *** */
-boolean isEmpty(Set s);
+boolean SetIsEmpty(Set s);
 
-int length(Set s);
+int SetLength(Set s);
 
-void add(Set *s, char Elmt[]);
+void SetAdd(Set *s, char Elmt[]);
 
-void removeElmt(Set *s, char Elmt[]);
+void SetRemoveElmt(Set *s, char Elmt[]);
 
-boolean isIn(Set s, char Elmt[]);
+boolean SetIsIn(Set s, char Elmt[]);
 
-boolean isEqual(Set s1, Set s2);
+boolean SetsIsEqual(Set s1, Set s2);
 
-Set unionSet(Set s1, Set s2);
+Set SetUnion(Set s1, Set s2);
 
-Set intersectionSet(Set s1, Set s2);
+Set SetIntersection(Set s1, Set s2);
 
-Set setDifference(Set s1, Set s2);
+Set SetDifference(Set s1, Set s2);
 
-Set copySet(Set s);
+Set SetCopy(Set s);
 
-boolean isSubset(Set s1, Set s2);
+boolean SetIsSubset(Set s1, Set s2);
 
-void displaySet(Set s);
+void DisplaySet(Set s);
 
 
 
