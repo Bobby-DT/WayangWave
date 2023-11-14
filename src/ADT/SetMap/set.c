@@ -152,6 +152,6 @@ boolean SetIsSubset(Set s1, Set s2) {
 
 void DisplaySet(Set s) {
     for (int i = 0; i < length(s)-1; i++) {
-        printf("%d. %s,",(i+1), (s).buffer[i]);
+        printf("%d. %s\n",(i+1), (s).buffer[i]);
     }
 }
