@@ -10,6 +10,7 @@
 
 #define NMax 100
 #define BLANK ' '
+#define Separator ' '
 
 typedef struct
 {
@@ -21,10 +22,6 @@ typedef struct
 extern boolean EndWord;
 extern Word currentWord;
 
-void IgnoreBlanks();
-/* Mengabaikan satu atau beberapa BLANK
-   I.S. : currentChar sembarang
-   F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 void STARTWORD(FILE *input);
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
@@ -68,21 +65,12 @@ void PrintWord(Word kata);
 /*  I.S. kata terdefinisi
     F.S. Program akan mencetak kata ke layar dan menghitung panjang katanya */
 
-void PrintSentence(Word result, int length);
-/*  I.S. kata terdefinisi
-    F.S. Program akan mencetak kata ke layar dan menghitung panjang kalimatnya */
-
-
 boolean WordCompare(Word currentWord, Word inputWord);
 /* Fungsi yang menerima dua parameter currentWord dan inputWord bertipe Word
    Kemudian mengembalikan sebuah boolean yang menyatakan apakah kedua Word adalah Word yang sama atau tidak */
 
 int WordToInt(Word currrentWord);
 /* Fungsi yang menerima parameter berupa string dan mengembalikannya dalam bentuk integer */
-
-Word unionWord(char* str, Word b);
-/* Fungsi yang menerima dua parameter berupa string dan Word
-   Kemudian mengembalikan sebuah Word yang merupakan hasil penggabungan string dan Word */
 
 char *WordToStr(Word kata);
 /* Fungsi yang menerima parameter berupa Word kemudian mengubah 
@@ -101,5 +89,11 @@ Word toLower(Word kata);
 
 Word toUpper(Word kata);
 /* Mengubah kata yang merupakan huruf kecil menjadi huruf kapital */
+
+boolean isEndWord();
+
+void GetCommand();
+
+Word AccessCommand(Word comm, int Idx);
 
 #endif
