@@ -1,7 +1,7 @@
-#include "stack.h"
-#include "queue.h"
-#include "boolean.h"
 #include <stdio.h>
+#include "boolean.h"
+#include "./ADT/Stack/stack.h"
+#include "/ADT/queue/queue.h"
 
 void SongNext(Queue *lagu, Stack *riwayat){
     ElType X;
