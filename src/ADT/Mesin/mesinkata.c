@@ -5,18 +5,6 @@
 boolean EndWord;
 Word currentWord;
 
-void IgnoreBlanks()
-{
-    while (currentChar == BLANK)
-    {
-        ADV();
-    }
-}
-
-/* Mengabaikan satu atau beberapa BLANK
-   I.S. : currentChar sembarang
-   F.S. : currentChar ≠ BLANK atau currentChar = MARK */
-
 void STARTWORD(FILE *input) {
     START(input);
     if (currentChar == MARK)
@@ -42,7 +30,6 @@ void STARTINPUT()
 
 void ADVWORD()
 {
-    IgnoreBlanks();
     if (currentChar == MARK)
     {
         EndWord = true;
@@ -51,7 +38,6 @@ void ADVWORD()
     {
         EndWord = false;
         CopyWord();
-        IgnoreBlanks();
     }
 }
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
@@ -63,7 +49,7 @@ void ADVWORD()
 void CopyWord()
 {
     int i = 0;
-    while ((currentChar != MARK) && currentChar != BLANK && i < NMax)
+    while ((currentChar != MARK) && i < NMax)
     {
         currentWord.TabWord[i] = currentChar;
         ADV();
@@ -129,21 +115,6 @@ void PrintWord(Word kata)
     {
         printf("%c", kata.TabWord[i]);
     }
-}
-
-void PrintSentence(Word result, int length)
-{
-    STARTINPUT();
-    Word input = GetWord();
-    ADVWORD();
-
-    while (!EndWord)
-    {
-        concatWord(&input, currentWord);
-        ADVWORD();
-    }
-
-    PrintWord(input);
 }
 
 boolean WordCompare(Word currentWord, Word inputWord)
