@@ -4,8 +4,8 @@
 
 #include "./ADT/List/array.h"
 #include "./ADT/List Berkait/listlinier.h"
-#include "./ADT/Mesin Karakter/mesinkarakter.h"
-#include "./ADT/Mesin Kata/mesinkata.h"
+#include "./ADT/Mesin/mesinkarakter.h"
+#include "./ADT/Mesin/mesinkata.h"
 #include "./ADT/Queue/queue.h"
 #include "./ADT/SetMap/set.h"
 #include "./ADT/SetMap/map.h"
