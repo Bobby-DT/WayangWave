@@ -5,7 +5,7 @@
 
 Set Undefined;
 /* *** Konstruktor/Kreator *** */
-void CreateEmpty(Map *M)
+void MapCreateEmpty(Map *M)
 {
     (*M).Count = Nil;
 }
@@ -14,13 +14,13 @@ void CreateEmpty(Map *M)
 /* Ciri Map kosong : count bernilai Nil */
 
 /* ********* Predikat Untuk test keadaan KOLEKSI ********* */
-boolean IsEmpty(Map M) {
+boolean MapIsEmpty(Map M) {
     return M.Count == Nil;
 }
 /* Mengirim true jika Map M kosong*/
 /* Ciri Map kosong : count bernilai Nil */
 
-boolean IsFull(Map M)
+boolean MapIsFull(Map M)
 {
     return M.Count == MaxEl;
 }
@@ -28,7 +28,7 @@ boolean IsFull(Map M)
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-void Value(Map M, keytype k, valuetype *val)
+void MapValue(Map M, keytype k, valuetype *val)
 {
     boolean KeyFound = false;
     int i = 0;
@@ -48,7 +48,7 @@ void Value(Map M, keytype k, valuetype *val)
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void Insert(Map *M, keytype k, valuetype v)
+void MapInsert(Map *M, keytype k, valuetype v)
 {
     infotype El;
     if (!IsMember(*M, k))
@@ -67,7 +67,7 @@ void Insert(Map *M, keytype k, valuetype v)
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void Delete(Map *M, keytype k) 
+void MapDelete(Map *M, keytype k) 
 {
     int i = 0;
     boolean found = false;
@@ -87,7 +87,7 @@ void Delete(Map *M, keytype k)
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean IsMember(Map M, keytype k) {
+boolean MapIsMember(Map M, keytype k) {
     boolean found = false;
     int i = 0;
 
@@ -103,7 +103,7 @@ boolean IsMember(Map M, keytype k) {
 
 
 /* ********** Operator Terkait Key ********* */
-
+/* Hanya dipakai dalam ADT ini */
 void copyKey(char *key1, char *key2) {
     /* Copy key1 ke key2 */
     int i;
@@ -127,4 +127,5 @@ boolean equalKey(char *key1, char *key2) {
     }
     return equal;
 }
+
 
