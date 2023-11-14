@@ -5,21 +5,21 @@
 #include "set.h"
 
 
-void CreateSet(Set *s) {
+void SetCreateEmpty(Set *s) {
     Length(*s) = 0;
 }
 
-boolean isEmpty(Set s)
+boolean SetIsEmpty(Set s)
 {
     return Length(s) == 0;
 }
 
-int length(Set s)
+int SetLength(Set s)
 {
     return Length(s);
 }
 
-void add(Set *s, char Elmt[])
+void SetAdd(Set *s, char Elmt[])
 {
     if (!isIn(*s, Elmt)) {
         int i = 0;
@@ -31,7 +31,7 @@ void add(Set *s, char Elmt[])
     }
 }
 
-void removeElmt(Set *s, char Elmt[])
+void SetRemoveElmt(Set *s, char Elmt[])
 {
     int i = 0, j, it;
     boolean found = false;
@@ -51,7 +51,7 @@ void removeElmt(Set *s, char Elmt[])
     }
 }
 
-boolean isIn(Set s, char Elmt[]) {
+boolean SetIsIn(Set s, char Elmt[]) {
     int i = 0;
     size_t j;
     boolean equal= false;
@@ -69,7 +69,7 @@ boolean isIn(Set s, char Elmt[]) {
     return equal;
 }
 
-boolean isEqual(Set s1, Set s2) {
+boolean SetsIsEqual(Set s1, Set s2) {
     boolean equal = true;
     int i = 0;
     if (length(s1) == length(s2)) {
@@ -86,7 +86,7 @@ boolean isEqual(Set s1, Set s2) {
     return equal;
 }
 
-Set unionSet(Set s1, Set s2) {
+Set SetUnion(Set s1, Set s2) {
     Set s3;
     int i;
     CreateSet(&s3);
@@ -106,7 +106,7 @@ Set unionSet(Set s1, Set s2) {
     return s3;
 }
 
-Set intersectionSet(Set s1, Set s2) {
+Set SetIntersection(Set s1, Set s2) {
     Set s3;
     int i;
     CreateSet(&s3);
@@ -120,7 +120,7 @@ Set intersectionSet(Set s1, Set s2) {
     return s3;
 }
 
-Set setDifference(Set s1, Set s2) {
+Set SetDifference(Set s1, Set s2) {
     Set s3;
     int i;
     CreateSet(&s3);
@@ -134,7 +134,7 @@ Set setDifference(Set s1, Set s2) {
     return s3;
 }
 
-Set copySet(Set s) {
+Set SetCopy(Set s) {
     Set copy;
     int i;
     CreateSet(&copy);
@@ -146,15 +146,12 @@ Set copySet(Set s) {
     return copy;
 }
 
-boolean isSubset(Set s1, Set s2) {
-    return isEmpty(setDifference(s1, s2));
+boolean SetIsSubset(Set s1, Set s2) {
+    return isEmpty(SetDifference(s1, s2));
 }
 
-void displaySet(Set s) {
-    printf("{");
+void DisplaySet(Set s) {
     for (int i = 0; i < length(s)-1; i++) {
-        printf("%s,", (s).buffer[i]);
+        printf("%d. %s,",(i+1), (s).buffer[i]);
     }
-    printf("%s", (s).buffer[length(s)-1]);
-    printf("}\n");
 }
