@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "../../src/boolean.h"
+#include "../../boolean.h"
 #include "map.h"
 #include "set.h"
 

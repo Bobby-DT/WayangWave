@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "../../src/boolean.h"
+#include "../../boolean.h"
 #include "set.h"
 
 

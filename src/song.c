@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "boolean.h"
 #include "./ADT/Stack/stack.h"
-#include "/ADT/queue/queue.h"
+#include "./ADT/Queue/queue.h"
 
 void SongNext(Queue *lagu, Stack *riwayat){
     ElType X;

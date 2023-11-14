@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "queue.h"
-#include "../ADT/Set dan Map/set.h"
-#include "../ADT/Set dan Map/map.h"
+#include "./ADT/SetMap/set.h"
+#include "./ADT/SetMap/map.h"
 #include "list.h"
 
 void QueueSong(Queue Q, Queue *result){

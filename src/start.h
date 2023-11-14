@@ -2,7 +2,6 @@
 #define START_WAYANGWAVE_H
 
 #include <stdio.h>
-#include "./driver/readConfig.h"
 
 extern boolean stateWayangWave;
 
