@@ -6,35 +6,48 @@
 
 int main() {
     Map m;
-    CreateEmpty(&m);
+    MapCreateEmpty(&m);
     if (IsEmpty(m)) {
         printf("m kosong\n");
-    }
+    } 
+
 
     Set s;
-    CreateSet(&s);
-    add(&s, "apel");
-    add(&s, "jeruk");
-    add(&s, "nanas");
+    SetCreateEmpty(&s);
+    SetAdd(&s, "apel");
+    SetAdd(&s, "jeruk");
+    SetAdd(&s, "nanas");
 
-    Insert(&m, "buah", s);
-    if (IsEmpty(m)) {
+    MapInsert(&m, "buah", s);
+    if (MapIsEmpty(m)) {
         printf("m kosong\n");
     } else {
         printf("m tidak kosong\n");
     }
 
+    if (!MapIsFull(m)) {
+        printf("m tidak penuh\n");
+    }
+
     Set v;
-    Value(m, "buah", &v);
+    MapValue(m, "buah", &v);
     displaySet(v);
     
-    if (IsMember(m, "buah")) {
+    if (MapIsMember(m, "buah")) {
         printf("Key buah ada dalam map\n");
     }
-    if (IsMember(m, "buaha")) {
-        printf("Key buaha ada dalam map\n");
+    if (MapIsMember(m, "sayur")) {
+        printf("Key sayur ada dalam map\n");
     }
-    if (IsMember(m, "bua")) {
-        printf("Key bua ada dalam map\n");
+    if (MapIsMember(m, "nasi")) {
+        printf("Key nasi tidak ada dalam map\n");
     }
+    
+    MapDelete(&m, "buah");
+
+    if (!MapIsMember(m, "buah")) {
+        printf("Key buah tidak ada dalam map\n");
+    }
+
+    
 }
