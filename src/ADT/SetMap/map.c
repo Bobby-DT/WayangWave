@@ -51,9 +51,9 @@ void MapValue(Map M, keytype k, valuetype *val)
 void MapInsert(Map *M, keytype k, valuetype v)
 {
     infotype El;
-    if (!IsMember(*M, k))
+    if (!MapIsMember(*M, k))
     {
-        if (IsEmpty(*M)) {
+        if (MapIsEmpty(*M)) {
             (*M).Count = 0;
         }
         copyKey(k, El.Key); // Tipe key (String) perlu fungsi copyKey
