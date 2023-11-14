@@ -40,8 +40,14 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyany
 
         }
 
-        printf("Daftar Penyanyi :\n");
-        // print daftar penyanyi
+        printf("Daftar Penyanyi :");
+
+        for (int i = 0; i < (*MapPenyanyi).Count; i++) {
+            printf("\n\t%d. ", i+1);
+            TulisWord((*MapPenyanyi).Elements[i].Key);
+        }
+        printf("\n")
+
         do {
             printf("Masukkan Nama Penyanyi yang dipilih : ");
             GetCommand();
@@ -50,7 +56,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyany
                 TulisWord(currentWord);
                 printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
             }
-        } while (!IsMember(&Penyanyi, currentWord))
+        } while (!IsMember(&Penyanyi, currentWord));
         // Pengoperasian input penyanyi
 
         printf("Daftar Album oleh ");
@@ -65,7 +71,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyany
                 TulisWord(currentWord);
                 printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
             }
-        } while (!/*isMemberMap*/(&Album, currentWord))
+        } while (!/*isMemberMap*/(&Album, currentWord));
         // Pengoperasian input penyanyi
 
         if (addSong) {
@@ -83,7 +89,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyany
                     TulisWord(currentWord);
                     printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
                 }
-            } while (!/*isMemberMap*/(&Album, currentWord))
+            } while (!/*isMemberMap*/(&Album, currentWord));
             // Pengoperasian input penyanyi
         }
 

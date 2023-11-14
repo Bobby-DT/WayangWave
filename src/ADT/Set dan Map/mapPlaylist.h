@@ -12,7 +12,7 @@ MODUL Map (Implementasi dengan Kata sebagai Key dan List Berkait sebagai Value)
 #define MaxEl 20
 
 typedef Word tipekey;
-typedef List tipevalue;
+typedef ListLinier tipevalue;
 typedef int addr;
 
 typedef struct {

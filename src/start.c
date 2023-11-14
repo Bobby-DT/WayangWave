@@ -6,9 +6,9 @@ boolean stateWayangWave;
 void start(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, Map *Album, MapPlaylist *Playlist) {
     // readConfig
     if (!IsEmpty(*Penyanyi)) {
-        printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n\n");
-        stateBNMO = true;
+        printf("File konfigurasi sistem berhasil dibaca. WayangWave berhasil dijalankan.\n\n");
+        wayangwaveStarted = true;
     } else {
-        stateBNMO = false;
+        wayangwaveStarted = false;
     }
 }

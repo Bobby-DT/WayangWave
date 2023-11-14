@@ -18,7 +18,7 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 extern Set Undefined;
 
 // typedef int bool;
-typedef char keytype[Max_Length];
+typedef Word keytype;
 typedef Set valuetype;
 typedef int address;
 
