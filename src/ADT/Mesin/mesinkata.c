@@ -184,21 +184,6 @@ int WordToInt(Word currentWord)
     return result;
 }
 
-Word unionWord(char* str, Word b){
-    Word a;
-    a.Length = stringLength(str);
-    for (int i = 0; i < stringLength(str); i++)
-    {
-        a.TabWord[i] = str[i];
-    }
-    for (int i = 0; i < b.Length; i++)
-    {
-        a.TabWord[a.Length + i] = b.TabWord[i];
-    }
-    a.Length = a.Length + b.Length;
-    return a;
-}
-
 char *WordToStr(Word kata){
     char *str = (char *)malloc(kata.Length * sizeof(char));
     for (int i = 0; i < kata.Length; i++)
@@ -263,4 +248,34 @@ Word toUpper(Word kata){
         }
     }
     return upper;
+}
+
+boolean isEndWord(){
+    return EndWord;
+}
+
+void GetCommand(){
+    currentWord.Length = 0;
+    STARTWORD(stdin);
+}
+
+Word AccessCommand(Word comm, int Idx){
+    int count = 0, i = 0;
+    Word out;
+    out.Length = 0;
+
+    while (i < comm.Length && count <= Idx){
+        out.TabWord[out.Length] = comm.TabWord[i];
+        if (comm.TabWord[i] != ' '){
+            out.Length++;
+        }
+        if (comm.TabWord[i] == ' '){
+            if (count < Idx){
+                out.Length = 0;
+            }
+            count++;
+        }
+        i++;
+    }
+    return out;
 }
