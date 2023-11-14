@@ -7,8 +7,8 @@
 #include "./ADT/Mesin Karakter/mesinkarakter.h"
 #include "./ADT/Mesin Kata/mesinkata.h"
 #include "./ADT/Queue/queue.h"
-#include "./ADT/Set dan Map/set.h"
-#include "./ADT/Set dan Map/map.h"
+#include "./ADT/SetMap/set.h"
+#include "./ADT/SetMap/map.h"
 #include "./ADT/Stack/stack.h"
 
 #include "start.h"
