@@ -10,8 +10,9 @@
 #include <stdlib.h>
 #include "../../boolean.h"
 #include "../Mesin/mesinkata.h"
+#include "../Lagu/lagu.h"
 
-typedef Word infotypeList;
+typedef Lagu infotypeList;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist
 {

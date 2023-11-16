@@ -3,9 +3,10 @@
 
 #include <stdio.h>
 #include "boolean.h"
-#include "ADT/Set dan Map/set.h"
+#include "ADT/Lagu/lagu.h"
+#include "ADT/List/arraydin.h"
 #include "ADT/List Berkait/listlinier.h"
 
-void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *MapPenyanyi, Map *Album, MapPlaylist *Playlist);
+void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData);
 
 #endif

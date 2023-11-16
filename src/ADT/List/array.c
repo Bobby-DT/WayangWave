@@ -158,9 +158,18 @@ void TulisIsi (TabKata T) {
 
 boolean IsMember (TabKata T, ElType v) {
 	for (int i = 0; i < T.Neff; i++) {
-		if (IsWordEq(T.TK[i], v)) {
+		if (WordCompare(T.TK[i], v)) {
 			return true;
 		}
 	}
 	return false;
+}
+
+IdxType searchList(TabKata T, ElType v) {
+	for (int i = 0; i < T.Neff; i++) {
+		if (WordCompare(T.TK[i], v)) {
+			return i;
+		}
+	}
+	return -1;
 }

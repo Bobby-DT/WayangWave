@@ -6,18 +6,20 @@ int main() {
     TabKata Penyanyi;
     Queue Antrian;
     Stack Riwayat;
-    Map MapPenyanyi;
     Map Album;
-    MapPlaylist Playlist;
+    Map Lagu;
+    ArrayDinWord PlaylistTitle;
+    ArrayDin PlaylistData;
 
     wayangwaveStarted = false;
 
     MakeEmpty(&Penyanyi);
     CreateQueue(&Antrian);
     CreateEmptyStack(&Riwayat);
-    CreateEmptyMap(&MapPenyanyi);
     CreateEmptyMap(&Album);
-    CreateEmptyPlaylist(&Playlist);
+    CreateEmptyMap(&Lagu);
+    PlaylistTitle = MakeArrayDinWord();
+    PlaylistData = MakeArrayDin();
     
     printf("Welcome to WayangWave\n");
 
@@ -27,12 +29,12 @@ int main() {
             GetCommand();
             clear();
 
-            if (!IsWordEq(toKata("START"), currentWord) && !IsWordEq(toKata("LOAD"), AccessCommand(currentWord, 0))) {
+            if (!WordCompare(toKata("START"), currentWord) && !WordCompare(toKata("LOAD"), AccessCommand(currentWord, 0))) {
                 printf("Command tidak bisa dieksekusi!");
             }
-        } while (!IsWordEq(toKata("START"), currentWord) && !IsWordEq(toKata("LOAD"), AccessCommand(currentWord, 0)));
+        } while (!WordCompare(toKata("START"), currentWord) && !WordCompare(toKata("LOAD"), AccessCommand(currentWord, 0)));
         
-        if (IsWordEq(toKata("START"), currentWord)) start(&Penyanyi, &Antrian, &Riwayat, &MapPenyanyi, &Album, &Playlist);
+        if (WordCompare(toKata("START"), currentWord)) start(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData);
         //else load();
     }
   

@@ -92,7 +92,7 @@ boolean MapIsMember(Map M, keytype k) {
     int i = 0;
 
     while (!found && i < M.Count)  {
-        if (equalKey(M.Elements[i].Key, k)) {
+        if (WordCompare(M.Elements[i].Key, k)) {
             found = true;
         }
         i++;
@@ -101,31 +101,14 @@ boolean MapIsMember(Map M, keytype k) {
 }
 /* Mengembalikan true jika k adalah member dari M */
 
-
-/* ********** Operator Terkait Key ********* */
-/* Hanya dipakai dalam ADT ini */
-void copyKey(char *key1, char *key2) {
-    /* Copy key1 ke key2 */
-    int i;
-    for (i = 0; key1[i] != '\0'; i++) {
-        key2[i] = key1[i];
-    } 
-    key2[i] = '\0';
-}
-
-boolean equalKey(char *key1, char *key2) {
-    /* Compare key1 dengan key2 */
-    int i;
-    boolean equal = true;
-    for (i = 0; key1[i] != '\0'; i++) {
-        if (key1[i] != key2[i]) {
-            equal = false;
+int searchMap(Map M, keytype k) {
+    int i = 0;
+    for (int i = 0; i < M.Count; i++)  {
+        if (WordCompare(M.Elements[i].Key, k)) {
+            return i;
         }
-    } 
-    if (key1[i] != key2[i]) {
-        equal = false;
     }
-    return equal;
+    return -1;
 }
 
 

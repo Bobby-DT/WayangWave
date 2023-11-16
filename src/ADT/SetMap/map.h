@@ -8,17 +8,12 @@
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 */
 
-// #define false 0
-// #define true 1
 #define Nil -1
 #define MaxEl 10
-// #define Undefined Set {buffer = {}, count = -1}
-#define Max_Length 100
 
 extern Set Undefined;
 
-// typedef int bool;
-typedef char keytype[Max_Length];
+typedef Word keytype;
 typedef Set valuetype;
 typedef int address;
 
@@ -73,10 +68,4 @@ void MapDelete(Map *M, keytype k);
 boolean MapIsMember(Map M, keytype k);
 /* Mengembalikan true jika k adalah member dari M */
 
-/* ********** Operator Terkait Key ********* */
-void copyKey(char *key1, char *key2);
-/* Copy key1 ke key2 */
-
-boolean equalKey(char *key1, char *key2);
-/* Compare key1 dengan key2 */
-#endif
+int searchMap(Map M, keytype k);

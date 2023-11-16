@@ -35,7 +35,7 @@ address Alokasi(infotypeList X)
         Info(P) = X;
         Next(P) = NULL;
         return P;
-    }
+    } else
     {
         return NULL;
     }

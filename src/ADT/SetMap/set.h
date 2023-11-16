@@ -4,10 +4,9 @@
 #include "../../boolean.h"
 
 #define CAPACITY 100
-#define Max_Length 100
 
 typedef struct {
-    char buffer[CAPACITY][Max_Length];
+    Word buffer[CAPACITY];
     int length;
 } Set;
 
