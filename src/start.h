@@ -2,6 +2,7 @@
 #define START_WAYANGWAVE_H
 
 #include <stdio.h>
+#include "parseConfig.h"
 
 extern boolean stateWayangWave;
 
