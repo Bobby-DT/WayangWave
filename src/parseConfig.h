@@ -6,10 +6,9 @@
 #include "boolean.h"
 #include "Set/map.h"
 #include "Set/set.h"
-#include "StringToInt.h"
 #include "mesinKata.h"
 
-void parseConfig(Map *mapPenyanyi, Map *mapAlbum);
+void parseConfig(TabKata *Penyanyi, Map *mapPenyanyi, Map *mapAlbum);
 /* Melakukan 'load' daftar Penyanyi, album dan lagu ke dalam program */
 
 void copyStr(char *Str1, char *Str2);
