@@ -10,6 +10,7 @@ int main() {
     Map Lagu;
     ArrayDinWord PlaylistTitle;
     ArrayDin PlaylistData;
+    Lagu Playing;
 
     wayangwaveStarted = false;
 
