@@ -1,6 +1,6 @@
 #include "parseConfig.h"
 
-void parseConfig(Map *Album, Map *Lagu) {
+void parseConfig(TabKata *Penyanyi, Map *Album, Map *Lagu) {
     
     int i, j, k, numOfSinger, numOfAlbum, numOfSong;
     char namaPenyanyi[100], namaAlbum[100], namaLagu[100];
@@ -23,6 +23,8 @@ void parseConfig(Map *Album, Map *Lagu) {
         adv(); // currentWord -> jumlah album
         numOfAlbum = StringToInt(currentWord.TabWord, currentWord.Length);  // jumlah album
         adv(); // currentWord -> nama penyanyi
+        SetEl(Penyanyi, NbElmt(*Penyanyi), currentWord);
+        
         copyStr(currentWord.TabWord, namaPenyanyi);
 
         CreateEmpty(&setAlbum);
