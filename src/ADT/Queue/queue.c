@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "../../boolean.h"
 #include "queue.h"
 
 void CreateQueue(Queue *q){
@@ -11,12 +12,12 @@ boolean queue_isEmpty(Queue q){
 }
 
 boolean queue_isFull(Queue q){
-    return (length(q) == CAPACITY);
+    return (queue_length(q) == CAPACITY);
 }
 
 int queue_length(Queue q){
     int length;
-    if (isEmpty(q)){
+    if (queue_isEmpty(q)){
         length = 0;
     }
     else{
@@ -31,20 +32,20 @@ int queue_length(Queue q){
 }
 
 void enqueue(Queue *q, ElType val){
-    if (isEmpty(*q)){
+    if (queue_isEmpty(*q)){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
         TAIL(*q) = val;
     }
     else{
-        IDX_TAIL(*q) = (IDX_HEAD(*q) + length(*q)) % CAPACITY;
+        IDX_TAIL(*q) = (IDX_HEAD(*q) + queue_length(*q)) % CAPACITY;
         TAIL(*q) = val;
     }
 }
 
 void dequeue(Queue *q, ElType *val){
     *val = HEAD(*q);
-    if (length(*q) == 1){
+    if (queue_length(*q) == 1){
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
     }
@@ -53,23 +54,24 @@ void dequeue(Queue *q, ElType *val){
     }
 }
 
-void queue_deleteAt(Queue *q, int idx){
-    if (idx < length(*q)){
-        // for (int i = 0; i < length(*q); i++){
-        //     if (idx)
-        // }
-    }
-}
-
 void queue_insert(Queue *q, ElType X){
-    if (isEmpty(*q)){
+    if (queue_isEmpty(*q)){
         enqueue(q, X);
     }
     else{
-        IDX_TAIL(*q) = (IDX_HEAD(*q) + length(*q)) % CAPACITY;
+        IDX_TAIL(*q) = (IDX_HEAD(*q) + queue_length(*q)) % CAPACITY;
         for (int i = (*q).idxTail-1 ; i >= 0; i--){
             (*q).buffer[i+1] = (*q).buffer[i];
         }
         HEAD(*q) = X;
     }
+}
+
+boolean queue_IsMember(Queue q, int a){
+    boolean member = false;
+
+    if (a >= q.idxHead && a <= q.idxTail){
+        member = true;
+    }
+    return member;
 }
