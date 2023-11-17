@@ -1,115 +1,110 @@
 #include <stdio.h>
-#include "queue.h"
-#include "./ADT/SetMap/set.h"
-#include "./ADT/SetMap/map.h"
-#include "list.h"
+#include "../src/ADT/Queue/queue.h"
+#include "../src/ADT/Mesin/MesinKata.h"
+#include "../src/ADT/SetMap/map.h"
+// #include "../src/ADT/List/arraydin.h"
 
-void QueueSong(Queue Q, Queue *result){
-    Set temp_peny;
-    CreateEmpty(&temp_peny);
-    Set temp_alb;
-    CreateEmpty(&temp_alb);
-    
+void QueueSong(Queue *queueputar, Map penyanyi, Map album){
+    int i;
+
     printf("Daftar Penyanyi :\n");
-    boolean found;
-    int j, i;
-    int num;
-
-    for (i = Q.idxHead; i < length(Q); i++){
-        Insert(&temp_peny, Q.buffer[i].penyanyi);
+    for (i = 1; i <= penyanyi.Count; i++){
+        printf("%d. %s\n", i, penyanyi.Elements[i].Key);
     }
-
-    for (i = 0; i < temp_peny.Count; i++){
-        printf("%d. ", (i+1));
-        printf("%d\n", temp_peny.Elements[i]);
-    }
-
     printf("\n");
-
-    ElType peny;
-    printf("Masukkan Nama Penyanyi: ");
-    scanf("%d", &peny);
-    printf("\n");
-
-    printf("Daftar Album oleh %d :\n", peny);
+    printf("Masukkan nama penyanyi :\n");
     
-    /* Asumsi tidak ada artis dengan album bernama sama*/
-    for(int i = 0; i < length(Q); i++){
-        if ((Q).buffer[i].penyanyi == peny){
-            Insert(&temp_alb, Q.buffer[i].album);
-        }
-    }
+    GetCommand();
 
-    for (i = 0; i < temp_alb.Count; i++){
-        printf("%d. ", (i+1));
-        printf("%d\n", temp_alb.Elements[i]);
-    }
+    Word nama_penyanyi = currentWord;
+    
+    Set set_album;
+    SetCreateEmpty(&set_album);
+    MapValue(penyanyi, currentWord, &set_album);
 
-    printf("\n");
+    printf("Daftar Album oleh ");
+    PrintWord(currentWord);
+    printf(" :\n");
+    displaySet(set_album);
 
-    ElType alb;
-    printf("Masukkan Nama Album yang dipilih : ");
-    scanf("%d", &alb);
-    printf("\n");
+    printf("Masukkan Nama Album yang dipilih :\n");
+    
+    GetCommand();
 
-    printf("Daftar Lagu Album %d oleh %d :\n", alb, peny);
-    int number[length(Q)];
-    int idx_num = 0;
-    num = 1;
-    for(int i = 0; i < length(Q); i++){
-        if((Q).buffer[i].penyanyi == peny && (Q).buffer[i].album == alb){
-            printf("%d. ", num);
-            printf("%d\n", (Q).buffer[i].lagu);
-            number[idx_num] = i;
-            idx_num++;
-        }
-        num++;
-    }
-    printf("\n");
+    Set set_lagu;
+    SetCreateEmpty(&set_lagu);
+    MapValue(album, currentWord, &set_lagu);
 
-    ElType input;
-    printf("Masukkan ID Lagu yang dipilih: ");
-    scanf("%d", &input);
-    printf("\n");
-    if (input <= num){
-        int loc = number[input-1];
-        enqueue(result, (Q).buffer[loc].album, (Q).buffer[loc].penyanyi, (Q).buffer[loc].lagu);
-        printf("Berhasil menambahkan lagu \"%d\" oleh \"%d\" ke queue.\n", (Q).buffer[loc].lagu), (Q).buffer[loc].penyanyi;
-    }
+    printf("Daftar lagu Album \"");
+    PrintWord(currentWord);
+    printf("\" oleh \"");
+    PrintWord(nama_penyanyi);
+    printf("\" :\n");
+    displaySet(set_lagu);
+
+    
+    printf("Masukkan ID Lagu yang dipilih:\n");
+    GetCommand();
+    int idx = WordToInt(currentWord);
+    printf("Berhasil menambahkan lagu \"");
+
+    Word judul_lagu = set_lagu.buffer[idx-1];
+    enqueue(queueputar, judul_lagu);
+    PrintWord(judul_lagu);
+
+    printf("\" oleh \"");
+    printf("\" ke queue.");
 }
 
-void QueuePlaylist(List playlist, Queue *Q){
-    ElType id;
-    printf("Masukkan ID Playlist: ");
-    scanf("%d", &id);
-    printf("\n");
-    int i = 0;
-    boolean found = false;
-    /*harusnya ngecek dulu apakah nama  playlist nya ada*/
-    while (i < Length(playlist) && !found){
-        if (playlist.A[i] == id){
-            enqueue(Q, (*Q).buffer[i].album, (*Q).buffer[i].penyanyi, (*Q).buffer[i].lagu);
-            printf("Berhasil menambahkan playlist \"&d\" ke queue.", playlist.A[id-1]);
+// void QueuePlaylist(Queue queuePutar, arr){
+//     printf("Masukkan ID Playlist: ");
+//     GetCommand();
+//     WordToInt(currentWord);
+//     if ()
+
+// }
+
+void QueueSwap (Queue *queuePutar, Word a, Word b){
+    int a_int = WordToInt(a);
+    int b_int = WordToInt(b);
+
+    if (queue_IsMember(*queuePutar, a_int-1) && queue_IsMember(*queuePutar, b_int-1)){
+        Word temp = (*queuePutar).buffer[a_int-1];
+        (*queuePutar).buffer[a_int-1] = (*queuePutar).buffer[b_int-1];
+        (*queuePutar).buffer[b_int-1] = temp;
+    }
+
+    else if (!queue_IsMember(*queuePutar, a_int-1) || !queue_IsMember(*queuePutar, b_int-1)){
+        if (!queue_IsMember(*queuePutar, a_int-1)){
+            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!", a_int);
+        }
+        else if (!queue_IsMember(*queuePutar, b_int-1)){
+            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!", b_int);
+        }
+        else{
+            printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue!", a_int, b_int);
         }
     }
 }
 
-int main(){
-    Queue lagu;
-    CreateQueue(&lagu);
-    Queue q;
-    CreateQueue(&q);
-    List play = MakeList();
-    
+void QueueRemove(Queue *queuePutar, Word a){
+    int a_int = WordToInt(a);
+    if (queue_IsMember(*queuePutar, a_int-1)){
+        printf("Lagu \"");
+        PrintWord((*queuePutar).buffer[a_int-1]);
+        printf("\" oleh “Aoi Teshima” telah dihapus dari queue!\n");
+        queue_delIn(queuePutar, a_int-1);
+    }
+    else{
+        printf("Lagu dengan urutan ke %d tidak ada.", a_int);
+    }
+}
 
-    enqueue(&lagu, 1, 2, 7);
-    enqueue(&lagu, 1, 2, 8);
-    enqueue(&lagu, 2, 2, 3);
-    enqueue(&lagu, 3, 1, 4);
-    enqueue(&lagu, 1, 1, 5);
-    enqueue(&lagu, 2, 3, 6);
-    /* lagu = seluruh lagu yang ada; q = Queue lagu*/
-    QueuePlaylist()
-
-    displayQueue(q);
+void QueueClear(Queue *queuePutar){
+    while (!queue_isEmpty(*queuePutar))
+    {
+        ElType del;
+        dequeue(queuePutar, &del);
+    }
+    printf("Queue berhasil dikosongkan.\n");
 }
