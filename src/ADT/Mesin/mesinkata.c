@@ -5,8 +5,20 @@
 boolean EndWord;
 Word currentWord;
 
+void IgnoreBlanks()
+{
+    /* Mengabaikan satu atau beberapa BLANK
+       I.S. : currentChar sembarang
+       F.S. : currentChar ≠ BLANK atau currentChar = MARK */
+    while (currentChar == BLANK || currentChar == '\r')
+    {
+        ADV();
+    }
+}
+
 void STARTWORD(FILE *input) {
     START(input);
+    IgnoreBlanks();
     if (currentChar == MARK)
     {
         EndWord = true;
@@ -30,6 +42,7 @@ void STARTINPUT()
 
 void ADVWORD()
 {
+    IgnoreBlanks();
     if (currentChar == MARK)
     {
         EndWord = true;
@@ -38,6 +51,7 @@ void ADVWORD()
     {
         EndWord = false;
         CopyWord();
+        IgnoreBlanks();
     }
 }
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
@@ -48,20 +62,16 @@ void ADVWORD()
 
 void CopyWord()
 {
-    int i = 0;
-    while ((currentChar != MARK) && i < NMax)
+    currentWord.Length = 0;
+    while (currentChar != BLANK && currentChar != '\r' && currentChar != MARK)
     {
-        currentWord.TabWord[i] = currentChar;
-        ADV();
-        i++;
-    }
-    if (i > NMax)
-    {
-        currentWord.Length = NMax;
-    }
-    else
-    {
-        currentWord.Length = i;
+        if (currentWord.Length < NMax)
+        {
+            currentWord.TabWord[currentWord.Length++] = currentChar;
+            ADV();
+        }
+        else
+            break;
     }
 }
 
