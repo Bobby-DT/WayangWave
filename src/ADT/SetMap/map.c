@@ -56,7 +56,7 @@ void MapInsert(Map *M, keytype k, valuetype v)
         if (MapIsEmpty(*M)) {
             (*M).Count = 0;
         }
-        copyKey(k, El.Key); // Tipe key (String) perlu fungsi copyKey
+        El.key = k;
         El.Value = v; // Tipe set bisa langsung diassign
         (*M).Elements[(*M).Count] = El;
         (*M).Count++;
