@@ -1,35 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "arraydin.h"
+#include "arraydinword.h"
 
-ArrayDin MakeArrayDin(){
-	ArrayDin array;
-	array.A = (ElTypeArrDin*) malloc (InitialSize*sizeof(ElTypeArrDin));
+ArrayDinWord MakeArrayDinWord(){
+	ArrayDinWord array;
+	array.A = (ElTypeArrDinW*) malloc (InitialSize*sizeof(ElTypeArrDinW));
 	array.Neff = 0; array.Capacity = InitialSize;
 	return array;
 }
 
-void DeallocateArrayDin(ArrayDin *array) {
+void DeallocateArrayDinWord(ArrayDinWord *array) {
 	free((*array).A); (*array).Neff = 0;
 }
 
-boolean IsEmptyArrayDin(ArrayDin array) {
+boolean IsEmptyArrayDinWord(ArrayDinWord array) {
 	return array.Neff == 0;
 }
 
-int LengthArrayDin(ArrayDin array) {
+int LengthArrayDinWord(ArrayDinWord array) {
 	return array.Neff;
 }
 
-ElTypeArrDin GetArrayDin(ArrayDin array, IdxType i) {
+ElTypeArrDinW GetArrayDinWord(ArrayDinWord array, IdxTypeArrDinW i) {
 	return array.A[i];
 }
 
-int GetCapacityArrayDin(ArrayDin array) {
+int GetCapacityArrayDinWord(ArrayDinWord array) {
 	return array.Capacity;
 }
 
-void InsertAtArrayDin(ArrayDin *array, ElTypeArrDin el, IdxType i) {
+void InsertAtArrayDinWord(ArrayDinWord *array, ElTypeArrDinW el, IdxTypeArrDinW i) {
 	int j;
     if ((*array).Neff < (*array).Capacity)
     {
@@ -42,13 +42,13 @@ void InsertAtArrayDin(ArrayDin *array, ElTypeArrDin el, IdxType i) {
     }
     else
     {
-        ElTypeArrDin *temp = (ElTypeArrDin *)malloc((*array).Capacity* sizeof(ElTypeArrDin));
+        ElTypeArrDinW *temp = (ElTypeArrDinW *)malloc((*array).Capacity* sizeof(ElTypeArrDinW));
         for (j = 0; j < (*array).Capacity; j++)
         {
             temp[j] = (*array).A[j];
         }
         free((*array).A);
-        (*array).A = (ElTypeArrDin *)malloc(((*array).Capacity * 2 ) *sizeof(ElTypeArrDin));
+        (*array).A = (ElTypeArrDinW *)malloc(((*array).Capacity * 2 ) *sizeof(ElTypeArrDinW));
         for (j = 0; j < i; j++)
         {
             (*array).A[j] = temp[j];
@@ -64,17 +64,17 @@ void InsertAtArrayDin(ArrayDin *array, ElTypeArrDin el, IdxType i) {
     }
 }
 
-void InsertLastArrayDin(ArrayDin *array, ElTypeArrDin el) {
-	InsertAtArrayDin(array, el,(*array).Neff);
+void InsertLastArrayDinWord(ArrayDinWord *array, ElTypeArrDinW el) {
+	InsertAtArrayDinWord(array, el,(*array).Neff);
 }
 
-void InsertFirstArrayDin(ArrayDin *array, ElTypeArrDin el) {
-	InsertAtArrayDin(array, el, 0);
+void InsertFirstArrayDinWord(ArrayDinWord *array, ElTypeArrDinW el) {
+	InsertAtArrayDinWord(array, el, 0);
 }
 
-void DeleteAtArrayDin(ArrayDin *array, IdxType i) {
+void DeleteAtArrayDinWord(ArrayDinWord *array, IdxTypeArrDinW i) {
     int j;
-    ElTypeArrDin e = Get(*array, i);
+    ElTypeArrDinW e = Get(*array, i);
     if ((*array).Neff > ((*array).Capacity / 4))
     {
         (*array).Neff -= 1;
@@ -87,7 +87,7 @@ void DeleteAtArrayDin(ArrayDin *array, IdxType i) {
     {
         int Bcapacity = InitialSize;
         if (Bcapacity < ((*array).Capacity / 2)) Bcapacity = (*array).Capacity / 2;
-        ElTypeArrDin *temp = (ElTypeArrDin *)malloc(Bcapacity * sizeof(ElTypeArrDin));
+        ElTypeArrDinW *temp = (ElTypeArrDinW *)malloc(Bcapacity * sizeof(ElTypeArrDinW));
         for (j = 0; j < i; j++)
         {
             temp[j] = (*array).A[j];
@@ -98,7 +98,7 @@ void DeleteAtArrayDin(ArrayDin *array, IdxType i) {
             temp[j] = (*array).A[j + 1];
         }
         free((*array).A);
-        (*array).A = (ElTypeArrDin *)malloc(Bcapacity * sizeof(ElTypeArrDin));
+        (*array).A = (ElTypeArrDinW *)malloc(Bcapacity * sizeof(ElTypeArrDinW));
         for (j = 0; j < (*array).Neff; j++)
         {
             (*array).A[j] = temp[j];
@@ -108,16 +108,16 @@ void DeleteAtArrayDin(ArrayDin *array, IdxType i) {
     }
 }
 
-void DeleteLastArrayDin(ArrayDin *array) {
-	DeleteAtArrayDin(array, (*array).Neff-1);
+void DeleteLastArrayDinWord(ArrayDinWord *array) {
+	DeleteAt(array, (*array).Neff-1);
 }
 
-void DeleteFirstArrayDin(ArrayDin *array) {
-	DeleteAtArrayDin(array, 0);
+void DeleteFirstArrayDinWord(ArrayDinWord *array) {
+	DeleteAt(array, 0);
 }
 
-void PrintArrayDin(ArrayDin array) {
-	IdxType j;
+void PrintArrayDinWord(ArrayDinWord array) {
+	IdxTypeArrDinW j;
 	printf("[");
 	for (j = 0; j < (array).Neff; j++) {
 		printf("%d", (array).A[j]);
@@ -128,9 +128,9 @@ void PrintArrayDin(ArrayDin array) {
 	printf("]\n");
 }
 
-void ReverseArrayDin(ArrayDin *array) {
-	IdxType j;
-	ElTypeArrDin *temp = (ElTypeArrDin*) malloc ((*array).Capacity * sizeof(ElTypeArrDin));
+void ReverseArrayDinWord(ArrayDinWord *array) {
+	IdxTypeArrDinW j;
+	ElTypeArrDinW *temp = (ElTypeArrDinW*) malloc ((*array).Capacity * sizeof(ElTypeArrDinW));
 	for (j = 0; j < (*array).Neff; j++) {
 		temp[j] = (*array).A[(*array).Neff - (1+j)];
 	}
@@ -140,10 +140,10 @@ void ReverseArrayDin(ArrayDin *array) {
 	free(temp);
 }
 
-ArrayDin CopyArrayDin(ArrayDin array) {
-	ArrayDin newArray;
-	IdxType j;
-	newArray.A = (ElTypeArrDin*) malloc (array.Capacity * sizeof(ElTypeArrDin));
+ArrayDinWord CopyArrayDinWord(ArrayDinWord array) {
+	ArrayDinWord newArray;
+	IdxTypeArrDinW j;
+	newArray.A = (ElTypeArrDinW*) malloc (array.Capacity * sizeof(ElTypeArrDinW));
 	newArray.Capacity = array.Capacity; newArray.Neff = array.Neff;
 	for (j = 0; j < newArray.Neff; j++) {
 		newArray.A[j] = array.A[j];
@@ -151,8 +151,8 @@ ArrayDin CopyArrayDin(ArrayDin array) {
 	return newArray;
 }
 
-IdxType SearchArrayDin(ArrayDin array, ElTypeArrDin el) {
-	IdxType j = 0;
+IdxTypeArrDinW SearchArrayDinWord(ArrayDinWord array, ElTypeArrDinW el) {
+	IdxTypeArrDinW j = 0;
 	while (!WordCompare((array).A[j], el) && (j <= (array).Neff)) {
 		j++;
 	}

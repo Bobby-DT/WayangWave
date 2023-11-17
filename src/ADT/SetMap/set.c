@@ -19,7 +19,7 @@ int SetLength(Set s)
     return Length(s);
 }
 
-void SetAdd(Set *s, char Elmt[])
+void SetAdd(Set *s, Word)
 {
     if (!isIn(*s, Elmt)) {
         int i = 0;
@@ -31,7 +31,7 @@ void SetAdd(Set *s, char Elmt[])
     }
 }
 
-void SetRemoveElmt(Set *s, char Elmt[])
+void SetRemoveElmt(Set *s, Word)
 {
     int i = 0, j, it;
     boolean found = false;
@@ -51,7 +51,7 @@ void SetRemoveElmt(Set *s, char Elmt[])
     }
 }
 
-boolean SetIsIn(Set s, char Elmt[]) {
+boolean SetIsIn(Set s, Word) {
     int i = 0;
     size_t j;
     boolean equal= false;

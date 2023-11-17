@@ -23,7 +23,7 @@ void CreateEmptyListLinier(ListLinier *L)
 }
 
 /****************** Manajemen Memori ******************/
-address Alokasi(infotypeList X)
+address AlokasiListLinier(infotypeList X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak NULL, dan misalnya */
 /* menghasilkan P, maka Info(P)=X, Next(P)=NULL */
@@ -41,7 +41,7 @@ address Alokasi(infotypeList X)
     }
 }
 
-void Dealokasi(address *P)
+void DealokasiListLinier(address *P)
 /* I.S. P terdefinisi */
 /* F.S. P dikembalikan ke sistem */
 /* Melakukan dealokasi/pengembalian address P */
@@ -95,10 +95,10 @@ void InsVFirstListLinier(ListLinier *L, infotypeList X)
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
 {
-    address P = Alokasi(X);
+    address P = AlokasiListLinier(X);
     if (P != NULL)
     {
-        InsertFirst(L, P);
+        InsertFirstListLinier(L, P);
     }
 }
 
@@ -108,10 +108,10 @@ void InsVLastListLinier(ListLinier *L, infotypeList X)
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 {
-    address P = Alokasi(X);
+    address P = AlokasiListLinier(X);
     if (P != NULL)
     {
-        InsertLast(L, P);
+        InsertListListLinier(L, P);
     }
 }
 
@@ -124,7 +124,7 @@ void DelVFirstListLinier(ListLinier *L, infotypeList *X)
     address P = First(*L);
     *X = Info(P);
     First(*L) = Next(P);
-    Dealokasi(&P);
+    DealokasiListLinier(&P);
 }
 
 void DelVLastListLinier(ListLinier *L, infotypeList *X)
@@ -150,7 +150,7 @@ void DelVLastListLinier(ListLinier *L, infotypeList *X)
     {
         First(*L) = NULL;
     }
-    Dealokasi(&P);
+    DealokasiListLinier(&P);
 }
 
 /****************** PRIMITIF BERDASARKAN ALAMAT ******************/
@@ -180,7 +180,7 @@ void InsertLastListLinier(ListLinier *L, address P)
 
     if (IsEmptyListLinier(*L))
     {
-        InsertFirst(L, P);
+        InsertFirstListLinier(L, P);
     }
     else
     {
@@ -189,7 +189,7 @@ void InsertLastListLinier(ListLinier *L, address P)
         {
             Last = Next(Last);
         }
-        InsertAfter(L, P, Last);
+        InsertAfterListLinier(L, P, Last);
     }
 }
 
@@ -220,8 +220,8 @@ void DelPListLinier(ListLinier *L, infotypeList X)
     {
         if (X.x == Info(First(*L)).x && X.y == Info(First(*L)).y)
         {
-            DelFirst(L, &P);
-            Dealokasi(&P);
+            DelFirstListLinier(L, &P);
+            DealokasiListLinier(&P);
         }
         else
         {
@@ -241,8 +241,8 @@ void DelPListLinier(ListLinier *L, infotypeList X)
 
             if (bFound)
             {
-                DelAfter(L, &P, Prec);
-                Dealokasi(&P);
+                DelAfterListLinier(L, &P, Prec);
+                DealokasiListLinier(&P);
             }
         }
     }
@@ -283,6 +283,18 @@ void DelAfterListLinier(ListLinier *L, address *Pdel, address Prec)
     *Pdel = Next(Prec);
     Next(Prec) = Next(Next(Prec));
     Next(*Pdel) = NULL;
+}
+
+void DelAtListLinier(ListLinier *L, int Idx) {
+    int count = 1;
+    address P = First(*L);
+    while (count < Idx - 1) {
+        P = Next(P);
+        count++;
+    }
+    address Pdel = Next(P);
+    Next(P) = Next(Next(P));
+    Next(Pdel) = NULL;
 }
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/

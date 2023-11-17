@@ -4,8 +4,8 @@
 void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData) {
     GetCommand();
     if (WordCompare(toKata("CREATE"), AccessCommand(currentWord, 1))) {
-        printf("Masukkan nama playlist yang ingin dibuat : ");
         do {
+            printf("Masukkan nama playlist yang ingin dibuat : ");
             GetCommand();
             int nama_playlist_len = 0;
             for (int i = 0; i < currentWord.Length; i++) {
@@ -15,8 +15,8 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                 if (SearchArrayDinWord(&PlaylistTitle, currentWord) == -1) {
                     List newPlaylist;
                     CreateEmptyList(&newPlaylist);
-                    //InsertLast(PlaylistTitle, );
-                    InsertLast(PlaylistData, newPlaylist);
+                    InsertLastArrayDinWord(PlaylistTitle, currentWord);
+                    InsertLastArrayDin(PlaylistData, newPlaylist);
 
                     printf("Playlist ");
                     TulisWord(currentWord);
@@ -176,7 +176,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                 TulisWord((*Playlist).Elements[playlistID - 1].Key);
                 printf("”\n");
             } else {
-                // remove lagu di playlist
+                
 
                 if (/*berhasil*/) {
                     printf("Lagu “");

@@ -37,5 +37,11 @@ int main() {
         if (WordCompare(toKata("START"), currentWord)) start(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData);
         //else load();
     }
-  
+    if (wayangwaveStarted) {
+        while (wayangwaveStarted) {
+            menu(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData);
+        }
+    } else {
+        printf("WayangWave gagal dijalankan.\n");
+    }
 }

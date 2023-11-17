@@ -26,11 +26,11 @@ boolean SetIsEmpty(Set s);
 
 int SetLength(Set s);
 
-void SetAdd(Set *s, char Elmt[]);
+void SetAdd(Set *s, Word);
 
-void SetRemoveElmt(Set *s, char Elmt[]);
+void SetRemoveElmt(Set *s, Word);
 
-boolean SetIsIn(Set s, char Elmt[]);
+boolean SetIsIn(Set s, Word);
 
 boolean SetsIsEqual(Set s1, Set s2);
 

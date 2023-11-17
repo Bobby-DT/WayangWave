@@ -1,120 +1,119 @@
-#ifndef __ARRAY_DINAMIK__
-#define __ARRAY_DINAMIK__
+#ifndef __ARRAY_DINAMIK_WORD__
+#define __ARRAY_DINAMIK_WORD__
 
 #include "../../boolean.h"
 #include "../Mesin/mesinkata.h"
-#include "../List Berkait/listlinier.h"
 
 #define InitialSize 10
 
-typedef int IdxType;
-typedef ListLinier ElTypeArrDin;
+typedef int IdxTypeArrDinW;
+typedef Word ElTypeArrDinW;
 typedef struct {
-    ElTypeArrDin *A;
+    ElTypeArrDinW *A;
     int Capacity;
     int Neff;
-} ArrayDin;
+} ArrayDinWord;
 
 /**
  * Konstruktor
  * I.S. sembarang
  * F.S. Terbentuk ArrayDin kosong dengan ukuran InitialSize
  */
-ArrayDin MakeArrayDin();
+ArrayDinWord MakeArrayDinWord();
 
 /**
  * Destruktor
- * I.S. ArrayDin terdefinisi
+ * I.S. ArrayDinWord terdefinisi
  * F.S. array->A terdealokasi
  */
-void DeallocateArrayDin(ArrayDin *array);
+void DeallocateArrayDinWord(ArrayDinWord *array);
 
 /**
  * Fungsi untuk mengetahui apakah suatu array kosong.
  * Prekondisi: array terdefinisi
  */
-boolean IsEmpty(ArrayDin array);
+boolean IsEmptyArrayDinWord(ArrayDinWord array);
 
 /**
  * Fungsi untuk mendapatkan banyaknya elemen efektif array, 0 jika tabel kosong.
  * Prekondisi: array terdefinisi
  */
-int Length(ArrayDin array);
+int LengthArrayDinWord(ArrayDinWord array);
 
 /**
  * Mengembalikan elemen array L yang ke-I (indeks lojik).
  * Prekondisi: array tidak kosong, i di antara 0..Length(array).
  */
-ElTypeArrDin Get(ArrayDin array, IdxType i);
+ElTypeArrDinW GetArrayDinWord(ArrayDinWord array, IdxTypeArrDinW i);
 
 /**
  * Fungsi untuk mendapatkan kapasitas yang tersedia.
  * Prekondisi: array terdefinisi
  */
-int GetCapacity(ArrayDin array);
+int GetCapacityArrayDinWord(ArrayDinWord array);
 
 /**
  * Fungsi untuk menambahkan elemen baru di index ke-i
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void InsertAt(ArrayDin *array, ElTypeArrDin el, IdxType i);
+void InsertAtArrayDinWord(ArrayDinWord *array, ElTypeArrDinW el, IdxTypeArrDinW i);
 
 /**
  * Fungsi untuk menambahkan elemen baru di akhir array.
  * Prekondisi: array terdefinisi
  */
-void InsertLast(ArrayDin *array, ElTypeArrDin el);
+void InsertLastArrayDinWord(ArrayDinWord *array, ElTypeArrDinW el);
 
 /**
  * Fungsi untuk menambahkan elemen baru di awal array.
  * Prekondisi: array terdefinisi
  */
-void InsertFirst(ArrayDin *array, ElTypeArrDin el);
+void InsertFirstArrayDinWord(ArrayDinWord *array, ElTypeArrDinW el);
 
 /**
- * Fungsi untuk menghapus elemen di index ke-i ArrayDin
+ * Fungsi untuk menghapus elemen di index ke-i ArrayDinWord
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void DeleteAt(ArrayDin *array, IdxType i);
+void DeleteAtArrayDinWord(ArrayDinWord *array, IdxTypeArrDinW i);
 
 /**
- * Fungsi untuk menghapus elemen terakhir ArrayDin
+ * Fungsi untuk menghapus elemen terakhir ArrayDinWord
  * Prekondisi: array tidak kosong
  */
-void DeleteLast(ArrayDin *array);
+void DeleteLastArrayDinWord(ArrayDinWord *array);
 
 /**
- * Fungsi untuk menghapus elemen pertama ArrayDin
+ * Fungsi untuk menghapus elemen pertama ArrayDinWord
  * Prekondisi: array tidak kosong
  */
-void DeleteFirst(ArrayDin *array);
+void DeleteFirstArrayDinWord(ArrayDinWord *array);
 
 /**
- * Fungsi untuk melakukan print suatu ArrayDin.
+ * Fungsi untuk melakukan print suatu ArrayDinWord.
  * Print dilakukan dengan format: [elemen-1, elemen-2, ..., elemen-n]
  * dan diakhiri newline.
  * Prekondisi: array terdefinisi
  */
-void PrintArrayDin(ArrayDin array);
+void PrintArrayDinWord(ArrayDinWord array);
 
 /**
- * Fungsi untuk melakukan reverse suatu ArrayDin.
+ * Fungsi untuk melakukan reverse suatu ArrayDinWord.
  * Prekondisi: array terdefinisi
  */
-void ReverseArrayDin(ArrayDin *array);
+void ReverseArrayDinWord(ArrayDinWord *array);
 
 /**
- * Fungsi untuk melakukan copy suatu ArrayDin.
+ * Fungsi untuk melakukan copy suatu ArrayDinWord.
  * Prekondisi: array terdefinisi
  */
-ArrayDin CopyArrayDin(ArrayDin array);
+ArrayDinWord CopyArrayDinWord(ArrayDinWord array);
 
 /**
- * Fungsi untuk melakukan search suatu ArrayDin.
+ * Fungsi untuk melakukan search suatu ArrayDinWord.
  * Index pertama yang ditemukan akan dikembalikan.
  * Jika tidak ditemukan, akan mengembalikan -1.
  * Prekondisi: array terdefinisi
  */
-IdxType SearchArrayDin(ArrayDin array, ElTypeArrDin el);
+IdxTypeArrDinWArrDinW SearchArrayDinWord(ArrayDinWord array, ElTypeArrDinW el);
 
 #endif
