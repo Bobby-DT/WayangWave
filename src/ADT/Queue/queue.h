@@ -67,4 +67,7 @@ void dequeue(Queue *q, ElType *val);
 boolean queue_IsMember(Queue q, int a);
 /* Mengirimkan true jika a adalah indeks di dalam list*/
 
+void queue_delIn(Queue *q, int a);
+/* menghapus elemen di tengah-tengah queue */
+
 #endif
