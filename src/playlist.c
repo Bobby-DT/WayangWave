@@ -39,7 +39,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                 printf("\n\t%d. ", i+1);
                 TulisWord((*Penyanyi).TK[i]);
             }
-            printf("\n")
+            printf("\n");
             do {
                 printf("Masukkan Nama Penyanyi yang dipilih : ");
                 GetCommand();
@@ -58,7 +58,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                 printf("\n\t%d. ", i+1);
                 TulisWord((*Album).Elements[PenyanyiID - 1].Value.buffer[i]);
             }
-            printf("\n")
+            printf("\n");
 
             do {
                 printf("Masukkan Judul Album yang dipilih : ");
@@ -83,7 +83,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                     printf("\n\t%d. ", i+1);
                     TulisWord((*Lagu).Elements[AlbumID - 1].Value.buffer[i]);
                 }
-                printf("\n")
+                printf("\n");
 
                 do {
                     printf("Masukkan ID Lagu yang dipilih : ");
@@ -100,7 +100,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                 printf("\n\t%d. ", i+1);
                 TulisWord((*PlaylistTitle).A[i]);
             }
-            printf("\n")
+            printf("\n");
 
             do {
                 printf("Masukkan ID Playlist yang dipilih : ");
