@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 #define NMax 100
-#define BLANK ' '
+#define BLANK '\n'
 #define Separator ' '
 
 typedef struct
