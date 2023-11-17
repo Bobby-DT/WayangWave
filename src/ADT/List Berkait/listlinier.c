@@ -285,6 +285,16 @@ void DelAfterListLinier(ListLinier *L, address *Pdel, address Prec)
     Next(*Pdel) = NULL;
 }
 
+address addrAtListLinier(ListLinier *L, int Idx) {
+    int count = 1;
+    address P = First(*L);
+    while (count < Idx) {
+        P = Next(P);
+        count++;
+    }
+    return P;
+}
+
 void DelAtListLinier(ListLinier *L, int Idx) {
     int count = 1;
     address P = First(*L);
