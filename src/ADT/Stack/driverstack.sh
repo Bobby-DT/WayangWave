@@ -1,0 +1,1 @@
+gcc ../../boolean.h ../Lagu/lagu.h stack.h stack.c driverstack.c -o driverstack

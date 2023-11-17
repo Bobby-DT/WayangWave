@@ -1,24 +1,23 @@
 #include <stdio.h>
-#include "boolean.h"
+#include "../../boolean.h"
 #include "queue.h"
-#include "../MesinKata/mesinkata.h"
 
 void CreateQueue(Queue *q){
     IDX_HEAD(*q) = IDX_UNDEF;
     IDX_TAIL(*q) = IDX_UNDEF;
 }
 
-boolean isEmpty(Queue q){
+boolean queue_isEmpty(Queue q){
     return ((q.idxHead == IDX_UNDEF) && (q.idxTail == IDX_UNDEF));
 }
 
-boolean isFull(Queue q){
-    return (length(q) == CAPACITY);
+boolean queue_isFull(Queue q){
+    return (queue_length(q) == CAPACITY);
 }
 
-int length(Queue q){
+int queue_length(Queue q){
     int length;
-    if (isEmpty(q)){
+    if (queue_isEmpty(q)){
         length = 0;
     }
     else{
@@ -33,20 +32,20 @@ int length(Queue q){
 }
 
 void enqueue(Queue *q, ElType val){
-    if (isEmpty(*q)){
+    if (queue_isEmpty(*q)){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
         TAIL(*q) = val;
     }
     else{
-        IDX_TAIL(*q) = (IDX_HEAD(*q) + length(*q)) % CAPACITY;
+        IDX_TAIL(*q) = (IDX_HEAD(*q) + queue_length(*q)) % CAPACITY;
         TAIL(*q) = val;
     }
 }
 
 void dequeue(Queue *q, ElType *val){
     *val = HEAD(*q);
-    if (length(*q) == 1){
+    if (queue_length(*q) == 1){
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
     }
@@ -55,12 +54,12 @@ void dequeue(Queue *q, ElType *val){
     }
 }
 
-void insert(Queue *q, ElType X){
-    if (isEmpty(*q)){
+void queue_insert(Queue *q, ElType X){
+    if (queue_isEmpty(*q)){
         enqueue(q, X);
     }
     else{
-        IDX_TAIL(*q) = (IDX_HEAD(*q) + length(*q)) % CAPACITY;
+        IDX_TAIL(*q) = (IDX_HEAD(*q) + queue_length(*q)) % CAPACITY;
         for (int i = (*q).idxTail-1 ; i >= 0; i--){
             (*q).buffer[i+1] = (*q).buffer[i];
         }
@@ -68,53 +67,27 @@ void insert(Queue *q, ElType X){
     }
 }
 
-/* not ready
-void displayQueue(Queue q){
-    int i;
-    Word input;
-    if (isEmpty(q)){
-        printf("[]");
+boolean queue_IsMember(Queue q, int a){
+    boolean member = false;
+
+    if (a >= q.idxHead && a <= q.idxTail){
+        member = true;
     }
-    else{
-        printf("[");
-        if (q.idxHead > q.idxTail){
-            for (i = q.idxHead; i <= CAPACITY-1; i++){
-                input = (q).buffer[i];
-                while (!EndWord){
-                    concatWord(&input, currentWord);
-                    ADVWORD();
-                }
-                PrintWord(input);
-                if (i != q.idxTail){
-                    printf(",");
-                }
-            }
-            for (i = 0; i <= q.idxTail; i++){
-                input = (q).buffer[i];
-                while (!EndWord){
-                    concatWord(&input, currentWord);
-                    ADVWORD();
-                }
-                PrintWord(input);
-                if (i != q.idxTail){
-                    printf(",");
-                }
-            }
-        }
-        else{
-            for (i = q.idxHead; i <= q.idxTail; i++){
-                input = (q).buffer[i];
-                while (!EndWord){
-                    concatWord(&input, currentWord);
-                    ADVWORD();
-                }
-                PrintWord(input);
-                if (i != q.idxTail){
-                    printf(",");
-                }
-            }
-        }
-        printf("]\n");
-    }
+    return member;
 }
-*/
+
+void queue_delIn(Queue *q, int a){
+    int currentIdx = ((*q).idxHead + a) % CAPACITY;
+
+    // Menghapus elemen pada posisi yang diinginkan dan menyimpannya
+    Word deletedElement = (*q).buffer[currentIdx];
+
+    // Memindahkan elemen-elemen setelah posisi yang dihapus ke posisi sebelumnya
+    while (currentIdx != (*q).idxTail) {
+        (*q).buffer[currentIdx] = (*q).buffer[(currentIdx + 1) % CAPACITY];
+        currentIdx = (currentIdx + 1) % CAPACITY;
+    }
+
+    // Memperbarui idxTail karena satu elemen dihapus
+    (*q).idxTail = ((*q).idxTail - 1 + CAPACITY) % CAPACITY;
+}
