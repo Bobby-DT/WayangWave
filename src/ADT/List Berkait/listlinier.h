@@ -12,7 +12,7 @@
 #include "../Mesin/mesinkata.h"
 #include "../Lagu/lagu.h"
 
-typedef Lagu infotypeList;
+typedef Song infotypeList;
 typedef struct tElmtlist *address;
 typedef struct tElmtlist
 {

@@ -1,3 +1,4 @@
+#include "./ADT/Lagu/lagu.h"
 #include "./ADT/Queue/queue.h"
 
-void status(Queue *Antrian, Lagu *Playing);
+void status(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, Song *Playing);
