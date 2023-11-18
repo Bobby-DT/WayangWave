@@ -31,7 +31,7 @@ int queue_length(Queue q){
     return length;
 }
 
-void enqueue(Queue *q, ElType val){
+void enqueue(Queue *q, Song val){
     if (queue_isEmpty(*q)){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
@@ -43,7 +43,7 @@ void enqueue(Queue *q, ElType val){
     }
 }
 
-void dequeue(Queue *q, ElType *val){
+void dequeue(Queue *q, Song *val){
     *val = HEAD(*q);
     if (queue_length(*q) == 1){
         IDX_HEAD(*q) = IDX_UNDEF;
@@ -54,7 +54,7 @@ void dequeue(Queue *q, ElType *val){
     }
 }
 
-void queue_insert(Queue *q, ElType X){
+void queue_insert(Queue *q, Song X){
     if (queue_isEmpty(*q)){
         enqueue(q, X);
     }

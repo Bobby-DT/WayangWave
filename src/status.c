@@ -17,8 +17,28 @@ void status(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu, ArrayDinWo
     if (queue_isEmpty(*Antrian)) {
         printf("Your queue is empty.\n\n");
     } else {
-        for (int i = 0; i < queue_length(*Antrian); i++) {
-
+        int idx = 1;
+        if ((*Antrian).idxHead <= (*Antrian).idxTail) {
+            for (int i = (*Antrian).idxHead; i <= (*Antrian).idxTail; i++) {
+                printf("%d. ", idx);
+                PrintSong(&Penyanyi, &Album, &Lagu, (*Antrian).buffer[i].PenyanyiID, (*Antrian).buffer[i].AlbumID, (*Antrian).buffer[i].LaguID);
+                printf("\n");
+                idx++;
+            }
+        } else {
+            for (int i = (*Antrian).idxHead; i < CAPACITY; i++) {
+                printf("%d. ", idx);
+                PrintSong(&Penyanyi, &Album, &Lagu, (*Antrian).buffer[i].PenyanyiID, (*Antrian).buffer[i].AlbumID, (*Antrian).buffer[i].LaguID);
+                printf("\n");
+                idx++;
+            }
+            for (int i = 0; i <= (*Antrian).idxTail; i++) {
+                printf("%d. ", idx);
+                PrintSong(&Penyanyi, &Album, &Lagu, (*Antrian).buffer[i].PenyanyiID, (*Antrian).buffer[i].AlbumID, (*Antrian).buffer[i].LaguID);
+                printf("\n");
+                idx++;
+            }
         }
+        printf("\n");
     }
 }
