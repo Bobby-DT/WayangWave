@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "boolean.h"
-#include "Set/map.h"
-#include "Set/set.h"
-#include "mesinKata.h"
+#include "./ADT/SetMap/Set/map.h"
+#include "./ADT/SetMap/set.h"
+#include "./ADT/Mesin/mesinKata.h"
 
 void parseConfig(TabKata *Penyanyi, Map *mapPenyanyi, Map *mapAlbum);
 /* Melakukan 'load' daftar Penyanyi, album dan lagu ke dalam program */

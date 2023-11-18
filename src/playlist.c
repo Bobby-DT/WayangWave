@@ -206,7 +206,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             printf("\n\t%d. ", i+1);
             TulisWord((*PlaylistTitle).A[i]);
         }
-        printf("\n")
+        printf("\n");
 
         do {
             printf("Masukkan ID Playlist yang dipilih : ");

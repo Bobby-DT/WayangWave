@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "console.h"
 
-void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData) {
+void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Lagu *Playing, int *currentPlaylist) {
     printf(">> ");
     GetCommand();
     //clear();

@@ -11,6 +11,7 @@ int main() {
     ArrayDinWord PlaylistTitle;
     ArrayDin PlaylistData;
     Lagu Playing;
+    int currentPlaylist = NULL;
 
     wayangwaveStarted = false;
 
@@ -24,7 +25,7 @@ int main() {
     
     printf("Welcome to WayangWave\n");
 
-    while (!inSession) {
+    while (!wayangwaveStarted) {
         do {
             printf("> ENTER COMMAND: ");
             GetCommand();
@@ -35,12 +36,12 @@ int main() {
             }
         } while (!WordCompare(toKata("START"), currentWord) && !WordCompare(toKata("LOAD"), AccessCommand(currentWord, 0)));
         
-        if (WordCompare(toKata("START"), currentWord)) start(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData);
-        //else load();
+        if (WordCompare(toKata("START"), currentWord)) start(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing, &currentPlaylist);
+        else load();
     }
     if (wayangwaveStarted) {
         while (wayangwaveStarted) {
-            menu(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData);
+            menu(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing, &currentPlaylist));
         }
     } else {
         printf("WayangWave gagal dijalankan.\n");

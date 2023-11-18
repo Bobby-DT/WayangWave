@@ -2,11 +2,13 @@
 #define _SET_H
 
 #include "../../boolean.h"
+#include "../Mesin/mesinkata.h"
+#include "../Lagu/lagu.h"
 
 #define CAPACITY 100
 
 typedef struct {
-    Word buffer[CAPACITY];
+    Object buffer[CAPACITY];
     int length;
 } Set;
 
@@ -24,13 +26,15 @@ void SetCreateEmpty(Set *s);
 /* *** Predikat *** */
 boolean SetIsEmpty(Set s);
 
-int SetLength(Set s);
+boolean SetIsFull(Set s);
 
-void SetAdd(Set *s, Word);
+void SetAdd(Set *s, Object O);
 
-void SetRemoveElmt(Set *s, Word);
+void SetRemoveElmt(Set *s, Object O);
 
-boolean SetIsIn(Set s, Word);
+boolean SetIsIn(Set s, Object O);
+
+int SearchSet(Set s, Object O);
 
 boolean SetsIsEqual(Set s1, Set s2);
 
@@ -45,7 +49,5 @@ Set SetCopy(Set s);
 boolean SetIsSubset(Set s1, Set s2);
 
 void DisplaySet(Set s);
-
-
 
 #endif

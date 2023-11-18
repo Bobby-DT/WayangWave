@@ -34,7 +34,7 @@ void MapValue(Map M, keytype k, valuetype *val)
     int i = 0;
     
     while (!KeyFound && i < M.Count)  {
-        if (M.Elements[i].Key == k) {
+        if (WordCompare(M.Elements[i].Key, k)) {
             *val = M.Elements[i].Value;
             KeyFound = true;
         }
@@ -72,7 +72,7 @@ void MapDelete(Map *M, keytype k)
     int i = 0;
     boolean found = false;
     while (!found && i < (*M).Count) {
-        if ((*M).Elements[i].Key == k) {
+        if (WordCompare((*M).Elements[i].Key, k)) {
             for (int j = i; j < ((*M).Count-1); j++) {
                 (*M).Elements[j] = (*M).Elements[j+1];
             }

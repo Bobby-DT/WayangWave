@@ -9,64 +9,53 @@ void SetCreateEmpty(Set *s) {
     Length(*s) = 0;
 }
 
-boolean SetIsEmpty(Set s)
-{
+boolean SetIsEmpty(Set s) {
     return Length(s) == 0;
 }
 
-int SetLength(Set s)
-{
-    return Length(s);
+boolean SetIsFull(Set s) {
+    return Length(s) == CAPACITY;
 }
 
-void SetAdd(Set *s, Word)
+void SetAdd(Set *s, Object O)
 {
-    if (!isIn(*s, Elmt)) {
-        int i = 0;
-        while (Elmt[i] != '\0') {
-            s->buffer[length(*s)][i] = Elmt[i];
-            i++;
-        }
-        s->length = s->length + 1;
+    if (!SetIsIn(*s, O) && !SetIsFull(*s)) {
+        (*s).buffer[Length(*s)] = O;
     }
 }
 
-void SetRemoveElmt(Set *s, Word)
-{
-    int i = 0, j, it;
+void SetRemoveElmt(Set *s, Object O) {
+    int ElmtIdx = SearchSet(*s, O);
+    if (ElmtIdx != -1) {
+        for (int i = ElmtIdx; i < Length(*s); i++) {
+            (*s).buffer[i] = (*s).buffer[i+1];
+        }
+    }
+    (*s).length--;
+}
+
+boolean SetIsIn(Set s, Object O) {
+    int i = 0;
     boolean found = false;
-    while (!found && i < Length(*s)) {
-        if (s->buffer[i] == Elmt) {
-            for (j = i; j < (Length(*s) - 1); j++) {
-                it = 0;
-                while (s->buffer[j+1][it] != '\0') {
-                    s->buffer[j][it] = s->buffer[j+1][it];
-                    it++;
-                }
-            }
-            s->length = s->length - 1;
+    while (!found && i < length(s)) {
+        if (ObjectIsEqual(s.buffer[i], O)) {
             found = true;
         }
         i++;
     }
+    return found;
 }
 
-boolean SetIsIn(Set s, Word) {
+int SearchSet(Set s, Object O) {
     int i = 0;
-    size_t j;
-    boolean equal= false;
-    while (!equal && i < length(s)) {
-        j = 0;
-        equal = true;
-        while ((s).buffer[i][j] != '\0' && equal) {
-            if ((s).buffer[i][j] != Elmt[j])
-                equal = false;
-            j++;
+    boolean found = false;
+    while (!found && i < length(s)) {
+        if (ObjectIsEqual(s.buffer[i], O)) {
+            return i;
         }
         i++;
     }
-
-    return equal;
+    return -1;
 }
 
 boolean SetsIsEqual(Set s1, Set s2) {
@@ -74,7 +63,7 @@ boolean SetsIsEqual(Set s1, Set s2) {
     int i = 0;
     if (length(s1) == length(s2)) {
         while (equal && i < length(s1)) {
-            if ((s1).buffer[i] != (s2).buffer[i]) {
+            if (!ObjectIsEqual((s1).buffer[i], (s2).buffer[i])) {
                 equal = false;
             }
             i++;
@@ -92,13 +81,13 @@ Set SetUnion(Set s1, Set s2) {
     CreateSet(&s3);
 
     for (i = 0; i < length(s1); i++) {
-        add(&s3, (s1).buffer[i]);
+        SetAdd(&s3, (s1).buffer[i]);
     }
 
     i = 0;
     while (i < length(s2) && length(s3) < (CAPACITY-1)) {
         if (!isIn(s3, (s2).buffer[i])) {
-            add(&s3, (s2).buffer[i]);
+            SetAdd(&s3, (s2).buffer[i]);
         }
         i++;
     }
@@ -113,7 +102,7 @@ Set SetIntersection(Set s1, Set s2) {
 
     for (i = 0; i < length(s1); i++) {
         if (isIn(s2, (s1).buffer[i])) {
-            add(&s3, (s1).buffer[i]);
+            SetAdd(&s3, (s1).buffer[i]);
         }
     }
 
@@ -127,7 +116,7 @@ Set SetDifference(Set s1, Set s2) {
 
     for (i = 0; i < length(s1); i++) {
         if (!isIn(s2, (s1).buffer[i])) {
-            add(&s3, (s1).buffer[i]);
+            SetAdd(&s3, (s1).buffer[i]);
         }
     }
 
@@ -140,7 +129,7 @@ Set SetCopy(Set s) {
     CreateSet(&copy);
 
     for (i = 0; i < length(s); i++) {
-        add(&copy, (s).buffer[i]);
+        SetAdd(&copy, (s).buffer[i]);
     }
 
     return copy;

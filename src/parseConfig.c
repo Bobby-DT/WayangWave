@@ -7,7 +7,7 @@ void parseConfig(TabKata *Penyanyi, Map *Album, Map *Lagu) {
     Set setAlbum, setLagu;
     FILE* fptr;
     
-    fptr = fopen("config.txt", "r");
+    fptr = fopen("save/config.txt", "r");
 
     if (fptr == NULL) {
         printf("Error, file not opened.");
