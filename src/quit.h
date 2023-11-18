@@ -2,7 +2,8 @@
 #define QUIT_H
 
 #include <stdio.h>
-#include <string.h>
+
+void saveSession();
 
 void quit();
 /* 

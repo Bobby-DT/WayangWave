@@ -3,7 +3,7 @@
 
 void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData) {
     GetCommand();
-    if (WordCompare(toKata("CREATE"), AccessCommand(currentWord, 1))) {
+    if (WordCompare(toKata("CREATE"), toUpper(AccessCommand(currentWord, 1)))) {
         do {
             printf("Masukkan nama playlist yang ingin dibuat : ");
             GetCommand();
@@ -28,10 +28,10 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                 printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.\n");
             }
         } while (!(nama_playlist_len >= 3) || SearchArrayDinWord(&PlaylistTitle, currentWord) != -1);
-    } else if (WordCompare(toKata("ADD"), AccessCommand(currentWord, 1))) {
-        if (!WordCompare(toKata("SONG"), AccessCommand(currentWord, 2)) && !WordCompare(toKata("ALBUM"), AccessCommand(currentWord, 2))) {
+    } else if (WordCompare(toKata("ADD"), toUpper(AccessCommand(currentWord, 1)))) {
+        if (WordCompare(toKata("SONG"), toUpper(AccessCommand(currentWord, 2))) && WordCompare(toKata("ALBUM"), toUpper(AccessCommand(currentWord, 2)))) {
             boolean addSong = false;
-            if (WordCompare(toKata("SONG"), AccessCommand(currentWord, 2))) {
+            if (WordCompare(toKata("SONG"), toUpper(AccessCommand(currentWord, 2)))) {
                 addSong = true;
             }
             printf("Daftar Penyanyi :");
@@ -132,7 +132,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
         } else {
             printf("Command tidak diketahui!\n\n");
         }
-    } else if (WordCompare(toKata("SWAP"), AccessCommand(currentWord, 1))) {
+    } else if (WordCompare(toKata("SWAP"), toUpper(AccessCommand(currentWord, 1)))) {
         int playlistID = WordToInt(AccessCommand(currentWord, 2)) + 1;
         boolean invalidPlaylistID = playlistID > (*PlaylistTitle).Neff || playlistID < 1;
         if (!invalidPlaylistID) {
@@ -167,7 +167,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             PrintWord(AccessCommand(currentWord, 2));
             printf(".\n");
         }
-    } else if (WordCompare(toKata("REMOVE"), AccessCommand(currentWord, 1))) {
+    } else if (WordCompare(toKata("REMOVE"), toUpper(AccessCommand(currentWord, 1)))) {
         int playlistID = WordToInt(AccessCommand(currentWord, 2)) + 1;
         boolean invalidPlaylistID = playlistID > (*PlaylistTitle).Neff || playlistID < 1;
         if (!invalidPlaylistID) {
@@ -202,7 +202,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
         } else {
             printf("Tidak ada playlist dengan ID %d.\n", playlistID);
         }
-    } else if (WordCompare(toKata("DELETE"), AccessCommand(currentWord, 1))) {
+    } else if (WordCompare(toKata("DELETE"), toUpper(AccessCommand(currentWord, 1)))) {
         printf("Daftar Playlist Pengguna :\n");
         for (int i = 0; i < (*PlaylistTitle).Neff; i++) {
             printf("\n\t%d. ", i+1);

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "parseConfig.h"
 
-extern boolean stateWayangWave;
+extern boolean wayangwaveStarted;
 
 void start(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing);
 

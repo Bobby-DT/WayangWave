@@ -1,5 +1,6 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include "./ADT/Mesin/mesinkata.h"
 #include "console.h"
 
 int main() {
@@ -31,12 +32,14 @@ int main() {
             GetCommand();
             clear();
 
-            if (!WordCompare(toKata("START"), currentWord) && !WordCompare(toKata("LOAD"), AccessCommand(currentWord, 0))) {
-                printf("Command tidak bisa dieksekusi!");
+            if (WordCompare(toKata("HELP"), toUpper(currentWord))) {
+                help(false);
+            } else if (!WordCompare(toKata("START"), toUpper(currentWord)) && !WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0)))) {
+                printf("Command tidak bisa dieksekusi!\n\n");
             }
-        } while (!WordCompare(toKata("START"), currentWord) && !WordCompare(toKata("LOAD"), AccessCommand(currentWord, 0)));
+        } while (!WordCompare(toKata("START"), toUpper(currentWord)) && !WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0))) && !WordCompare(toKata("HELP"), toUpper(currentWord)));
         
-        if (WordCompare(toKata("START"), currentWord)) start(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
+        if (WordCompare(toKata("START"), toUpper(currentWord))) start(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
         else load();
     }
     if (wayangwaveStarted) {
@@ -44,6 +47,6 @@ int main() {
             menu(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
         }
     } else {
-        printf("WayangWave gagal dijalankan.\n");
+        printf("WayangWave gagal dijalankan.\n\n");
     }
 }

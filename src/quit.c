@@ -1,23 +1,19 @@
-#include "quit.h"
 #include <stdio.h>
+#include "quit.h"
 
-void saveSession(){
+void saveSession() {
     printf("Save file berhasil disimpan.\n");
 }
-void quit(){
-    char response[2];
-    printf("Apakah kamu ingin menyimpan data sesi sekarang?");
-    scanf("%1s", response);
 
-    if (strcmp(response, "Y") == 0 || strcmp(response, "y") == 0){
-        saveSession();
-        printf("Kamu keluar dari WayangWave.\nDdah ^_^\n");
-    }
-    else if (strcmp(response, "N") == 0 || strcmp(response, "n") == 0)
-        printf("Kamu keluar dari WayangWave.\nDdah ^_^\n");
-}
-
-int main(){
-    quit();
-    return 0;
+void quit() {
+    printf("Apakah kamu ingin menyimpan data sesi sekarang (y/N)?");
+    do {
+        GetCommand();
+        if (!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord))) {
+            printf("Command tidak diketahui! Jawab dengan y/N!\n");
+        } else if (WordCompare(toKata("Y"), toUpper(currentWord))){
+            saveSession();
+        }
+    } while(!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord)));
+    printf("Kamu keluar dari WayangWave.\nDdah ^_^\n");
 }

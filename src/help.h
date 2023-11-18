@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 
-
-void showHelp(int inSession);
+void help(boolean wayangwaveStarted);
 
 #endif /* HELP_H */
