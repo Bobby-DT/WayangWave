@@ -30,8 +30,8 @@ void SetRemoveElmt(Set *s, Object O) {
         for (int i = ElmtIdx; i < Length(*s); i++) {
             (*s).buffer[i] = (*s).buffer[i+1];
         }
+        (*s).length--;
     }
-    (*s).length--;
 }
 
 boolean SetIsIn(Set s, Object O) {

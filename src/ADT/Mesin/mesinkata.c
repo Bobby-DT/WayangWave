@@ -260,3 +260,24 @@ Word AccessCommand(Word comm, int Idx){
     }
     return out;
 }
+
+Word AccessConfig(Word comm, int Idx){
+    int count = 0, i = 0;
+    Word out;
+    out.Length = 0;
+
+    while (i < comm.Length && count <= Idx){
+        out.TabWord[out.Length] = comm.TabWord[i];
+        if (comm.TabWord[i] != ';'){
+            out.Length++;
+        }
+        if (comm.TabWord[i] == ';'){
+            if (count < Idx){
+                out.Length = 0;
+            }
+            count++;
+        }
+        i++;
+    }
+    return out;
+}

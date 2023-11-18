@@ -101,4 +101,6 @@ void GetCommand();
 
 Word AccessCommand(Word comm, int Idx);
 
+Word AccessConfig(Word comm, int Idx);
+
 #endif

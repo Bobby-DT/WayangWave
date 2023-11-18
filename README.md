@@ -100,6 +100,7 @@ Tugas Besar Algoritma dan Struktur Data
 
 - ArrayDinWord PlaylistTitle
   ```
+  Dynamic Array of Word
   [
     Word "Nama Playlist 1",
     Word "Nama Playlist 2",
@@ -109,7 +110,7 @@ Tugas Besar Algoritma dan Struktur Data
 
 - ArrayDin PlaylistData
   ```
-  Struktur Berkait
+  Dynamic Array of Struktur Berkait
   [
     ListLinier Playlist_1 {
         address First (address pertama Playlist 1)

@@ -30,6 +30,12 @@ Word GetLagu(Map *Album, Map *Lagu, int PenyanyiID, int AlbumID, int LaguID);
 
 Word GetPlaylist(ArrayDinWord *PlaylistTitle, int PlaylistID);
 
+int GetPenyanyiID(TabKata *Penyanyi, Word namaPenyanyi);
+
+int GetAlbumID(Map *Album, Word namaAlbum, int PenyanyiID);
+
+int GetLaguID(Map *Lagu, Word namaLagu, int AlbumID);
+
 boolean SongIsEqual(Song s1, Song s2);
 
 void PrintSong(TabKata *Penyanyi, Map *Album, Map *Lagu, int PenyanyiID, int AlbumID, int LaguID);

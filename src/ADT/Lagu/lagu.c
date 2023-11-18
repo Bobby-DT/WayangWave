@@ -32,6 +32,38 @@ Word GetPlaylist(ArrayDinWord *PlaylistTitle, int PlaylistID) {
     return (*PlaylistTitle).TK[PlaylistID - 1];
 }
 
+int GetPenyanyiID(TabKata *Penyanyi, Word namaPenyanyi) {
+    return searchList(&Penyanyi, namaPenyanyi);
+}
+
+int GetAlbumID(Map *Album, Word namaAlbum, int PenyanyiID) {
+    Set AlbumofPenyayi = (*Album).Elements[PenyanyiID - 1].Value;
+    int albumLength = AlbumofPenyayi.length;
+    int i = 0;
+    boolean found = false;
+    while (!found && i < albumLength) {
+        if (WordCompare(AlbumofPenyayi.buffer[i].Title, namaAlbum)) {
+            return AlbumofPenyayi.buffer[i].ID;
+        }
+        i++;
+    }
+    return -1;
+}
+
+int GetLaguID(Map *Lagu, Word namaLagu, int AlbumID) {
+    Set LaguofAlbum = (*Lagu).Elements[AlbumID - 1].Value;
+    int laguLength = LaguofAlbum.length;
+    int i = 0;
+    boolean found = false;
+    while (!found && i < albumLength) {
+        if (WordCompare(LaguofAlbum.buffer[i].Title, namaLagu)) {
+            return LaguofAlbum.buffer[i].ID;
+        }
+        i++;
+    }
+    return -1;
+}
+
 boolean SongIsEqual(Song s1, Song s2) {
     return (s1.PenyanyiID == s2.PenyanyiID) && (s1.AlbumID == s2.AlbumID) && (s1.LaguID == s2.LaguID) && (s1.PlaylistID == s2.PlaylistID);
 }

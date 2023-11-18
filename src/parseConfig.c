@@ -1,75 +1,63 @@
 #include "parseConfig.h"
 
-void parseConfig(TabKata *Penyanyi, Map *Album, Map *Lagu) {
-    
-    int i, j, k, numOfSinger, numOfAlbum, numOfSong;
-    char namaPenyanyi[100], namaAlbum[100], namaLagu[100];
-    Set setAlbum, setLagu;
-    FILE* fptr;
-    
-    fptr = fopen("save/config.txt", "r");
-
-    if (fptr == NULL) {
-        printf("Error, file not opened.");
-        exit(0);
+void parseConfig(char * filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing) {
+    char dir[50] = "./save/";
+    int i = 0;
+    while (filesrc[i]) {
+        dir[7 + i] = filesrc[i];
+        i++;
     }
+    dir[7 + i] = '\0';
+    FILE* input = fopen(dir, "r");
 
+    if (input == NULL) {
+        printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n\n");
+    } else {
+        STARTWORD(input);
+        int jumlahTotalAlbum = 0;
+        int jumlahPenyayi = WordToInt(currentWord);
+        for (int j = 0; j < jumlahPenyayi; j++) {
+            ADVWORD();
+            int jumlahAlbum = WordToInt(AccessCommand(currentWord, 0));
+            Word namaPenyanyi = AccessCommand(currentWord, 1);
+            Set AlbumofPenyayi;
+            SetCreateEmpty(&AlbumofPenyayi);
+            for (int k = 0; k < jumlahAlbum; k++) {
+                ADVWORD();
+                int jumlahLagu = WordToInt(AccessCommand(currentWord, 0));
+                Word namaAlbum = AccessCommand(currentWord, 1);
+                // Insert Album
+                Object newAlbum = CreateObject(jumlahTotalAlbum+1, namaAlbum);
+                SetAdd(&AlbumofPenyayi, newAlbum);
+                jumlahTotalAlbum++;
 
-    start();
-    numOfSinger = StringToInt(currentWord.TabWord, currentWord.Length);  // jumlah penyanyi
-    
-    for (i = 0; i < numOfSinger; i++) {
-
-        adv(); // currentWord -> jumlah album
-        numOfAlbum = StringToInt(currentWord.TabWord, currentWord.Length);  // jumlah album
-        adv(); // currentWord -> nama penyanyi
-        SetEl(Penyanyi, NbElmt(*Penyanyi), currentWord);
-        
-        copyStr(currentWord.TabWord, namaPenyanyi);
-
-        CreateEmpty(&setAlbum);
-
-        for (j = 0; j < numOfAlbum; j++) {
-
-            adv(); // cKata -> jumlah lagu
-            numOfSong = StringToInt(currentWord.TabWord, currentWord.Length);
-            adv(); // cKata -> nama album
-            copyStr(currentWord.TabWord, namaAlbum);
-
-            CreateEmpty(&setLagu);
-
-            for (k = 0; k < numOfSong; k++) {
-                adv(); // cKata -> nama lagu
-                add(&setLagu, currentWord.TabWord); // add ke set lagu
+                Set LaguofAlbum;
+                SetCreateEmpty(&LaguofAlbum);
+                for (int l = 0; l < jumlahLagu; l++) {
+                    ADVWORD();
+                    Object newLagu = CreateObject(l+1, currentWord);
+                    SetAdd(&LaguofAlbum, newLagu);
+                }
+                MapInsert(&Lagu, namaAlbum, LaguofAlbum);
             }
-
-            Insert(Lagu, namaAlbum, setLagu); // insert ke map Lagu
-
-            add(&setAlbum, namaAlbum); // add nama album ke set Album
+            SetEl(Penyanyi, j, namaPenyanyi);
+            MapInsert(&Album, namaPenyanyi, AlbumofPenyayi);
         }
-
-        Insert(Album, namaPenyanyi, setAlbum); // insert set album ke map Album
     }
-    
-
-}
-
-void copyStr(char *Str1, char *Str2) {
-    /* Copy Str1 ke Str2 */
-    int i;
-    for (i = 0; Str1[i] != '\0'; i++) {
-        Str2[i] = Str1[i];
-    } 
-    Str2[i] = '\0';
-}
-
-int StringToInt(char *str, int length) {
-    int i;
-    int num = 0;
-
-    for (i = 0; i < length; i++) {
-        num = num * 10 + (str[i] - '0');
+    ADVWORD();
+    if (currentChar != ' ') {
+        // Insert Curently Playing Song
+        int PenyanyiID = GetPenyanyiID(&Penyanyi, AccessConfig(currentWord, 0));
+        int AlbumID = GetAlbumID(&Album, AccessConfig(currentWord, 1), PenyanyiID);
+        int LaguID = GetLaguID(&Lagu, AccessConfig(currentWord, 2), AlbumID);
+        if (PenyanyiID == -1 || AlbumID == -1 || LaguID == -1) {
+            printf("Gagal memuat lagu yang sedang dimainkan dari save file!\n\n");
+        } else {
+            (*Playing).PenyanyiID = PenyanyiID;
+            (*Playing).AlbumID = AlbumID;
+            (*Playing).LaguID = LaguID;
+            (*Playing).PlaylistID = -1;
+        }
     }
-
-    return num;
+    fclose(input);
 }
