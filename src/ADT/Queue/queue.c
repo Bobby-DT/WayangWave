@@ -69,9 +69,10 @@ void queue_insert(Queue *q, Song X){
 
 boolean queue_IsMember(Queue q, int a){
     boolean member = false;
-
-    if (a >= q.idxHead && a <= q.idxTail){
-        member = true;
+    if (!queue_isEmpty(q)){
+        if (a >= q.idxHead && a <= q.idxTail){
+            member = true;
+        }
     }
     return member;
 }
