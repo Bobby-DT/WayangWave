@@ -7,7 +7,7 @@ void CreateEmptyLagu(Song *lagu) {
     *lagu = EmptySong;
 }
 
-Song CreateLagu(int PenyanyiID, int AlbumID, int PenyanyiID, int PlaylistID) {
+Song CreateLagu(int PenyanyiID, int AlbumID, int LaguID, int PlaylistID) {
     Song newSong;
     newSong.PenyanyiID = PenyanyiID;
     newSong.AlbumID = AlbumID;
@@ -21,7 +21,7 @@ Word GetPenyanyi(TabKata *Penyanyi, int PenyanyiID) {
 }
 
 Word GetAlbum(Map *Album, int AlbumID) {
-    return (*Album).Elements[AlbumID - 1].Key;
+    return (*Lagu).Elements[AlbumID - 1].Key;
 }
 
 Word GetLagu(Map *Album, Map *Lagu, int AlbumID, int LaguID) {

@@ -56,3 +56,14 @@ void PopStack(Stack * S, infotype* X)
     (*X) = InfoTop(*S);
     Top(*S)--;
 }
+
+void InvesrseStack(Stack *Asal, Stack *Tujuan) {
+    int i = 0;
+    int NbAsal = NbElmtStack(*Asal);
+    while (i < NbAsal && !IsFullStack(*Tujuan)) {
+        Song temp;
+        PopStack(&Asal, &temp);
+        PushStack(&Tujuan, temp);
+        i++;
+    }
+}

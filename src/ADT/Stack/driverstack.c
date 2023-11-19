@@ -2,16 +2,12 @@
 #include "../Lagu/lagu.h"
 #include "stack.h"
 
-Lagu createLagu(int n) {
-    Lagu newLagu;
-    newLagu.PenyanyiID = n;
-    newLagu.AlbumID = n;
-    newLagu.LaguID = n;
-    return newLagu;
+Song createLagu(int n) {
+    return CreateLagu(n, n, n, -1);
 }
 
 int main() {
-    Lagu temp;
+    Song temp;
 
     printf("Declaring Stack . . .\nStack test;\n\n");
     Stack test;

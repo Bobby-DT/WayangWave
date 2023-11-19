@@ -111,7 +111,7 @@ void InsVLastListLinier(ListLinier *L, infotypeList X)
     address P = AlokasiListLinier(X);
     if (P != NULL)
     {
-        InsertListListLinier(L, P);
+        InsertLastListLinier(L, P);
     }
 }
 

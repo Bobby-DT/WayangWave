@@ -39,8 +39,11 @@ int main() {
             }
         } while (!WordCompare(toKata("START"), toUpper(currentWord)) && !WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0))) && !WordCompare(toKata("HELP"), toUpper(currentWord)));
         
-        if (WordCompare(toKata("START"), toUpper(currentWord))) start(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
-        else load();
+        if (WordCompare(toKata("START"), toUpper(currentWord))) {
+            start(toKata("config.txt"), &Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
+        } else if (WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0)))) {
+            start(AccessCommand(currentWord, 1), &Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
+        }
     }
     if (wayangwaveStarted) {
         while (wayangwaveStarted) {

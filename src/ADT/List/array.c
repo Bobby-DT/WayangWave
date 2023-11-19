@@ -148,7 +148,7 @@ void TulisIsi (TabKata T) {
 	if (!IsEmpty(T)) {
 		for (i = GetFirstIdx(T); i < NbElmt(T); i++) {
 			printf("  %d. ", i + 1);
-			TulisWord(T.TK[i]);
+			PrintWord(T.TK[i]);
 			printf("\n");
 		}
 	} else {

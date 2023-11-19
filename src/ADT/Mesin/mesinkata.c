@@ -261,7 +261,27 @@ Word AccessCommand(Word comm, int Idx){
     return out;
 }
 
-Word AccessConfig(Word comm, int Idx){
+Word AccessConfig(Word comm, int Idx) {
+    if (Idx == 0) {
+        return AccessCommand(comm, 0);
+    } else if (Idx == 1) {
+        boolean secondPath = false;
+        Word out;
+        out.Length = 0;
+        for (int i = 0; i < comm.Length; i++) {
+            if (secondPath) {
+                out.TabWord[out.Length] = comm.TabWord[i];
+                out.Length++;
+            }
+            if (!secondPath && comm.TabWord[i] == ' ') {
+                secondPath = true;
+            }
+        }
+        return out;
+    }
+}
+
+Word AccessConfig2(Word comm, int Idx) {
     int count = 0, i = 0;
     Word out;
     out.Length = 0;
