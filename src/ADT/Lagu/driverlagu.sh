@@ -1,0 +1,1 @@
+gcc "../../boolean.h" "../Mesin/mesinkarakter.h" "../Mesin/mesinkarakter.c" "../Mesin/mesinkata.h" "../Mesin/mesinkata.c" "song.h" "song.c" "../List/array.h" "../List/array.c" "../List/arraydinword.h" "../List/arraydinword.c" "../SetMap/set.h" "../SetMap/set.c" "../SetMap/map.h" "../SetMap/map.c" "lagu.h" "lagu.c" "driverlagu.c" -o driverlagu

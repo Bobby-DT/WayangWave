@@ -2,18 +2,17 @@
 #define QUEUE
 
 #include <stdio.h>
-#include "./ADT/Lagu/lagu.h"
-#include "list.h"
 #include "./ADT/Queue/queue.h"
 #include "./ADT/Mesin/MesinKata.h"
 #include "./ADT/SetMap/map.h"
 #include "./ADT/List/array.h"
 #include "./ADT/Stack/stack.h"
 #include "./ADT/listBerkait/listlinier.h"
+#include "./ADT/Lagu/song.h"
 #include "./ADT/Lagu/lagu.h"
 #include "./ADT/List/arraydin.h"
 #include "./ADT/List/arraydinword.h"
-
+#include "list.h"
 
 void QueueSong(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu);
 

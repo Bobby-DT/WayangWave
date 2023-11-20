@@ -81,7 +81,7 @@ void queue_delIn(Queue *q, int a){
     int currentIdx = ((*q).idxHead + a) % CAPACITY;
 
     // Menghapus elemen pada posisi yang diinginkan dan menyimpannya
-    Word deletedElement = (*q).buffer[currentIdx];
+    Song deletedElement = (*q).buffer[currentIdx];
 
     // Memindahkan elemen-elemen setelah posisi yang dihapus ke posisi sebelumnya
     while (currentIdx != (*q).idxTail) {

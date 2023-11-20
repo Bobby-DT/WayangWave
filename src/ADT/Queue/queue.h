@@ -6,7 +6,7 @@
 
 #include "../../boolean.h"
 #include "../Mesin/MesinKata.h"
-#include "../Lagu/lagu.h"
+#include "../Lagu/song.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 100

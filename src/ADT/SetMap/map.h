@@ -69,3 +69,5 @@ boolean MapIsMember(Map M, keytype k);
 /* Mengembalikan true jika k adalah member dari M */
 
 int searchMap(Map M, keytype k);
+
+#endif

@@ -2,6 +2,7 @@
 #define PARSECONFIG_H
 
 #include "./ADT/Mesin/mesinKata.h"
+#include "./ADT/Lagu/song.h"
 #include "./ADT/Lagu/lagu.h"
 #include "./ADT/List/array.h"
 #include "./ADT/SetMap/set.h"

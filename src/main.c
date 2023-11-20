@@ -18,8 +18,8 @@ int main() {
     MakeEmpty(&Penyanyi);
     CreateQueue(&Antrian);
     CreateEmptyStack(&Riwayat);
-    CreateEmptyMap(&Album);
-    CreateEmptyMap(&Lagu);
+    MapCreateEmpty(&Album);
+    MapCreateEmpty(&Lagu);
     PlaylistTitle = MakeArrayDinWord();
     PlaylistData = MakeArrayDin();
     CreateEmptyLagu(&Playing);

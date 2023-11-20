@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include "../../boolean.h"
 #include "../Mesin/mesinkata.h"
-#include "../Lagu/lagu.h"
+#include "../Lagu/song.h"
 
 typedef Song infotypeList;
 typedef struct tElmtlist *address;

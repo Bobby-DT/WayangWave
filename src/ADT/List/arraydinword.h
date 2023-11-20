@@ -6,10 +6,8 @@
 
 #define InitialSize 10
 
-typedef int IdxTypeArrDinW;
-typedef Word ElTypeArrDinW;
 typedef struct {
-    ElTypeArrDinW *A;
+    Word *A;
     int Capacity;
     int Neff;
 } ArrayDinWord;
@@ -44,7 +42,7 @@ int LengthArrayDinWord(ArrayDinWord array);
  * Mengembalikan elemen array L yang ke-I (indeks lojik).
  * Prekondisi: array tidak kosong, i di antara 0..Length(array).
  */
-ElTypeArrDinW GetArrayDinWord(ArrayDinWord array, IdxTypeArrDinW i);
+Word GetArrayDinWord(ArrayDinWord array, int i);
 
 /**
  * Fungsi untuk mendapatkan kapasitas yang tersedia.
@@ -56,25 +54,25 @@ int GetCapacityArrayDinWord(ArrayDinWord array);
  * Fungsi untuk menambahkan elemen baru di index ke-i
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void InsertAtArrayDinWord(ArrayDinWord *array, ElTypeArrDinW el, IdxTypeArrDinW i);
+void InsertAtArrayDinWord(ArrayDinWord *array, Word el, int i);
 
 /**
  * Fungsi untuk menambahkan elemen baru di akhir array.
  * Prekondisi: array terdefinisi
  */
-void InsertLastArrayDinWord(ArrayDinWord *array, ElTypeArrDinW el);
+void InsertLastArrayDinWord(ArrayDinWord *array, Word el);
 
 /**
  * Fungsi untuk menambahkan elemen baru di awal array.
  * Prekondisi: array terdefinisi
  */
-void InsertFirstArrayDinWord(ArrayDinWord *array, ElTypeArrDinW el);
+void InsertFirstArrayDinWord(ArrayDinWord *array, Word el);
 
 /**
  * Fungsi untuk menghapus elemen di index ke-i ArrayDinWord
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void DeleteAtArrayDinWord(ArrayDinWord *array, IdxTypeArrDinW i);
+void DeleteAtArrayDinWord(ArrayDinWord *array, int i);
 
 /**
  * Fungsi untuk menghapus elemen terakhir ArrayDinWord
@@ -114,6 +112,6 @@ ArrayDinWord CopyArrayDinWord(ArrayDinWord array);
  * Jika tidak ditemukan, akan mengembalikan -1.
  * Prekondisi: array terdefinisi
  */
-IdxTypeArrDinWArrDinW SearchArrayDinWord(ArrayDinWord array, ElTypeArrDinW el);
+int SearchArrayDinWord(ArrayDinWord array, Word el);
 
 #endif

@@ -1,0 +1,1 @@
+gcc ../../boolean.h ../Mesin/mesinkarakter.h ../Mesin/mesinkarakter.c ../Mesin/mesinkata.h ../Mesin/mesinkata.c song.h song.c driversong.c -o driversong

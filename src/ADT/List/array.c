@@ -33,7 +33,7 @@ int MaxNbEl (TabKata T) {
 }
 
 /* *** Selektor INDEKS *** */
-IdxTypeTK GetFirstIdx (TabKata T) {
+int GetFirstIdx (TabKata T) {
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen pertama */
 	// KAMUS
@@ -41,7 +41,7 @@ IdxTypeTK GetFirstIdx (TabKata T) {
 	return IdxMin;
 }
 
-IdxTypeTK GetLastIdx (TabKata T) {
+int GetLastIdx (TabKata T) {
 /* Prekondisi : Tabel T tidak kosong */
 /* Mengirimkan indeks elemen terakhir */
 	// KAMUS
@@ -50,7 +50,7 @@ IdxTypeTK GetLastIdx (TabKata T) {
 }
 
 /* *** Menghasilkan sebuah elemen *** */
-ElTypeTK GetElmt (TabKata T, IdxTypeTK i) {
+Word GetElmt (TabKata T, int i) {
 /* Prekondisi : Tabel tidak kosong, i antara FirstIdx(T)..LastIdx(T) */
 /* Mengirimkan elemen tabel yang ke-i */
 	// KAMUS
@@ -65,7 +65,7 @@ void SetTab (TabKata Tin, TabKata *Tout) {
 /* F.S. Tout berisi salinan Tin */
 /* Assignment THsl -> Tin */
 	// KAMUS
-	IdxTypeTK i;
+	int i;
 	// ALGORITMA
 	for (i = 1; i <= NbElmt(Tin); i++) {
 		SetEl(Tout, i, GetElmt(Tin,i));
@@ -73,7 +73,7 @@ void SetTab (TabKata Tin, TabKata *Tout) {
 	SetNeff(Tout,NbElmt(Tin));
 }
 
-void SetEl (TabKata *T, IdxTypeTK i, ElTypeTK v) {
+void SetEl (TabKata *T, int i, Word v) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Elemen T yang ke-i bernilai v */
 /* Mengeset nilai elemen tabel yang ke-i sehingga bernilai v */
@@ -85,7 +85,7 @@ void SetEl (TabKata *T, IdxTypeTK i, ElTypeTK v) {
 	}
 }
 
-void SetNeff (TabKata *T, IdxTypeTK N) {
+void SetNeff (TabKata *T, int N) {
 /* I.S. T terdefinisi, sembarang */
 /* F.S. Nilai indeks efektif T bernilai N */
 /* Mengeset nilai indeks elemen efektif sehingga bernilai N */
@@ -96,7 +96,7 @@ void SetNeff (TabKata *T, IdxTypeTK N) {
 
 
 /* ********** Test Indeks yang valid ********** */
-boolean IsIdxValid (TabKata T, IdxTypeTK i) {
+boolean IsIdxValid (TabKata T, int i) {
 /* Prekondisi : i sembarang */
 /* Mengirimkan true jika i adalah indeks yang valid utk ukuran tabel */
 /* yaitu antara indeks yang terdefinisi utk container*/
@@ -105,7 +105,7 @@ boolean IsIdxValid (TabKata T, IdxTypeTK i) {
 	return (i >= IdxMin && i <= IdxMax); 
 }
 
-boolean IsIdxEff (TabKata T, IdxTypeTK i) {
+boolean IsIdxEff (TabKata T, int i) {
 /* Prekondisi : i sembarang*/
 /* Mengirimkan true jika i adalah indeks yang terdefinisi utk tabel */
 /* yaitu antara FirstIdx(T)..LastIdx(T) */
@@ -143,7 +143,7 @@ void TulisIsi (TabKata T) {
 */
 /* Jika T kosong : Hanya menulis "Tabel kosong" */
 	// KAMUS
-	IdxTypeTK i;
+	int i;
 	// ALGORITMA
 	if (!IsEmpty(T)) {
 		for (i = GetFirstIdx(T); i < NbElmt(T); i++) {
@@ -156,7 +156,7 @@ void TulisIsi (TabKata T) {
 	}
 }
 
-boolean IsMember (TabKata T, ElTypeTK v) {
+boolean IsMember (TabKata T, Word v) {
 	for (int i = 0; i < T.Neff; i++) {
 		if (WordCompare(T.TK[i], v)) {
 			return true;
@@ -165,7 +165,7 @@ boolean IsMember (TabKata T, ElTypeTK v) {
 	return false;
 }
 
-IdxTypeTK searchList(TabKata T, ElTypeTK v) {
+int searchList(TabKata T, Word v) {
 	for (int i = 0; i < T.Neff; i++) {
 		if (WordCompare(T.TK[i], v)) {
 			return i;

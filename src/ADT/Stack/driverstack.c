@@ -1,9 +1,14 @@
 #include <stdio.h>
-#include "../Lagu/lagu.h"
+#include "../Lagu/song.h"
 #include "stack.h"
 
 Song createLagu(int n) {
-    return CreateLagu(n, n, n, -1);
+    Song newSong;
+    newSong.PenyanyiID = n;
+    newSong.AlbumID = n;
+    newSong.LaguID = n;
+    newSong.PlaylistID = n;
+    return newSong;
 }
 
 int main() {
@@ -25,14 +30,15 @@ int main() {
     PushStack(&test, createLagu(1));
     printf("InfoTop(test).PenyanyiID = %d\n", InfoTop(test).PenyanyiID);
     printf("InfoTop(test).AlbumID = %d\n", InfoTop(test).AlbumID);
-    printf("InfoTop(test).LaguID = %d\n\n", InfoTop(test).LaguID);
+    printf("InfoTop(test).LaguID = %d\n", InfoTop(test).LaguID);
+    printf("InfoTop(test).PlaylistID = %d\n\n", InfoTop(test).PlaylistID);
 
     printf("IsEmpty: %d\n", IsEmptyStack(test));
     printf("IsFull: %d\n", IsFullStack(test));
     printf("NbElmtStack: %d\n\n", NbElmtStack(test));
 
     printf("Pushing stack 2-99 . . .\n\n");
-    for (int i = 2; i < MaxEl; i++) {
+    for (int i = 2; i < StackMaxEl; i++) {
         PushStack(&test, createLagu(i));
     }
 
@@ -40,7 +46,8 @@ int main() {
     PushStack(&test, createLagu(100));
     printf("InfoTop(test).PenyanyiID = %d\n", InfoTop(test).PenyanyiID);
     printf("InfoTop(test).AlbumID = %d\n", InfoTop(test).AlbumID);
-    printf("InfoTop(test).LaguID = %d\n\n", InfoTop(test).LaguID);
+    printf("InfoTop(test).LaguID = %d\n", InfoTop(test).LaguID);
+    printf("InfoTop(test).PlaylistID = %d\n\n", InfoTop(test).PlaylistID);
 
     printf("IsEmpty: %d\n", IsEmptyStack(test));
     printf("IsFull: %d\n", IsFullStack(test));
@@ -52,14 +59,15 @@ int main() {
     PopStack(&test, &temp);
     printf("InfoTop(test).PenyanyiID = %d\n", InfoTop(test).PenyanyiID);
     printf("InfoTop(test).AlbumID = %d\n", InfoTop(test).AlbumID);
-    printf("InfoTop(test).LaguID = %d\n\n", InfoTop(test).LaguID);
+    printf("InfoTop(test).LaguID = %d\n", InfoTop(test).LaguID);
+    printf("InfoTop(test).PlaylistID = %d\n\n", InfoTop(test).PlaylistID);
 
     printf("IsEmpty: %d\n", IsEmptyStack(test));
     printf("IsFull: %d\n", IsFullStack(test));
     printf("NbElmtStack: %d\n\n", NbElmtStack(test));
 
     printf("Popping stack 99-2 . . .\n\n");
-    for (int i = 2; i < MaxEl; i++) {
+    for (int i = 2; i < StackMaxEl; i++) {
         PopStack(&test, &temp);
     }
 

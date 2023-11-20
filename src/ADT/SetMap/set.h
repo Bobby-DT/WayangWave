@@ -1,9 +1,9 @@
-#ifndef _SET_H
-#define _SET_H
+#ifndef SET_H
+#define SET_H
 
 #include "../../boolean.h"
 #include "../Mesin/mesinkata.h"
-#include "../Lagu/lagu.h"
+#include "../Lagu/song.h"
 
 #define CAPACITY 100
 

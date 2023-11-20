@@ -2,6 +2,7 @@
 #define LIST_WAYANGWAVE_H
 
 #include "boolean.h"
+#include "./ADT/Lagu/song.h"
 #include "./ADT/Lagu/lagu.h"
 #include "./ADT/List/array.h"
 #include "./ADT/SetMap/set.h"

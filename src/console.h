@@ -4,6 +4,7 @@
 
 #include "./ADT/Mesin/mesinkarakter.h"
 #include "./ADT/Mesin/mesinkata.h"
+#include "./ADT/Lagu/song.h"
 #include "./ADT/Lagu/lagu.h"
 #include "./ADT/List/array.h"
 #include "./ADT/List/arraydin.h"

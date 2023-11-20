@@ -56,7 +56,7 @@ void MapInsert(Map *M, keytype k, valuetype v)
         if (MapIsEmpty(*M)) {
             (*M).Count = 0;
         }
-        El.key = k;
+        El.Key = k;
         El.Value = v; // Tipe set bisa langsung diassign
         (*M).Elements[(*M).Count] = El;
         (*M).Count++;

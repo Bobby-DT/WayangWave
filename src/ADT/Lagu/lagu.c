@@ -1,49 +1,38 @@
 #include "lagu.h"
 
-// Fungsi & Prosedur untuk tipe Song
-
-void CreateEmptyLagu(Song *lagu) {
-    Song EmptySong = CreateLagu(NULL, NULL, NULL, -1);
-    *lagu = EmptySong;
-}
-
-Song CreateLagu(int PenyanyiID, int AlbumID, int LaguID, int PlaylistID) {
-    Song newSong;
-    newSong.PenyanyiID = PenyanyiID;
-    newSong.AlbumID = AlbumID;
-    newSong.LaguID = PenyanyiID;
-    newSong.PlaylistID = PlaylistID;
-    return newSong;
-}
-
 Word GetPenyanyi(TabKata *Penyanyi, int PenyanyiID) {
     return (*Penyanyi).TK[PenyanyiID - 1];
 }
 
-Word GetAlbum(Map *Album, int AlbumID) {
+Word GetAlbum(Map *Lagu, int AlbumID) {
     return (*Lagu).Elements[AlbumID - 1].Key;
 }
 
-Word GetLagu(Map *Album, Map *Lagu, int AlbumID, int LaguID) {
+Word GetLagu(Map *Lagu, int AlbumID, int LaguID) {
     return (*Lagu).Elements[AlbumID - 1].Value.buffer[LaguID - 1].Title;
 }
 
 Word GetPlaylist(ArrayDinWord *PlaylistTitle, int PlaylistID) {
-    return (*PlaylistTitle).TK[PlaylistID - 1];
+    return (*PlaylistTitle).A[PlaylistID - 1];
 }
 
 int GetPenyanyiID(TabKata *Penyanyi, Word namaPenyanyi) {
-    return searchList(&Penyanyi, namaPenyanyi);
+    for (int i = 0; i < (*Penyanyi).Neff; i++) {
+		if (WordCompare((*Penyanyi).TK[i], namaPenyanyi)) {
+			return i;
+		}
+	}
+	return -1;
 }
 
 int GetAlbumID(Map *Album, Word namaAlbum, int PenyanyiID) {
-    Set AlbumofPenyayi = (*Album).Elements[PenyanyiID - 1].Value;
-    int albumLength = AlbumofPenyayi.length;
+    Set AlbumofPenyanyi = (*Album).Elements[PenyanyiID - 1].Value;
+    int albumLength = AlbumofPenyanyi.length;
     int i = 0;
     boolean found = false;
     while (!found && i < albumLength) {
-        if (WordCompare(AlbumofPenyayi.buffer[i].Title, namaAlbum)) {
-            return AlbumofPenyayi.buffer[i].ID;
+        if (WordCompare(AlbumofPenyanyi.buffer[i].Title, namaAlbum)) {
+            return AlbumofPenyanyi.buffer[i].ID;
         }
         i++;
     }
@@ -55,7 +44,7 @@ int GetLaguID(Map *Lagu, Word namaLagu, int AlbumID) {
     int laguLength = LaguofAlbum.length;
     int i = 0;
     boolean found = false;
-    while (!found && i < albumLength) {
+    while (!found && i < laguLength) {
         if (WordCompare(LaguofAlbum.buffer[i].Title, namaLagu)) {
             return LaguofAlbum.buffer[i].ID;
         }
@@ -64,27 +53,21 @@ int GetLaguID(Map *Lagu, Word namaLagu, int AlbumID) {
     return -1;
 }
 
-boolean SongIsEqual(Song s1, Song s2) {
-    return (s1.PenyanyiID == s2.PenyanyiID) && (s1.AlbumID == s2.AlbumID) && (s1.LaguID == s2.LaguID) && (s1.PlaylistID == s2.PlaylistID);
+int GetPlaylistID(ArrayDinWord *PlaylistTitle, Word namaPlaylist) {
+    int j = 0;
+	while (!WordCompare((*PlaylistTitle).A[j], namaPlaylist) && (j <= (*PlaylistTitle).Neff)) {
+		j++;
+	}
+	if (j > (*PlaylistTitle).Neff) {
+		j = -2;
+	}
+	return j + 1;
 }
 
 void PrintSong(TabKata *Penyanyi, Map *Album, Map *Lagu, int PenyanyiID, int AlbumID, int LaguID) {
-    PrintWord(GetPenyanyi(&Penyanyi, PlaylistID));
+    PrintWord(GetPenyanyi(Penyanyi, PenyanyiID));
     printf(" - ");
-    PrintWord(GetLagu(&Album, &Lagu, AlbumID, LaguID));
+    PrintWord(GetLagu(Lagu, AlbumID, LaguID));
     printf(" - ");
-    PrintWord(GetAlbum(&Album, AlbumID));
-}
-
-// Fungsi & Prosedur untuk tipe Object
-
-boolean ObjectIsEqual(Object o1, Object o2) {
-    return (o1.ID == o2.ID) && WordCompare(o1.Title, o2.Title);
-}
-
-Object CreateObject(int ID, Word Title) {
-    Object newObject;
-    newObject.ID = ID;
-    newObject.Title = Title;
-    return Object;
+    PrintWord(GetAlbum(Lagu, AlbumID));
 }

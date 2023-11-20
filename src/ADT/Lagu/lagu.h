@@ -3,30 +3,17 @@
 
 #include "../../boolean.h"
 #include "../Mesin/mesinkata.h"
-
-typedef struct {
-    int PenyanyiID;
-    int AlbumID;
-    int LaguID;
-    int PlaylistID;
-} Song;
-
-typedef struct {
-    int ID;
-    Word Title;
-} Object;
-
-// Fungsi & Prosedur untuk tipe Song
-
-void CreateEmptyLagu(Lagu *lagu);
-
-Song CreateLagu(int PenyanyiID, int AlbumID, int PenyanyiID);
+#include "song.h"
+#include "../List/array.h"
+#include "../List/arraydinword.h"
+#include "../SetMap/set.h"
+#include "../SetMap/map.h"
 
 Word GetPenyanyi(TabKata *Penyanyi, int PenyanyiID);
 
-Word GetAlbum(Map *Album, Map *Lagu, int PenyanyiID, int AlbumID);
+Word GetAlbum(Map *Lagu, int AlbumID);
 
-Word GetLagu(Map *Album, Map *Lagu, int PenyanyiID, int AlbumID, int LaguID);
+Word GetLagu(Map *Lagu, int AlbumID, int LaguID);
 
 Word GetPlaylist(ArrayDinWord *PlaylistTitle, int PlaylistID);
 
@@ -36,14 +23,8 @@ int GetAlbumID(Map *Album, Word namaAlbum, int PenyanyiID);
 
 int GetLaguID(Map *Lagu, Word namaLagu, int AlbumID);
 
-boolean SongIsEqual(Song s1, Song s2);
+int GetPlaylistID(ArrayDinWord *PlaylistTitle, Word namaPlaylist);
 
 void PrintSong(TabKata *Penyanyi, Map *Album, Map *Lagu, int PenyanyiID, int AlbumID, int LaguID);
-
-// Fungsi & Prosedur untuk tipe Object
-
-boolean ObjectIsEqual(Object o1, Object o2);
-
-Object CreateObject(int ID, Word Title);
 
 #endif
