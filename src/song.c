@@ -1,87 +1,66 @@
 #include <stdio.h>
 #include "boolean.h"
-#include "./ADT/Stack/stack.h"
-#include "./ADT/Queue/queue.h"
+#include "ADT/Queue/queue.h"
+#include "ADT/Stack/stack.h"
+#include "ADT/Lagu/lagu.h"
+#include "ADT/SetMap/map.h"
+#include "ADT/List/array.h"
 
-void SongNext(Queue *lagu, Stack *riwayat){
-    ElType X;
-    if(length(*lagu) > 1){
+void SongNext(Queue *Antrian, Stack *Riwayat, Lagu *CurrentLagu, Map lagu, TabKata Penyanyi){
+    if(!queue_isEmpty(*Antrian)){
         printf("Memutar lagu selanjutnya\n");
-
         printf("\"");
-        
-        printf("\"%d\" oleh \"New Jeans\"\n", (*lagu).buffer[(*lagu).idxHead+1]);
-        dequeue(lagu, &X);
-        Push(riwayat, X);
+        Word Judul_lagu = (lagu).Elements[(*Antrian).buffer[(*Antrian).idxHead].AlbumID - 1].Value.buffer[(*Antrian).buffer[(*Antrian).idxHead].LaguID - 1];
+        PrintWord(Judul_lagu);
+        printf("\" oleh \"");
+        Word Nama_penyanyi = Penyanyi.TK[(*Antrian).buffer[(*Antrian).idxHead].PenyanyiID - 1];
+        PrintWord(Nama_penyanyi);
+        printf("\"\n");
+
+        (*CurrentLagu).AlbumID = (*Antrian).buffer[(*Antrian).idxHead].AlbumID;
+        (*CurrentLagu).PenyanyiID = (*Antrian).buffer[(*Antrian).idxHead].PenyanyiID;
+        (*CurrentLagu).LaguID = (*Antrian).buffer[(*Antrian).idxHead].LaguID;
+
+        Lagu temp;
+        dequeue(Antrian, &temp);
+        PushStack(Riwayat, temp);
     }
-    else if (length(*lagu) == 1){
+    else {
         printf("Queue kosong, memutar kembali lagu\n");
-        printf("\"%d\" oleh \"Yasuda Rei\"\n", (*lagu).buffer[(*lagu).idxHead]);
+        printf("\"");
+        Word Judul_lagu = (lagu).Elements[(*Antrian).buffer[(*Antrian).idxHead].AlbumID - 1].Value.buffer[(*Antrian).buffer[(*Antrian).idxHead].LaguID - 1];
+        PrintWord(Judul_lagu);
+        printf("\" oleh \"");
+        Word Nama_penyanyi = Penyanyi.TK[(*Antrian).buffer[(*Antrian).idxHead].PenyanyiID - 1];
+        PrintWord(Nama_penyanyi);
+        printf("\"\n");
     }
 }
 
 
-void SongPrevious(Queue *lagu, Stack *riwayat){
-    ElType X;
-    if (!IsEmpty(*riwayat)){
-        Pop(riwayat, &X);
-        insert(lagu, X);
+void SongPrevious(Lagu *CurrentLagu, Queue *Antrian, Stack *Riwayat, Map lagu, TabKata Penyanyi){
+    if (!IsEmptyStack(*Riwayat)){
+        Lagu temp;
+        Pop(Riwayat, &temp);
+        insert(lagu, *CurrentLagu);
+        *CurrentLagu = temp;
         printf("Memutar lagu sebelumnya\n");
-        printf("\"%d\" oleh \"New Jeans\"\n", (*riwayat).T[(*riwayat).TOP + 1]);
+        printf("\"");
+        Word Judul_lagu = (lagu).Elements[(*Antrian).buffer[(*Antrian).idxHead].AlbumID - 1].Value.buffer[(*Antrian).buffer[(*Antrian).idxHead].LaguID - 1];
+        PrintWord(Judul_lagu);
+        printf("\" oleh \"");
+        Word Nama_penyanyi = Penyanyi.TK[(*Antrian).buffer[(*Antrian).idxHead].PenyanyiID - 1];
+        PrintWord(Nama_penyanyi);
+        printf("\"\n");
     }
     else{
         printf("lagu kosong, memutar kembali lagu\n");
-        printf("\"%d\" oleh \"Yasuda Rei\"\n", (*lagu).buffer[(*lagu).idxHead]);
+        printf("\"");
+        Word Judul_lagu = (lagu).Elements[(*Antrian).buffer[(*Antrian).idxHead].AlbumID - 1].Value.buffer[(*Antrian).buffer[(*Antrian).idxHead].LaguID - 1];
+        PrintWord(Judul_lagu);
+        printf("\" oleh \"");
+        Word Nama_penyanyi = Penyanyi.TK[(*Antrian).buffer[(*Antrian).idxHead].PenyanyiID - 1];
+        PrintWord(Nama_penyanyi);
+        printf("\"\n");
     }
-}
-
-int main(){
-    Queue lagu;
-    CreateQueue(&lagu);
-    Stack riwayat;
-    CreateEmpty(&riwayat);
-
-    enqueue(&lagu, 1);
-    enqueue(&lagu, 2);
-    enqueue(&lagu, 3);
-    enqueue(&lagu, 4);
-    enqueue(&lagu, 5);
-
-    int X;
-    SongNext(&lagu, &riwayat);
-    displayQueue(lagu);
-    Pop(&riwayat, &X);
-    printf("lagu sebelumnya : %d\n", X);
-    Push(&riwayat, X);
-    printf("\n");
-
-    SongNext(&lagu, &riwayat);
-    displayQueue(lagu);
-    Pop(&riwayat, &X);
-    printf("lagu sebelumnya : %d\n", X);
-    Push(&riwayat, X);
-    printf("\n");
-
-    SongPrevious(&lagu, &riwayat);
-    displayQueue(lagu);
-    printf("\n");
-
-    SongPrevious(&lagu, &riwayat);
-    displayQueue(lagu);
-    printf("\n");
-
-    SongPrevious(&lagu, &riwayat);
-    displayQueue(lagu);
-    printf("\n");
-    
-    SongNext(&lagu, &riwayat);
-    displayQueue(lagu);
-    Pop(&riwayat, &X);
-    printf("lagu sebelumnya : %d\n", X);
-    Push(&riwayat, X);
-    printf("\n");
-
-    SongPrevious(&lagu, &riwayat);
-    displayQueue(lagu);
-    printf("\n");
 }
