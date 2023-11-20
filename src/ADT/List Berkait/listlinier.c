@@ -23,13 +23,13 @@ void CreateEmptyListLinier(ListLinier *L)
 }
 
 /****************** Manajemen Memori ******************/
-address AlokasiListLinier(infotypeList X)
+address AlokasiListLinier(Song X)
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak NULL, dan misalnya */
 /* menghasilkan P, maka Info(P)=X, Next(P)=NULL */
 /* Jika alokasi gagal, mengirimkan NULL */
 {
-    address P = (address)malloc(1 * sizeof(ElmtList));
+    address P = (address)malloc(1 * sizeof(ElmtListLinier));
     if (P != NULL)
     {
         Info(P) = X;
@@ -50,7 +50,7 @@ void DealokasiListLinier(address *P)
 }
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address SearchListLinier(ListLinier L, infotypeList X)
+address SearchListLinier(ListLinier L, Song X)
 /* Mencari apakah ada elemen list dengan Info(P)= X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan NULL */
@@ -63,7 +63,7 @@ address SearchListLinier(ListLinier L, infotypeList X)
         P = First(L);
         while (!bFound && P != NULL)
         {
-            if (Info(P).x == X.x && Info(P).y == X.y)
+            if (SongIsEqual(Info(P), X))
             {
                 bFound = true;
             }
@@ -90,7 +90,7 @@ address SearchListLinier(ListLinier L, infotypeList X)
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirstListLinier(ListLinier *L, infotypeList X)
+void InsVFirstListLinier(ListLinier *L, Song X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
@@ -102,7 +102,7 @@ void InsVFirstListLinier(ListLinier *L, infotypeList X)
     }
 }
 
-void InsVLastListLinier(ListLinier *L, infotypeList X)
+void InsVLastListLinier(ListLinier *L, Song X)
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
@@ -116,7 +116,7 @@ void InsVLastListLinier(ListLinier *L, infotypeList X)
 }
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirstListLinier(ListLinier *L, infotypeList *X)
+void DelVFirstListLinier(ListLinier *L, Song *X)
 /* I.S. List L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen pertama di-dtpealokasi */
@@ -127,7 +127,7 @@ void DelVFirstListLinier(ListLinier *L, infotypeList *X)
     DealokasiListLinier(&P);
 }
 
-void DelVLastListLinier(ListLinier *L, infotypeList *X)
+void DelVLastListLinier(ListLinier *L, Song *X)
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
@@ -205,7 +205,7 @@ void DelFirstListLinier(ListLinier *L, address *P)
     Next(*P) = NULL;
 }
 
-void DelPListLinier(ListLinier *L, infotypeList X)
+void DelPListLinier(ListLinier *L, Song X)
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan Info(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
@@ -218,7 +218,7 @@ void DelPListLinier(ListLinier *L, infotypeList X)
 
     if (!IsEmptyListLinier(*L))
     {
-        if (X.x == Info(First(*L)).x && X.y == Info(First(*L)).y)
+        if (SongIsEqual(Info(First(*L)), X))
         {
             DelFirstListLinier(L, &P);
             DealokasiListLinier(&P);
@@ -228,7 +228,7 @@ void DelPListLinier(ListLinier *L, infotypeList X)
             P = First(*L);
             while (!bFound && P != NULL)
             {
-                if (Info(P).x == X.x && Info(P).y == X.y)
+                if (SongIsEqual(Info(P), X))
                 {
                     bFound = true;
                 }
@@ -328,7 +328,7 @@ void PrintInfoListLinier(ListLinier L)
             {
                 printf(",");
             }
-            printf("<%d, %d>", Info(P).x, Info(P).y);
+            printf("<%d, %d, %d, %d>", Info(P).PenyanyiID, Info(P).AlbumID, Info(P).LaguID, Info(P).PlaylistID);
             isFirst = false;
 
             P = Next(P);
@@ -380,7 +380,7 @@ void InversListLinier(ListLinier *L)
     }
 }
 
-void KonkatListLinier(ListLinier *L1, List *L2, List *L3)
+void KonkatListLinier(ListLinier *L1, ListLinier *L2, ListLinier *L3)
 /* I.S. L1 dan L2 sembarang */
 /* F.S. L1 dan L2 kosong, L3 adalah hasil konkatenasi L1 & L2 */
 /* Konkatenasi dua buah list : L1 dan L2    */

@@ -96,5 +96,6 @@ void TulisIsi (TabKata T);
 
 boolean IsMember (TabKata T, Word v);
 
+int searchList(TabKata T, Word v);
 
 #endif

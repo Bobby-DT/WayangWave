@@ -28,7 +28,7 @@ boolean MapIsFull(Map M)
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-void MapValue(Map M, keytype k, valuetype *val)
+void MapValue(Map M, Word k, Set *val)
 {
     boolean KeyFound = false;
     int i = 0;
@@ -48,9 +48,9 @@ void MapValue(Map M, keytype k, valuetype *val)
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void MapInsert(Map *M, keytype k, valuetype v)
+void MapInsert(Map *M, Word k, Set v)
 {
-    infotype El;
+    dictionary El;
     if (!MapIsMember(*M, k))
     {
         if (MapIsEmpty(*M)) {
@@ -67,7 +67,7 @@ void MapInsert(Map *M, keytype k, valuetype v)
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void MapDelete(Map *M, keytype k) 
+void MapDelete(Map *M, Word k) 
 {
     int i = 0;
     boolean found = false;
@@ -87,7 +87,7 @@ void MapDelete(Map *M, keytype k)
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean MapIsMember(Map M, keytype k) {
+boolean MapIsMember(Map M, Word k) {
     boolean found = false;
     int i = 0;
 
@@ -101,7 +101,7 @@ boolean MapIsMember(Map M, keytype k) {
 }
 /* Mengembalikan true jika k adalah member dari M */
 
-int searchMap(Map M, keytype k) {
+int searchMap(Map M, Word k) {
     int i = 0;
     for (int i = 0; i < M.Count; i++)  {
         if (WordCompare(M.Elements[i].Key, k)) {

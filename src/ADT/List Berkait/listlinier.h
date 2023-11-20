@@ -1,7 +1,6 @@
 /* File : listlinier.h */
 /* contoh ADT list berkait dengan representasi fisik pointer  */
 /* Representasi address dengan pointer */
-/* infotypeList adalah integer */
 
 #ifndef listlinier_H
 #define listlinier_H
@@ -12,11 +11,10 @@
 #include "../Mesin/mesinkata.h"
 #include "../Lagu/song.h"
 
-typedef Song infotypeList;
-typedef struct tElmtlist *address;
-typedef struct tElmtlist
+typedef struct node *address;
+typedef struct node
 {
-    infotypeList info;
+    Song info;
     address next;
 } ElmtListLinier;
 typedef struct
@@ -43,7 +41,7 @@ void CreateEmptyListLinier(ListLinier *L);
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
-address AlokasiListLinier(infotypeList X);
+address AlokasiListLinier(Song X);
 /* Mengirimkan address hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka address tidak nil, dan misalnya */
 /* menghasilkan P, maka info(P)=X, Next(P)=Nil */
@@ -54,29 +52,29 @@ void DealokasiListLinier(address *P);
 /* Melakukan dealokasi/pengembalian address P */
 
 /****************** PENCARIAN SEBUAH ELEMEN LIST ******************/
-address SearchListLinier(ListLinier L, infotypeList X);
+address SearchListLinier(ListLinier L, Song X);
 /* Mencari apakah ada elemen list dengan info(P)= X */
 /* Jika ada, mengirimkan address elemen tersebut. */
 /* Jika tidak ada, mengirimkan Nil */
 
 /****************** PRIMITIF BERDASARKAN NILAI ******************/
 /*** PENAMBAHAN ELEMEN ***/
-void InsVFirstListLinier(ListLinier *L, infotypeList X);
+void InsVFirstListLinier(ListLinier *L, Song X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen pertama dengan nilai X jika alokasi berhasil */
-void InsVLastListLinier(ListLinier *L, infotypeList X);
+void InsVLastListLinier(ListLinier *L, Song X);
 /* I.S. L mungkin kosong */
 /* F.S. Melakukan alokasi sebuah elemen dan */
 /* menambahkan elemen list di akhir: elemen terakhir yang baru */
 /* bernilai X jika alokasi berhasil. Jika alokasi gagal: I.S.= F.S. */
 
 /*** PENGHAPUSAN ELEMEN ***/
-void DelVFirstListLinier(ListLinier *L, infotypeList *X);
+void DelVFirstListLinier(ListLinier *L, Song *X);
 /* I.S. ListLinier L tidak kosong  */
 /* F.S. Elemen pertama list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen pertama di-dealokasi */
-void DelVLastListLinier(ListLinier *L, infotypeList *X);
+void DelVLastListLinier(ListLinier *L, Song *X);
 /* I.S. list tidak kosong */
 /* F.S. Elemen terakhir list dihapus: nilai info disimpan pada X */
 /*      dan alamat elemen terakhir di-dealokasi */
@@ -100,7 +98,7 @@ void DelFirstListLinier(ListLinier *L, address *P);
 /* F.S. P adalah alamat elemen pertama list sebelum penghapusan */
 /*      Elemen list berkurang satu (mungkin menjadi kosong) */
 /* First element yg baru adalah suksesor elemen pertama yang lama */
-void DelPListLinier(ListLinier *L, infotypeList X);
+void DelPListLinier(ListLinier *L, Song X);
 /* I.S. Sembarang */
 /* F.S. Jika ada elemen list beraddress P, dengan info(P)=X  */
 /* Maka P dihapus dari list dan di-dealokasi */
@@ -124,7 +122,7 @@ void PrintInfoListLinier(ListLinier L);
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika list kosong : menulis [] */
 /* Tidak ada tambahan karakter apa pun di awal, akhir, atau di tengah */
-int NumberElmt(ListLinier L);
+int NumberElmtListLinier(ListLinier L);
 /* Mengirimkan banyaknya elemen list; mengirimkan 0 jika list kosong */
 
 /****************** PROSES TERHADAP LIST ******************/

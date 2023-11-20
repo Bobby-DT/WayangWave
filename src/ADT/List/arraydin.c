@@ -4,7 +4,7 @@
 
 ArrayDin MakeArrayDin(){
 	ArrayDin array;
-	array.A = (ElTypeArrDin*) malloc (InitialSize*sizeof(ElTypeArrDin));
+	array.A = (ListLinier*) malloc (InitialSize*sizeof(ListLinier));
 	array.Neff = 0; array.Capacity = InitialSize;
 	return array;
 }
@@ -21,7 +21,7 @@ int LengthArrayDin(ArrayDin array) {
 	return array.Neff;
 }
 
-ElTypeArrDin GetArrayDin(ArrayDin array, IdxType i) {
+ListLinier GetArrayDin(ArrayDin array, int i) {
 	return array.A[i];
 }
 
@@ -29,7 +29,7 @@ int GetCapacityArrayDin(ArrayDin array) {
 	return array.Capacity;
 }
 
-void InsertAtArrayDin(ArrayDin *array, ElTypeArrDin el, IdxType i) {
+void InsertAtArrayDin(ArrayDin *array, ListLinier el, int i) {
 	int j;
     if ((*array).Neff < (*array).Capacity)
     {
@@ -42,13 +42,13 @@ void InsertAtArrayDin(ArrayDin *array, ElTypeArrDin el, IdxType i) {
     }
     else
     {
-        ElTypeArrDin *temp = (ElTypeArrDin *)malloc((*array).Capacity* sizeof(ElTypeArrDin));
+        ListLinier *temp = (ListLinier *)malloc((*array).Capacity* sizeof(ListLinier));
         for (j = 0; j < (*array).Capacity; j++)
         {
             temp[j] = (*array).A[j];
         }
         free((*array).A);
-        (*array).A = (ElTypeArrDin *)malloc(((*array).Capacity * 2 ) *sizeof(ElTypeArrDin));
+        (*array).A = (ListLinier *)malloc(((*array).Capacity * 2 ) *sizeof(ListLinier));
         for (j = 0; j < i; j++)
         {
             (*array).A[j] = temp[j];
@@ -64,17 +64,17 @@ void InsertAtArrayDin(ArrayDin *array, ElTypeArrDin el, IdxType i) {
     }
 }
 
-void InsertLastArrayDin(ArrayDin *array, ElTypeArrDin el) {
+void InsertLastArrayDin(ArrayDin *array, ListLinier el) {
 	InsertAtArrayDin(array, el,(*array).Neff);
 }
 
-void InsertFirstArrayDin(ArrayDin *array, ElTypeArrDin el) {
+void InsertFirstArrayDin(ArrayDin *array, ListLinier el) {
 	InsertAtArrayDin(array, el, 0);
 }
 
-void DeleteAtArrayDin(ArrayDin *array, IdxType i) {
+void DeleteAtArrayDin(ArrayDin *array, int i) {
     int j;
-    ElTypeArrDin e = Get(*array, i);
+    ListLinier e = GetArrayDin(*array, i);
     if ((*array).Neff > ((*array).Capacity / 4))
     {
         (*array).Neff -= 1;
@@ -87,7 +87,7 @@ void DeleteAtArrayDin(ArrayDin *array, IdxType i) {
     {
         int Bcapacity = InitialSize;
         if (Bcapacity < ((*array).Capacity / 2)) Bcapacity = (*array).Capacity / 2;
-        ElTypeArrDin *temp = (ElTypeArrDin *)malloc(Bcapacity * sizeof(ElTypeArrDin));
+        ListLinier *temp = (ListLinier *)malloc(Bcapacity * sizeof(ListLinier));
         for (j = 0; j < i; j++)
         {
             temp[j] = (*array).A[j];
@@ -98,7 +98,7 @@ void DeleteAtArrayDin(ArrayDin *array, IdxType i) {
             temp[j] = (*array).A[j + 1];
         }
         free((*array).A);
-        (*array).A = (ElTypeArrDin *)malloc(Bcapacity * sizeof(ElTypeArrDin));
+        (*array).A = (ListLinier *)malloc(Bcapacity * sizeof(ListLinier));
         for (j = 0; j < (*array).Neff; j++)
         {
             (*array).A[j] = temp[j];
@@ -116,8 +116,9 @@ void DeleteFirstArrayDin(ArrayDin *array) {
 	DeleteAtArrayDin(array, 0);
 }
 
+/*
 void PrintArrayDin(ArrayDin array) {
-	IdxType j;
+	int j;
 	printf("[");
 	for (j = 0; j < (array).Neff; j++) {
 		printf("%d", (array).A[j]);
@@ -127,10 +128,11 @@ void PrintArrayDin(ArrayDin array) {
 	}
 	printf("]\n");
 }
+*/
 
 void ReverseArrayDin(ArrayDin *array) {
-	IdxType j;
-	ElTypeArrDin *temp = (ElTypeArrDin*) malloc ((*array).Capacity * sizeof(ElTypeArrDin));
+	int j;
+	ListLinier *temp = (ListLinier*) malloc ((*array).Capacity * sizeof(ListLinier));
 	for (j = 0; j < (*array).Neff; j++) {
 		temp[j] = (*array).A[(*array).Neff - (1+j)];
 	}
@@ -142,8 +144,8 @@ void ReverseArrayDin(ArrayDin *array) {
 
 ArrayDin CopyArrayDin(ArrayDin array) {
 	ArrayDin newArray;
-	IdxType j;
-	newArray.A = (ElTypeArrDin*) malloc (array.Capacity * sizeof(ElTypeArrDin));
+	int j;
+	newArray.A = (ListLinier*) malloc (array.Capacity * sizeof(ListLinier));
 	newArray.Capacity = array.Capacity; newArray.Neff = array.Neff;
 	for (j = 0; j < newArray.Neff; j++) {
 		newArray.A[j] = array.A[j];
@@ -151,8 +153,9 @@ ArrayDin CopyArrayDin(ArrayDin array) {
 	return newArray;
 }
 
-IdxType SearchArrayDin(ArrayDin array, ElTypeArrDin el) {
-	IdxType j = 0;
+/*
+int SearchArrayDin(ArrayDin array, ListLinier el) {
+	int j = 0;
 	while (!WordCompare((array).A[j], el) && (j <= (array).Neff)) {
 		j++;
 	}
@@ -161,3 +164,4 @@ IdxType SearchArrayDin(ArrayDin array, ElTypeArrDin el) {
 	}
 	return j;
 }
+*/

@@ -94,13 +94,13 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat
                 CreateEmptyList(&newPlaylist);
                 InsertLastArrayDinWord(&PlaylistTitle, AccessConfig(currentWord, 1));
                 InsertLastArrayDin(&PlaylistData, newPlaylist);
-                int PlaylistID = (*PlaylistData).Neff - 1;
+                int PlaylistID = (*PlaylistData).Neff;
                 for (int k = 0; k < jumlahLaguPlaylist; k++) {
                     ADVWORD();
                     Song newLaguPlaylist;
                     CreateEmptyLagu(&newLaguPlaylist);
                     GetIDfromConfig(&Penyanyi, &Album, &Lagu, PlaylistID, toKata("Gagal memuat lagu yang tersimpan di playlist dari save file!"), &newLaguPlaylist);
-                    InsVLastListLinier((*PlaylistData).[PlaylistID - 1], newLaguPlaylist);
+                    InsVLastListLinier((*PlaylistData).A[PlaylistID - 1], newLaguPlaylist);
                 }
             }
         }

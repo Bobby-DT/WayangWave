@@ -1,0 +1,1 @@
+gcc ../../boolean.h ../Mesin/mesinkarakter.h ../Mesin/mesinkarakter.c ../Mesin/mesinkata.h ../Mesin/mesinkata.c array.h array.c driverarray.c -o driverarray

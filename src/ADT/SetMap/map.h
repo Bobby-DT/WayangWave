@@ -13,18 +13,14 @@ Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
 
 extern Set Undefined;
 
-typedef Word keytype;
-typedef Set valuetype;
-typedef int address;
+typedef struct {
+	Word Key;
+	Set Value;
+} dictionary;
 
 typedef struct {
-	keytype Key;
-	valuetype Value;
-} infotype;
-
-typedef struct {
-	infotype Elements[MaxEl];
-	address Count;
+	dictionary Elements[MaxEl];
+	int Count;
 } Map;
 
 /* Definisi Map M kosong : M.Count = Nil */
@@ -49,25 +45,25 @@ boolean MapIsFull(Map M);
 /* Ciri Map penuh : count bernilai MaxEl */
 
 /* ********** Operator Dasar Map ********* */
-void MapValue(Map M, keytype k, valuetype *val);
+void MapValue(Map M, Word k, Set *val);
 /* Mengembalikan nilai value dengan key k dari M */
 /* Jika tidak ada key k pada M, akan mengembalikan Undefined */
 
-void MapInsert(Map *M, keytype k, valuetype v);
+void MapInsert(Map *M, Word k, Set v);
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
 /* F.S. v menjadi anggota dari M dengan key k. Jika k sudah ada, operasi tidak dilakukan */
 
-void MapDelete(Map *M, keytype k);
+void MapDelete(Map *M, Word k);
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
         element dengan key k mungkin anggota / bukan anggota dari M */
 /* F.S. element dengan key k bukan anggota dari M */
 
-boolean MapIsMember(Map M, keytype k);
+boolean MapIsMember(Map M, Word k);
 /* Mengembalikan true jika k adalah member dari M */
 
-int searchMap(Map M, keytype k);
+int searchMap(Map M, Word k);
 
 #endif
