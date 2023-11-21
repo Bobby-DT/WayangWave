@@ -5,3 +5,4 @@ src/help.c
 src/playlist.c
 src/quit.c
 src/song.c
+src/quit.c
