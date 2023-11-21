@@ -11,21 +11,21 @@ void SongNext(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, Song
         Playing -> Riwayat
         */
         Song nextSong;
-        dequeue(&Antrian, &nextSong);
-        PushStack(&Riwayat, nextSong);
+        dequeue(Antrian, &nextSong);
+        PushStack(Riwayat, nextSong);
         *Playing = nextSong;
 
         printf("Memutar lagu selanjutnya\n\"");
-        PrintWord(GetLagu(*Lagu, nextSong.AlbumID, nextSong.LaguID));
+        PrintWord(GetLagu(Lagu, nextSong.AlbumID, nextSong.LaguID));
         printf("\" oleh \"");
-        PrintWord(GetPenyanyi(*Penyanyi, nextSong.PenyanyiID));
+        PrintWord(GetPenyanyi(Penyanyi, nextSong.PenyanyiID));
         printf("\"\n");
     }
     else {
         printf("Queue kosong, memutar kembali lagu\n\"");
-        PrintWord(GetLagu(*Lagu, (*Playing).AlbumID, (*Playing).LaguID));
+        PrintWord(GetLagu(Lagu, (*Playing).AlbumID, (*Playing).LaguID));
         printf("\" oleh \"");
-        PrintWord(GetPenyanyi(*Penyanyi, (*Playing).PenyanyiID));
+        PrintWord(GetPenyanyi(Penyanyi, (*Playing).PenyanyiID));
         printf("\"\n");
     }
 }
@@ -41,21 +41,21 @@ void SongPrevious(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, 
         Playing -> Insert(Antrian)
         */
         Song previousSong;
-        PopStack(&Riwayat, &previousSong);
-        queue_insert(&Riwayat, previousSong);
+        PopStack(Riwayat, &previousSong);
+        queue_insert(Antrian, previousSong);
         *Playing = previousSong;
 
         printf("Memutar lagu sebelumnya\n\"");
-        PrintWord(GetLagu(*Lagu, previousSong.AlbumID, previousSong.LaguID));
+        PrintWord(GetLagu(Lagu, previousSong.AlbumID, previousSong.LaguID));
         printf("\" oleh \"");
-        PrintWord(GetPenyanyi(*Penyanyi, previousSong.PenyanyiID));
+        PrintWord(GetPenyanyi(Penyanyi, previousSong.PenyanyiID));
         printf("\"\n");
     }
     else{
         printf("Riwayat lagu kosong, memutar kembali lagu\n\"");
-        PrintWord(GetLagu(*Lagu, (*Playing).AlbumID, (*Playing).LaguID));
+        PrintWord(GetLagu(Lagu, (*Playing).AlbumID, (*Playing).LaguID));
         printf("\" oleh \"");
-        PrintWord(GetPenyanyi(*Penyanyi, (*Playing).PenyanyiID));
+        PrintWord(GetPenyanyi(Penyanyi, (*Playing).PenyanyiID));
         printf("\"\n");
     }
 }

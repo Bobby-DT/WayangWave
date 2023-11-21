@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#include "boolean.h"
+
 void help(boolean wayangwaveStarted);
 
 #endif /* HELP_H */

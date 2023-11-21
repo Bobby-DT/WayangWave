@@ -16,10 +16,12 @@
 
 void QueueSong(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu);
 
-void QueuePlaylist(Queue *Antrian, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Map *Lagu);
+void QueuePlaylist(Queue *Antrian, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData);
 
 void QueueSwap (Queue *Antrian, Word a, Word b);
 
-void QueueRemove(Queue *Antrian, Word a, Map *Lagu, TabKata *Penyanyi, Map *Album);
+void QueueRemove(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu, Word a);
+
+void QueueClear(Queue *Antrian);
 
 #endif

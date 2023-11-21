@@ -1,8 +1,8 @@
 #include "list.h"
 
-void PrintDaftarPenyayi(TabKata *Penyanyi) {
+void PrintDaftarPenyanyi(TabKata *Penyanyi) {
     printf("Daftar Penyanyi :");
-    for (int i = 0; i < (*Penyanyi).Count; i++) {
+    for (int i = 0; i < (*Penyanyi).Neff; i++) {
         printf("\n\t%d. ", i+1);
         PrintWord((*Penyanyi).TK[i]);
     }
@@ -10,9 +10,9 @@ void PrintDaftarPenyayi(TabKata *Penyanyi) {
 }
 
 void PrintDaftarAlbum(TabKata *Penyanyi, Map *Album, int PenyanyiID) {
-    printf("Daftar Album oleh ");
-    PrintWord(GetPenyanyi(&Penyanyi, PenyanyiID));
-    printf(" :\n");
+    printf("\nDaftar Album oleh ");
+    PrintWord(GetPenyanyi(Penyanyi, PenyanyiID));
+    printf(" :");
     for (int i = 0; i < (*Album).Elements[PenyanyiID - 1].Value.length; i++) {
         printf("\n\t%d. ", i+1);
         PrintWord((*Album).Elements[PenyanyiID - 1].Value.buffer[i].Title);
@@ -22,9 +22,9 @@ void PrintDaftarAlbum(TabKata *Penyanyi, Map *Album, int PenyanyiID) {
 
 void PrintDaftarLagu(TabKata *Penyanyi, Map *Album, Map *Lagu, int PenyanyiID, int AlbumID) {
     printf("Daftar Lagu Album ");
-    PrintWord(GetAlbum(&Album, AlbumID));
+    PrintWord(GetAlbum(Album, AlbumID));
     printf(" oleh ");
-    PrintWord(GetPenyanyi(&Penyanyi, PenyanyiID));
+    PrintWord(GetPenyanyi(Penyanyi, PenyanyiID));
     printf(" :\n");
     int AlbumLength = (*Lagu).Elements[AlbumID - 1].Value.length;
     for (int i = 0; i < AlbumLength; i++) {
@@ -37,13 +37,15 @@ void PrintDaftarLagu(TabKata *Penyanyi, Map *Album, Map *Lagu, int PenyanyiID, i
 void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu) {
     boolean continueAlbum = false;
     boolean continueLagu = false;
+    int PenyanyiID;
+    int AlbumID;
     
-    PrintDaftarPenyayi(&PenyanyiID);
+    PrintDaftarPenyanyi(Penyanyi);
     do {
         printf("Ingin melihat album yang ada?(Y/N): ");
         GetCommand();
         if (!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord))) {
-            printf("Command tidak diketahui! Jawab dengan y/N!\n")
+            printf("Command tidak diketahui! Jawab dengan y/N!\n");
         }
     } while(!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord)));
     if (WordCompare(toKata("Y"), toUpper(currentWord))) {
@@ -53,19 +55,19 @@ void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu) {
         do {
             printf("Pilih penyanyi untuk melihat album mereka: ");
             GetCommand();
-            if (!IsMember(&Penyanyi, currentWord)) {
-                printf("Penyanyi ");
+            if (!IsMember(*Penyanyi, currentWord)) {
+                printf("\nPenyanyi ");
                 PrintWord(currentWord);
                 printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
             }
-        } while (!IsMember(&Penyanyi, currentWord));
-        int PenyanyiID = searchList(&Penyanyi, currentWord) + 1;
-        PrintDaftarAlbum(&Penyanyi, &Album, PenyanyiID);
+        } while (!IsMember(*Penyanyi, currentWord));
+        PenyanyiID = searchList(*Penyanyi, currentWord) + 1;
+        PrintDaftarAlbum(Penyanyi, Album, PenyanyiID);
         do {
             printf("Ingin melihat lagu yang ada?(Y/N): ");
             GetCommand();
             if (!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord))) {
-                printf("Command tidak diketahui! Jawab dengan y/N!\n")
+                printf("Command tidak diketahui! Jawab dengan y/N!\n");
             }
         } while(!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord)));
         if (WordCompare(toKata("Y"), toUpper(currentWord))) {
@@ -76,14 +78,14 @@ void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu) {
         do {
             printf("Pilih album untuk melihat lagu yang ada di album : ");
             GetCommand();
-            if (!MapIsMember(&Album, currentWord)) {
-                printf("Album ");
+            if (!MapIsMember(*Album, currentWord)) {
+                printf("\nAlbum ");
                 PrintWord(currentWord);
                 printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
             }
-        } while (!MapIsMember(&Album, currentWord));
-        int AlbumID = searchMap(&Album, currentWord) + 1;
-        PrintDaftarLagu(&Penyanyi, &Album, &Lagu, PenyanyiID, AlbumID);
+        } while (!MapIsMember(*Album, currentWord));
+        AlbumID = searchMap(*Album, currentWord) + 1;
+        PrintDaftarLagu(Penyanyi, Album, Lagu, PenyanyiID, AlbumID);
     }
 }
 

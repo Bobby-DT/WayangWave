@@ -11,9 +11,9 @@ int main() {
     Map Lagu;
     ArrayDinWord PlaylistTitle;
     ArrayDin PlaylistData;
-    Lagu Playing;
+    Song Playing;
 
-    wayangwaveStarted = false;
+    boolean wayangwaveStarted = false;
 
     MakeEmpty(&Penyanyi);
     CreateQueue(&Antrian);
@@ -42,7 +42,6 @@ int main() {
         do {
             printf(">> ENTER COMMAND: ");
             GetCommand();
-            clear();
 
             if (WordCompare(toKata("HELP"), toUpper(currentWord))) {
                 help(false);
@@ -52,16 +51,17 @@ int main() {
         } while (!WordCompare(toKata("START"), toUpper(currentWord)) && !WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0))) && !WordCompare(toKata("HELP"), toUpper(currentWord)));
         
         if (WordCompare(toKata("START"), toUpper(currentWord))) {
-            start(toKata("config.txt"), &Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
+            start(toKata("config.txt"), &Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing, false, &wayangwaveStarted);
         } else if (WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0)))) {
-            start(AccessCommand(currentWord, 1), &Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
+            start(AccessCommand(currentWord, 1), &Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing, true, &wayangwaveStarted);
         }
     }
     if (wayangwaveStarted) {
         while (wayangwaveStarted) {
-            menu(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
+            menu(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing, &wayangwaveStarted);
         }
     } else {
         printf("WayangWave gagal dijalankan.\n\n");
     }
+    return 0;
 }

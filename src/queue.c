@@ -1,72 +1,74 @@
 #include "queue.h"
 
 void QueueSong(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu){
-    PrintDaftarPenyayi(&Penyanyi);
+    PrintDaftarPenyanyi(Penyanyi);
 
     do {
         printf("Masukkan Nama Penyanyi yang dipilih : ");
         GetCommand();
-        if (!IsMember(Penyanyi, currentWord)) {
+        if (!IsMember(*Penyanyi, currentWord)) {
             printf("Penyanyi ");
             PrintWord(currentWord);
             printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
         }
-    } while (!IsMember(Penyanyi, currentWord));
-    int PenyanyiID = searchList(Penyanyi, currentWord) + 1;
+    } while (!IsMember(*Penyanyi, currentWord));
+    int PenyanyiID = searchList(*Penyanyi, currentWord) + 1;
 
-    PrintDaftarAlbum(&Penyanyi, &Album, PenyanyiID);
+    PrintDaftarAlbum(Penyanyi, Album, PenyanyiID);
 
     do {
         printf("Masukkan Judul Album yang dipilih : ");
         GetCommand();
-        if (!MapIsMember(Album, currentWord)) {
+        if (!MapIsMember(*Album, currentWord)) {
             printf("Album ");
             PrintWord(currentWord);
             printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
         }
-    } while (!MapIsMember(Album, currentWord));
-    int AlbumID = searchMap(Album, currentWord) + 1;
+    } while (!MapIsMember(*Album, currentWord));
+    int AlbumID = searchMap(*Album, currentWord) + 1;
+    int AlbumLength = (*Lagu).Elements[AlbumID - 1].Value.length;
 
-    PrintDaftarLagu(&Penyanyi, &Album, &Lagu, PenyanyiID, AlbumID);
+    PrintDaftarLagu(Penyanyi, Album, Lagu, PenyanyiID, AlbumID);
     
+    int LaguID;
     do {
         printf("Masukkan ID Lagu yang dipilih : ");
         GetCommand();
-        if (WordToInt(currentWord) >= AlbumLength) {
-            printf("Album %d tidak ada dalam daftar. Silakan coba lagi.\n", WordToInt(currentWord));
+        LaguID = WordToInt(currentWord);
+        if (LaguID > AlbumLength || LaguID < 1) {
+            printf("Lagu dengan ID %d tidak ada dalam daftar. Silakan coba lagi.\n", LaguID);
         }
-    } while (WordToInt(currentWord) >= AlbumLength);  
-    int LaguID = WordToInt(currentWord);
+    } while (LaguID > AlbumLength || LaguID < 1);
 
     Song antrianBaru = CreateLagu(PenyanyiID, AlbumID, LaguID, -1);
-    enqueue(&Antrian, antrianBaru);
+    enqueue(Antrian, antrianBaru);
 
     printf("Berhasil menambahkan lagu \"");
-    PrintWord(GetLagu(&Lagu, AlbumID, LaguID));
+    PrintWord(GetLagu(Lagu, AlbumID, LaguID));
     printf("\" oleh \"");
-    PrintWord(GetPenyanyi(&Penyanyi, PenyanyiID));
+    PrintWord(GetPenyanyi(Penyanyi, PenyanyiID));
     printf("\" ke queue");
 }
 
 void QueuePlaylist(Queue *Antrian, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData){
-    ListPlaylist(&PlaylistTitle);
-
+    ListPlaylist(PlaylistTitle);
+    int PlaylistID;
     do {
         printf("Masukkan ID Playlist yang dipilih : ");
         GetCommand();
-        if (WordToInt(currentWord) >= (*PlaylistTitle).Neff || WordToInt(currentWord) < 0) {
-            printf("Playlist %d tidak ada dalam daftar. Silakan coba lagi.\n", WordToInt(currentWord));
+        PlaylistID = WordToInt(currentWord);
+        if (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1) {
+            printf("Playlist %d tidak ada dalam daftar. Silakan coba lagi.\n", PlaylistID);
         }
-    } while (WordToInt(currentWord) >= (*PlaylistTitle).Neff || WordToInt(currentWord) < 0);
-    int PlaylistID = WordToInt(currentWord);
-    Word playlistTitle = (*PlaylistTitle).A[playlistID - 1];
+    } while (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1);
+    Word playlistTitle = (*PlaylistTitle).A[PlaylistID - 1];
     
     // Ambil informasi lagu dari playlist dengan ID tertentu
-    address playlistSongs = First((*PlaylistData).Elements[playlistID - 1]);
+    address playlistSongs = First((*PlaylistData).A[PlaylistID - 1]);
 
     // Enqueue semua lagu dari playlist ke dalam antrian
     while (playlistSongs != NULL) {
-        enqueue(&Antrian, Info(playlistSongs));
+        enqueue(Antrian, Info(playlistSongs));
         playlistSongs = Next(playlistSongs);
     }
 
@@ -102,12 +104,12 @@ void QueueRemove(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu, Word 
     int a_int = WordToInt(a);
     if (queue_IsMember(*Antrian, a_int-1)){
         Song del;
-        queue_delIn(&Antrian, a_int-1, &del);
+        queue_delIn(Antrian, a_int-1, &del);
 
         printf("Lagu \"");
-        PrintWord(GetLagu(&Lagu, del.AlbumID, del.LaguID));
+        PrintWord(GetLagu(Lagu, del.AlbumID, del.LaguID));
         printf("\" oleh \"");
-        PrintWord(GetPenyanyi(&Penyanyi, del.PenyanyiID));
+        PrintWord(GetPenyanyi(Penyanyi, del.PenyanyiID));
         printf("\" telah dihapus dari queue!\n");
     }
     else{

@@ -8,7 +8,7 @@
 #include "./ADT/List/arraydinword.h"
 #include "./ADT/Lagu/lagu.h"
 
-void PrintDaftarPenyayi(TabKata *Penyanyi);
+void PrintDaftarPenyanyi(TabKata *Penyanyi);
 
 void PrintDaftarAlbum(TabKata *Penyanyi, Map *Album, int PenyanyiID);
 

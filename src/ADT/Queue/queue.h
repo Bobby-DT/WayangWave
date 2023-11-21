@@ -61,12 +61,13 @@ void dequeue(Queue *q, Song *val);
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
 
-/* *** Display Queue *** */
-
 boolean queue_IsMember(Queue q, int a);
-/* Mengirimkan true jika a adalah indeks di dalam list*/
+/* Mengirimkan true jika a adalah indeks di dalam list, q mungkin kosong*/
 
 void queue_delIn(Queue *q, int a, Song *del);
 /* menghapus elemen di tengah-tengah queue */
+/* I.S q tidak mungkin kosong */
+/* F.S. del = nilai elemen q yang dihapus, indeks setelah elemen penghapusan mundur */
+/* IDX TAIL mundur, q mungkin kosong */
 
 #endif

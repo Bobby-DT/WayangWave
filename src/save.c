@@ -7,7 +7,7 @@ void save(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *
     }
     dir[7 + filesrc.Length] = '\0';
 
-    FILE* input = fopen(dir, "w");
+    FILE* file = fopen(dir, "w");
     fprintf(file, "%d\n", (*Penyanyi).Neff);
     for (int i = 0; i < (*Penyanyi).Neff; i++) {
         int jumlahAlbum = (*Album).Elements[i].Value.length;
@@ -22,23 +22,23 @@ void save(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *
         }
     }
     if (!SongIsEmpty(*Playing)) {
-        fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(&Penyanyi, (*Playing).PenyanyiID)), WordToStr(GetAlbum(&Lagu, (*Playing).AlbumID)), WordToStr(GetLagu(&Lagu, (*Playing).AlbumID, (*Playing).LaguID)));
+        fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, (*Playing).PenyanyiID)), WordToStr(GetAlbum(Lagu, (*Playing).AlbumID)), WordToStr(GetLagu(Lagu, (*Playing).AlbumID, (*Playing).LaguID)));
     }
     int jumlahAntrian = queue_length(*Antrian);
-    fprintf(file, "%d\n", jumlahQueue);
+    fprintf(file, "%d\n", jumlahAntrian);
     if ((*Antrian).idxHead <= (*Antrian).idxTail) {
         for (int i = (*Antrian).idxHead; i <= (*Antrian).idxTail; i++) {
             Song printAntrian = (*Antrian).buffer[i];
-            fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(&Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(&Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(&Lagu, printAntrian.AlbumID, printAntrian.LaguID)));
+            fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(Lagu, printAntrian.AlbumID, printAntrian.LaguID)));
         }
     } else {
         for (int i = (*Antrian).idxHead; i < CAPACITY; i++) {
             Song printAntrian = (*Antrian).buffer[i];
-            fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(&Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(&Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(&Lagu, printAntrian.AlbumID, printAntrian.LaguID)));       
+            fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(Lagu, printAntrian.AlbumID, printAntrian.LaguID)));       
         }
         for (int i = 0; i <= (*Antrian).idxTail; i++) {
             Song printAntrian = (*Antrian).buffer[i];
-            fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(&Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(&Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(&Lagu, printAntrian.AlbumID, printAntrian.LaguID)));
+            fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(Lagu, printAntrian.AlbumID, printAntrian.LaguID)));
         }
     }
     int jumlahRiwayat = Top(*Riwayat) + 1;
@@ -46,17 +46,17 @@ void save(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *
     for (int i = 0; i < jumlahRiwayat; i++) {
         int printIdx = Top(*Riwayat) - i;
         Song printRiwayat = (*Riwayat).T[printIdx];
-        fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(&Penyanyi, printRiwayat.PenyanyiID)), WordToStr(GetAlbum(&Lagu, printRiwayat.AlbumID)), WordToStr(GetLagu(&Lagu, printRiwayat.AlbumID, printRiwayat.LaguID)));
+        fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printRiwayat.PenyanyiID)), WordToStr(GetAlbum(Lagu, printRiwayat.AlbumID)), WordToStr(GetLagu(Lagu, printRiwayat.AlbumID, printRiwayat.LaguID)));
     }
     int jumlahPlaylist = (*PlaylistData).Neff;
     fprintf(file, "%d\n", jumlahPlaylist);
     for (int i = 0; i < jumlahPlaylist; i++) {
-        int jumlahLaguPlaylist = NumberElmtListLinier((*PlaylistData).Elements[i]);
-        fprintf(file, "%d %s\n", jumlahLaguPlaylist, WordToStr((*PlaylistTitle).Elements[i]));
-        address playlistSongs = First((*PlaylistData).Elements[i]);
+        int jumlahLaguPlaylist = NumberElmtListLinier((*PlaylistData).A[i]);
+        fprintf(file, "%d %s\n", jumlahLaguPlaylist, WordToStr((*PlaylistTitle).A[i]));
+        address playlistSongs = First((*PlaylistData).A[i]);
         for (int j = 0; j < jumlahLaguPlaylist; j++) {
             Song printPlaylist = Info(playlistSongs);
-            fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(&Penyanyi, printPlaylist.PenyanyiID)), WordToStr(GetAlbum(&Lagu, printPlaylist.AlbumID)), WordToStr(GetLagu(&Lagu, printPlaylist.AlbumID, printPlaylist.LaguID)));
+            fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printPlaylist.PenyanyiID)), WordToStr(GetAlbum(Lagu, printPlaylist.AlbumID)), WordToStr(GetLagu(Lagu, printPlaylist.AlbumID, printPlaylist.LaguID)));
             playlistSongs = Next(playlistSongs);
         }
     }
@@ -64,10 +64,10 @@ void save(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *
     fclose(file);
 
     FILE* check = fopen(dir, "r");
-    if (target != NULL) {
+    if (check != NULL) {
         printf("Save file berhasil disimpan.\n\n");
     } else {
         printf("Save file gagal disimpan.\n\n");
     }
-    fclose(target);
+    fclose(check);
 }
