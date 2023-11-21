@@ -2,9 +2,9 @@
 
 void SongNext(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, Song *Playing) {
     if(!queue_isEmpty(*Antrian)){
+        PushStack(&Riwayat, *Playing);
         Song nextSong;
         dequeue(&Antrian, &nextSong);
-        PushStack(&Riwayat, nextSong);
         *Playing = nextSong;
 
         printf("Memutar lagu selanjutnya\n\"");
@@ -24,9 +24,9 @@ void SongNext(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, Song
 
 void SongPrevious(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, Song *Playing) {
     if (!IsEmptyStack(*Riwayat)){
-        Lagu previousSong;
+        Song previousSong;
         Pop(&Riwayat, &previousSong);
-        queue_insert(&Riwayat, previousSong);
+        queue_insert(&Riwayat, *Playing);
         *Playing = previousSong;
 
         printf("Memutar lagu sebelumnya\n\"");
