@@ -94,7 +94,7 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat
         if (currentChar != ' ') {
             // Insert saved playlist
             int jumlahPlaylist = WordToInt(currentWord);
-            printf("%d\n", jumlahPlaylist);
+            //printf("%d\n", jumlahPlaylist);
             for (int j = 0; j < jumlahPlaylist; j++) {
                 ADVWORD();
                 int jumlahLaguPlaylist = WordToInt(AccessCommand(currentWord, 0));
