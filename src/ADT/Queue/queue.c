@@ -77,11 +77,11 @@ boolean queue_IsMember(Queue q, int a){
     return member;
 }
 
-void queue_delIn(Queue *q, int a){
+void queue_delIn(Queue *q, int a, Song *del){
     int currentIdx = ((*q).idxHead + a) % CAPACITY;
 
     // Menghapus elemen pada posisi yang diinginkan dan menyimpannya
-    Song deletedElement = (*q).buffer[currentIdx];
+    *del = (*q).buffer[currentIdx];
 
     // Memindahkan elemen-elemen setelah posisi yang dihapus ke posisi sebelumnya
     while (currentIdx != (*q).idxTail) {

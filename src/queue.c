@@ -42,20 +42,20 @@ void QueueSong(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu){
     enqueue(&Antrian, antrianBaru);
 
     printf("Berhasil menambahkan lagu \"");
-    PrintWord((*Lagu).Elements[AlbumID - 1].Value.buffer[LaguID - 1].Title);
+    PrintWord(GetLagu(&Lagu, AlbumID, LaguID));
     printf("\" oleh \"");
-    PrintWord((*Penyanyi).TK[PenyanyiID - 1]);
+    PrintWord(GetPenyanyi(&Penyanyi, PenyanyiID));
     printf("\" ke queue");
 }
 
-void QueuePlaylist(Queue *Antrian, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Map *Lagu){
+void QueuePlaylist(Queue *Antrian, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData){
     ListPlaylist(&PlaylistTitle);
 
     do {
         printf("Masukkan ID Playlist yang dipilih : ");
         GetCommand();
         if (WordToInt(currentWord) >= (*PlaylistTitle).Neff || WordToInt(currentWord) < 0) {
-            printf("Album %d tidak ada dalam daftar. Silakan coba lagi.\n", WordToInt(currentWord));
+            printf("Playlist %d tidak ada dalam daftar. Silakan coba lagi.\n", WordToInt(currentWord));
         }
     } while (WordToInt(currentWord) >= (*PlaylistTitle).Neff || WordToInt(currentWord) < 0);
     int PlaylistID = WordToInt(currentWord);
@@ -66,7 +66,7 @@ void QueuePlaylist(Queue *Antrian, ArrayDinWord *PlaylistTitle, ArrayDin *Playli
 
     // Enqueue semua lagu dari playlist ke dalam antrian
     while (playlistSongs != NULL) {
-        enqueue(Antrian, Info(playlistSongs));
+        enqueue(&Antrian, Info(playlistSongs));
         playlistSongs = Next(playlistSongs);
     }
 
@@ -98,18 +98,17 @@ void QueueSwap (Queue *Antrian, Word a, Word b){
     }
 }
 
-void QueueRemove(Queue *Antrian, Word a, Map *Lagu, TabKata *Penyanyi, Map *Album){
+void QueueRemove(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu, Word a){
     int a_int = WordToInt(a);
     if (queue_IsMember(*Antrian, a_int-1)){
-        Word Judul_lagu = (lagu).Elements[(*Antrian).buffer[a_int-1].AlbumID - 1].Value.buffer[(*Antrian).buffer[a_int-1].LaguID - 1];
+        Song del;
+        queue_delIn(&Antrian, a_int-1, &del);
+
         printf("Lagu \"");
-        PrintWord(Judul_lagu);
+        PrintWord(GetLagu(&Lagu, del.AlbumID, del.LaguID));
         printf("\" oleh \"");
-
-        Word Nama_penyanyi = Penyanyi.TK[(*Antrian).buffer[a_int-1].PenyanyiID - 1];
-
+        PrintWord(GetPenyanyi(&Penyanyi, del.PenyanyiID));
         printf("\" telah dihapus dari queue!\n");
-        queue_delIn(Antrian, a_int-1);
     }
     else{
         printf("Lagu dengan urutan ke %d tidak ada.", a_int);
@@ -119,7 +118,7 @@ void QueueRemove(Queue *Antrian, Word a, Map *Lagu, TabKata *Penyanyi, Map *Albu
 void QueueClear(Queue *Antrian){
     while (!queue_isEmpty(*Antrian))
     {
-        ElType del;
+        Song del;
         dequeue(Antrian, &del);
     }
     printf("Queue berhasil dikosongkan.\n");
