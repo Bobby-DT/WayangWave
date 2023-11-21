@@ -2,53 +2,11 @@
 # include "queue.h"
 # include "../Lagu/lagu.h"
 
-// gcc -o ji ../Lagu/lagu.c ../Lagu/song.c ../Mesin/mesinkata.c ../Mesin/mesinkarakter.c queue.c driverQueue.c
+// gcc -o driver ../Lagu/lagu.c ../Lagu/song.c ../Mesin/mesinkata.c ../Mesin/mesinkarakter.c queue.c driverQueue.c
 
 int main(){
     Queue Antrian;
     CreateQueue(&Antrian);
-
-    Object lagu1;
-    Object lagu2;
-    Object lagu3;
-
-    Object album1;
-    Object album2;
-
-    Object penyanyi;
-    
-    Object playlist;
-
-    Word nama_lagu1 = toKata("lagu1");
-    Word nama_lagu2 = toKata("lagu2");
-    Word nama_lagu3 = toKata("lagu3");
-
-    Word nama_album1 = toKata("Album1");
-    Word nama_album2 = toKata("Album2");
-
-    Word nama_penyanyi = toKata("Penyanyi");
-
-    Word nama_playlist = toKata("Playlist");
-
-    playlist.Title = nama_playlist;
-    playlist.ID = 1;
-    
-    lagu1.Title = nama_lagu1;
-    lagu1.ID = 1;
-
-    lagu2.Title = nama_lagu2;
-    lagu2.ID = 2;
-
-    lagu3.Title = nama_lagu3;
-    lagu3.ID = 3;
-
-    album1.Title = nama_album1;
-    album1.ID = 1;
-    album2.Title = nama_album2;
-    album2.ID = 2;
-
-    penyanyi.Title = nama_penyanyi;
-    penyanyi.ID = 1;
 
     Song Infolagu1;
     CreateEmptyLagu(&Infolagu1);
@@ -59,23 +17,24 @@ int main(){
     Song Infolagu3;
     CreateEmptyLagu(&Infolagu3);
 
-    Infolagu1 = CreateLagu(penyanyi.ID, album1.ID, lagu1.ID, playlist.ID);
-    Infolagu2 = CreateLagu(penyanyi.ID, album1.ID, lagu2.ID, playlist.ID);
-    Infolagu3 = CreateLagu(penyanyi.ID, album1.ID, lagu3.ID, playlist.ID);
+    //CreateLagu(IDPenyanyi, IDAlbum, IDLagu, IDPlaylist);
+    Infolagu1 = CreateLagu(1, 1, 1, 1);
+    Infolagu2 = CreateLagu(1, 1, 2, 1);
+    Infolagu3 = CreateLagu(1, 2, 3, 1);
 
-    // ENQUEUE
+    // MENAMBAHKAN ELEMEN DI INDEKS TAIL
     enqueue(&Antrian, Infolagu1);
     printf("Berhasil memasukkan lagu1\n");
     printf("Panjang antrian : %d\n", queue_length(Antrian));
 
     printf("\n");
-    // ENQUEUE
+    // MENAMBAHKAN ELEMEN DI INDEKS TAIL
     enqueue(&Antrian, Infolagu2);
     printf("Berhasil memasukkan lagu2\n");
     printf("Panjang antrian : %d\n", queue_length(Antrian));
 
     printf("\n");
-    // INPUT ELEMEN DI AWAL
+    // INPUT ELEMEN DI INDEKS HEAD
     queue_insert(&Antrian, Infolagu3);
     printf("Berhasil memasukkan lagu3\n");
     printf("Panjang antrian : %d\n", queue_length(Antrian));
