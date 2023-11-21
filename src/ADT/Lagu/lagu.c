@@ -19,7 +19,7 @@ Word GetPlaylist(ArrayDinWord *PlaylistTitle, int PlaylistID) {
 int GetPenyanyiID(TabKata *Penyanyi, Word namaPenyanyi) {
     for (int i = 0; i < (*Penyanyi).Neff; i++) {
 		if (WordCompare((*Penyanyi).TK[i], namaPenyanyi)) {
-			return i;
+			return i + 1;
 		}
 	}
 	return -1;
