@@ -21,6 +21,18 @@ void PrintDaftarAlbum(TabKata *Penyanyi, Map *Album, int PenyanyiID) {
 }
 
 void PrintDaftarLagu(TabKata *Penyanyi, Map *Album, Map *Lagu, int PenyanyiID, int AlbumID) {
+    printf("Daftar Lagu di "); 
+    PrintWord(GetAlbum(Lagu, AlbumID));
+    printf(":");
+    int AlbumLength = (*Lagu).Elements[AlbumID - 1].Value.length;
+    for (int i = 0; i < AlbumLength; i++) {
+        printf("\n\t%d. ", i+1);
+        PrintWord((*Lagu).Elements[AlbumID - 1].Value.buffer[i].Title);
+    }
+    printf("\n\n");
+}
+
+void PrintDaftarLagu2(TabKata *Penyanyi, Map *Album, Map *Lagu, int PenyanyiID, int AlbumID) {
     printf("Daftar Lagu Album ");
     PrintWord(GetAlbum(Album, AlbumID));
     printf(" oleh ");
@@ -85,6 +97,7 @@ void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu) {
             }
         } while (!MapIsMember(*Lagu, currentWord));
         AlbumID = searchMap(*Lagu, currentWord) + 1;
+        printf("\n");
         PrintDaftarLagu(Penyanyi, Album, Lagu, PenyanyiID, AlbumID);
     }
 }
