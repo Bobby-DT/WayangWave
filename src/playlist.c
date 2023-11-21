@@ -52,13 +52,13 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             do {
                 printf("Masukkan Judul Album yang dipilih : ");
                 GetCommand();
-                if (!MapIsMember(*Album, currentWord)) {
+                if (!MapIsMember(*Lagu, currentWord)) {
                     printf("Album ");
                     PrintWord(currentWord);
                     printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
                 }
-            } while (!MapIsMember(*Album, currentWord));
-            int AlbumID = searchMap(*Album, currentWord) + 1;
+            } while (!MapIsMember(*Lagu, currentWord));
+            int AlbumID = searchMap(*Lagu, currentWord) + 1;
             int AlbumLength = (*Lagu).Elements[AlbumID - 1].Value.length;
 
             int LaguID;

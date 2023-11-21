@@ -58,23 +58,26 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat
             MapInsert(Album, namaPenyanyi, AlbumofPenyanyi);
         }
         ADVWORD();
-        /*
+        //printf("%c\n", currentChar);
         if (currentChar != ' ') {
             // Insert Curently Playing Song
             GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang sedang dimainkan dari save file!"), Playing);
-            
+        } 
+        ADVWORD();
+        if (currentChar != ' ') {
             // Insert saved queue
-            ADVWORD();
             int jumlahQueue = WordToInt(currentWord);
             for (int j = 0; j < jumlahQueue; j++) {
                 ADVWORD();
                 Song newLaguQueue;
                 CreateEmptyLagu(&newLaguQueue);
-                GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di playlist dari save file!"), &newLaguQueue);
+                GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di antrian dari save file!"), &newLaguQueue);
                 enqueue(Antrian, newLaguQueue);
             }
+        }
+        ADVWORD();
+        if (currentChar != ' ') {
             // Insert saved history
-            ADVWORD();
             int jumlahAntrian = WordToInt(currentWord);
             Stack RiwayatConfig;
             CreateEmptyStack(&RiwayatConfig);
@@ -82,13 +85,16 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat
                 ADVWORD();
                 Song newLaguAntrian;
                 CreateEmptyLagu(&newLaguAntrian);
-                GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di playlist dari save file!"), &newLaguAntrian);
+                GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di riwayat dari save file!"), &newLaguAntrian);
                 PushStack(&RiwayatConfig, newLaguAntrian);
             }
             InvesrseStack(&RiwayatConfig, Riwayat);
+        }
+        ADVWORD();
+        if (currentChar != ' ') {
             // Insert saved playlist
-            ADVWORD();
             int jumlahPlaylist = WordToInt(currentWord);
+            printf("%d\n", jumlahPlaylist);
             for (int j = 0; j < jumlahPlaylist; j++) {
                 ADVWORD();
                 int jumlahLaguPlaylist = WordToInt(AccessCommand(currentWord, 0));
@@ -106,7 +112,6 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat
                 }
             }
         }
-        */
     }
     fclose(input);
 }

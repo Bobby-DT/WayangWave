@@ -78,23 +78,27 @@ void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu) {
         do {
             printf("Pilih album untuk melihat lagu yang ada di album : ");
             GetCommand();
-            printf("searchMap(*Album, currentWord): %d\n", searchMap(*Album, currentWord));
-            if (!MapIsMember(*Album, currentWord)) {
+            if (!MapIsMember(*Lagu, currentWord)) {
                 printf("\nAlbum ");
                 PrintWord(currentWord);
                 printf(" tidak ada dalam daftar. Silakan coba lagi.\n");
             }
-        } while (!MapIsMember(*Album, currentWord));
-        AlbumID = searchMap(*Album, currentWord) + 1;
+        } while (!MapIsMember(*Lagu, currentWord));
+        AlbumID = searchMap(*Lagu, currentWord) + 1;
         PrintDaftarLagu(Penyanyi, Album, Lagu, PenyanyiID, AlbumID);
     }
 }
 
 void ListPlaylist(ArrayDinWord *PlaylistTitle) {
-    printf("Daftar Playlist Pengguna :\n");
-    for (int i = 0; i < (*PlaylistTitle).Neff; i++) {
-        printf("\n\t%d. ", i+1);
-        PrintWord((*PlaylistTitle).A[i]);
+    printf("Daftar Playlist Pengguna :");
+    int jumlahPlaylist = (*PlaylistTitle).Neff;
+    if (jumlahPlaylist > 0) {
+        for (int i = 0; i < jumlahPlaylist; i++) {
+            printf("\n\t%d. ", i+1);
+            PrintWord((*PlaylistTitle).A[i]);
+        }
+    } else {
+        printf("\nKamu tidak memiliki playlist.");
     }
     printf("\n\n");
 }

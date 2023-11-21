@@ -60,7 +60,7 @@ void save(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *
             playlistSongs = Next(playlistSongs);
         }
     }
-    fprintf(file, " ");
+    fprintf(file, "\n ");
     fclose(file);
 
     FILE* check = fopen(dir, "r");

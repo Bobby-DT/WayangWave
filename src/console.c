@@ -3,7 +3,7 @@
 #include "console.h"
 
 void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing, boolean *wayangwaveStarted) {
-    printf(">> ");
+    printf("[*] >> ENTER COMMAND: ");
     GetCommand();
 
     if (WordCompare(toKata("START"), toUpper(currentWord)) || WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0)))) {
