@@ -90,6 +90,8 @@ void play(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
             printf("Berhasil menambahkan playlist \"");
             PrintWord(playlistTitle);
             printf("\" ke queue.\n\n");
+        } else {
+            printf("Kamu tidak memiliki playlist.\n\n");
         }
     } else {
         printf("Command tidak diketahui!\n\n");
