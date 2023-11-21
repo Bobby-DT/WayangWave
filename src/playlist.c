@@ -113,17 +113,18 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                     PrintWord((*PlaylistTitle).A[playlistID - 1]);
                     printf("”\n");
                 } else {
-                    // swap playlist
+                    Song X = getValAtListLinier((*PlaylistData).[PlaylistID - 1], playlistX);
+                    Song Y = getValAtListLinier((*PlaylistData).[PlaylistID - 1], playlistY);
+                    setValAtListLinier((*PlaylistData).[PlaylistID - 1], a, B);
+                    setValAtListLinier((*PlaylistData).[PlaylistID - 1], b, A);
 
-                    if (/*swap berhasil*/) {
-                        printf("Berhasil menukar lagu dengan nama “");
-                        PrintWord(/**/);
-                        printf("” dengan “");
-                        PrintWord(/**/);
-                        printf("” di playlist “");
-                        PrintWord((*PlaylistTitle).A[playlistID - 1]);
-                        printf("”\n");
-                    }
+                    printf("Berhasil menukar lagu dengan nama “");
+                    PrintWord(GetLagu(&Lagu, X.AlbumID, X.LaguID));
+                    printf("” dengan “");
+                    PrintWord(GetLagu(&Lagu, Y.AlbumID, Y.LaguID));
+                    printf("” di playlist “");
+                    PrintWord((*PlaylistTitle).A[playlistID - 1]);
+                    printf("”\n");
                 }
             }
         } else {

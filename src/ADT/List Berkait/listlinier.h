@@ -115,6 +115,14 @@ void DelAfterListLinier(ListLinier *L, address *Pdel, address Prec);
 /* F.S. Menghapus Next(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */
 
+address addrAtListLinier(ListLinier *L, int Idx);
+
+Song getValAtListLinier(ListLinier *L, int Idx);
+
+void setValAtListLinier(ListLinier *L, int Idx, Song set);
+
+void DelAtListLinier(ListLinier *L, int Idx);
+
 /****************** PROSES SEMUA ELEMEN LIST ******************/
 void PrintInfoListLinier(ListLinier L);
 /* I.S. List mungkin kosong */

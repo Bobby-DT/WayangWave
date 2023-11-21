@@ -295,6 +295,20 @@ address addrAtListLinier(ListLinier *L, int Idx) {
     return P;
 }
 
+Song getValAtListLinier(ListLinier *L, int Idx) {
+    return Info(addrAtListLinier(L, Idx));
+}
+
+void setValAtListLinier(ListLinier *L, int Idx, Song set) {
+    int count = 1;
+    address P = First(*L);
+    while (count < Idx) {
+        P = Next(P);
+        count++;
+    }
+    Info(P) = set;
+}
+
 void DelAtListLinier(ListLinier *L, int Idx) {
     int count = 1;
     address P = First(*L);
