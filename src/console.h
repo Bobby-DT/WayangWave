@@ -18,10 +18,13 @@
 #include "help.h"
 #include "list.h"
 #include "parseConfig.h"
+#include "play.h"
 #include "playlist.h"
 #include "queue.h"
 #include "quit.h"
+#include "save.h"
+#include "song.h"
 #include "start.h"
 #include "status.h"
 
-void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing);
+void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing, boolean *wayangwaveStarted);

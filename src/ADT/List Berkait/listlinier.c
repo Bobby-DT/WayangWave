@@ -285,9 +285,9 @@ void DelAfterListLinier(ListLinier *L, address *Pdel, address Prec)
     Next(*Pdel) = NULL;
 }
 
-address addrAtListLinier(ListLinier *L, int Idx) {
+address addrAtListLinier(ListLinier L, int Idx) {
     int count = 1;
-    address P = First(*L);
+    address P = First(L);
     while (count < Idx) {
         P = Next(P);
         count++;
@@ -295,7 +295,7 @@ address addrAtListLinier(ListLinier *L, int Idx) {
     return P;
 }
 
-Song getValAtListLinier(ListLinier *L, int Idx) {
+Song getValAtListLinier(ListLinier L, int Idx) {
     return Info(addrAtListLinier(L, Idx));
 }
 
@@ -309,7 +309,7 @@ void setValAtListLinier(ListLinier *L, int Idx, Song set) {
     Info(P) = set;
 }
 
-void DelAtListLinier(ListLinier *L, int Idx) {
+void DelAtListLinier(ListLinier *L, int Idx, Song *del) {
     int count = 1;
     address P = First(*L);
     while (count < Idx - 1) {
@@ -317,6 +317,7 @@ void DelAtListLinier(ListLinier *L, int Idx) {
         count++;
     }
     address Pdel = Next(P);
+    *del = Info(Pdel);
     Next(P) = Next(Next(P));
     Next(Pdel) = NULL;
 }

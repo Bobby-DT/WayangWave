@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include "parseConfig.h"
 
-extern boolean wayangwaveStarted;
-
-void start(Word configsrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing);
+void start(Word configsrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing, boolean isLoad, boolean *wayangwaveStarted);
 
 #endif

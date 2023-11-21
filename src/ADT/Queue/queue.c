@@ -77,7 +77,7 @@ boolean queue_IsMember(Queue q, int a){
     return member;
 }
 
-void queue_delIn(Queue *q, int a, Song *del){
+void queue_delIn(Queue *q, int a, Song *del) {
     int currentIdx = ((*q).idxHead + a) % CAPACITY;
 
     // Menghapus elemen pada posisi yang diinginkan dan menyimpannya

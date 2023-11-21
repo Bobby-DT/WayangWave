@@ -2,53 +2,52 @@
 #include <stdlib.h>
 #include "console.h"
 
-void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing) {
+void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing, boolean *wayangwaveStarted) {
     printf(">> ");
     GetCommand();
-    //clear();
 
     if (WordCompare(toKata("START"), toUpper(currentWord)) || WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0)))) {
         printf("WayangWave sudah dijalankan. Command tidak bisa dieksekusi! Masukkan command HELP untuk bantuan\n\n");
     } else if (WordCompare(toKata("LIST"), toUpper(AccessCommand(currentWord, 0)))) {
         if (WordCompare(toKata("DEFAULT"), toUpper(AccessCommand(currentWord, 1)))) {
-            ListDefault(&Penyanyi, &Album, &Lagu);
+            ListDefault(Penyanyi, Album, Lagu);
         } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 1)))) {
-            ListPlaylist(&PlaylistTitle);
+            ListPlaylist(PlaylistTitle);
         } else {
             printf("Command tidak diketahui!\n\n");
         }
     } else if (WordCompare(toKata("PLAY"), toUpper(AccessCommand(currentWord, 0)))) {
-        play(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing);
+        play(Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData, Playing);
     } else if (WordCompare(toKata("QUEUE"), toUpper(AccessCommand(currentWord, 0)))) {
         if (WordCompare(toKata("SONG"), toUpper(AccessCommand(currentWord, 1)))) {
-            QueueSong(&Penyanyi, &Antrian, &Album, &Lagu);
+            QueueSong(Penyanyi, Antrian, Album, Lagu);
         } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 1)))) {
-            QueuePlaylist(&Antrian, &Lagu, &PlaylistTitle, &PlaylistData);
+            QueuePlaylist(Antrian, Lagu, PlaylistTitle, PlaylistData);
         } else if (WordCompare(toKata("SWAP"), toUpper(AccessCommand(currentWord, 1)))) {
-            QueueSwap(&Antrian, AccessCommand(currentWord, 2), AccessCommand(currentWord, 3));
+            QueueSwap(Antrian, AccessCommand(currentWord, 2), AccessCommand(currentWord, 3));
         } else if (WordCompare(toKata("REMOVE"), toUpper(AccessCommand(currentWord, 1)))) {
-            QueueRemove(&Penyanyi, &Antrian, &Album, &Lagu, AccessCommand(currentWord, 2));
+            QueueRemove(Penyanyi, Antrian, Album, Lagu, AccessCommand(currentWord, 2));
         } else if (WordCompare(toKata("CLEAR"), toUpper(AccessCommand(currentWord, 1)))) {
-            QueueClear(&Antrian);
+            QueueClear(Antrian);
         } else {
             printf("Command tidak diketahui!\n\n");
         }
     } else if (WordCompare(toKata("SONG"), toUpper(AccessCommand(currentWord, 0)))) {
         if (WordCompare(toKata("NEXT"), toUpper(AccessCommand(currentWord, 1)))) {
-            SongNext(&Penyanyi, &Antrian, &Riwayat, &Lagu, &Playing);
+            SongNext(Penyanyi, Antrian, Riwayat, Lagu, Playing);
         } else if (WordCompare(toKata("PREVIOUS"), toUpper(AccessCommand(currentWord, 1)))) {
-            SongPrevious(&Penyanyi, &Antrian, &Riwayat, &Lagu, &Playing);
+            SongPrevious(Penyanyi, Antrian, Riwayat, Lagu, Playing);
         } else {
             printf("Command tidak diketahui!\n\n");
         }
     } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 0)))) {
-        playlist(&Penyanyi, &Album, &Lagu, &PlaylistTitle, &PlaylistData);
+        playlist(Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData);
     } else if (WordCompare(toKata("STATUS"), toUpper(currentWord))) {
-        status(&Penyanyi, &Antrian, &Album, &Lagu, &PlaylistTitle, &Playing);
+        status(Penyanyi, Antrian, Album, Lagu, PlaylistTitle, Playing);
     } else if (WordCompare(toKata("SAVE"), toUpper(AccessCommand(currentWord, 0)))) {
-        
+        save(AccessCommand(currentWord, 1), Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData, Playing);
     } else if (WordCompare(toKata("QUIT"), toUpper(currentWord))) {
-        quit();
+        quit(Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData, Playing, wayangwaveStarted);
     } else if (WordCompare(toKata("HELP"), toUpper(currentWord))) {
         help(true);
     } else {

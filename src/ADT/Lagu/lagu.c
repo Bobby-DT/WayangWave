@@ -42,13 +42,10 @@ int GetAlbumID(Map *Album, Word namaAlbum, int PenyanyiID) {
 int GetLaguID(Map *Lagu, Word namaLagu, int AlbumID) {
     Set LaguofAlbum = (*Lagu).Elements[AlbumID - 1].Value;
     int laguLength = LaguofAlbum.length;
-    int i = 0;
-    boolean found = false;
-    while (!found && i < laguLength) {
+    for (int i = 0; i < laguLength; i++) {
         if (WordCompare(LaguofAlbum.buffer[i].Title, namaLagu)) {
             return LaguofAlbum.buffer[i].ID;
         }
-        i++;
     }
     return -1;
 }

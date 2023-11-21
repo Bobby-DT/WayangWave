@@ -115,13 +115,13 @@ void DelAfterListLinier(ListLinier *L, address *Pdel, address Prec);
 /* F.S. Menghapus Next(Prec): */
 /*      Pdel adalah alamat elemen list yang dihapus  */
 
-address addrAtListLinier(ListLinier *L, int Idx);
+address addrAtListLinier(ListLinier L, int Idx);
 
-Song getValAtListLinier(ListLinier *L, int Idx);
+Song getValAtListLinier(ListLinier L, int Idx);
 
 void setValAtListLinier(ListLinier *L, int Idx, Song set);
 
-void DelAtListLinier(ListLinier *L, int Idx);
+void DelAtListLinier(ListLinier *L, int Idx, Song *del);
 
 /****************** PROSES SEMUA ELEMEN LIST ******************/
 void PrintInfoListLinier(ListLinier L);

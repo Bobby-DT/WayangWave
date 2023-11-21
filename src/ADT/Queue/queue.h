@@ -66,7 +66,7 @@ void dequeue(Queue *q, Song *val);
 boolean queue_IsMember(Queue q, int a);
 /* Mengirimkan true jika a adalah indeks di dalam list*/
 
-void queue_delIn(Queue *q, int a);
+void queue_delIn(Queue *q, int a, Song *del);
 /* menghapus elemen di tengah-tengah queue */
 
 #endif
