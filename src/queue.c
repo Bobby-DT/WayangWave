@@ -47,34 +47,39 @@ void QueueSong(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu){
     PrintWord(GetLagu(Lagu, AlbumID, LaguID));
     printf("\" oleh \"");
     PrintWord(GetPenyanyi(Penyanyi, PenyanyiID));
-    printf("\" ke queue");
+    printf("\" ke queue.\n");
 }
 
 void QueuePlaylist(Queue *Antrian, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData){
     ListPlaylist(PlaylistTitle);
-    int PlaylistID;
-    do {
-        printf("Masukkan ID Playlist yang dipilih : ");
-        GetCommand();
-        PlaylistID = WordToInt(currentWord);
-        if (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1) {
-            printf("Playlist %d tidak ada dalam daftar. Silakan coba lagi.\n", PlaylistID);
-        }
-    } while (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1);
-    Word playlistTitle = (*PlaylistTitle).A[PlaylistID - 1];
     
-    // Ambil informasi lagu dari playlist dengan ID tertentu
-    address playlistSongs = First((*PlaylistData).A[PlaylistID - 1]);
+    int jumlahPlaylist = (*PlaylistTitle).Neff;
 
-    // Enqueue semua lagu dari playlist ke dalam antrian
-    while (playlistSongs != NULL) {
-        enqueue(Antrian, Info(playlistSongs));
-        playlistSongs = Next(playlistSongs);
+    if (jumlahPlaylist > 0){
+        int PlaylistID;
+        do {
+            printf("Masukkan ID Playlist yang dipilih : ");
+            GetCommand();
+            PlaylistID = WordToInt(currentWord);
+            if (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1) {
+                printf("Playlist %d tidak ada dalam daftar. Silakan coba lagi.\n", PlaylistID);
+            }
+        } while (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1);
+        Word playlistTitle = (*PlaylistTitle).A[PlaylistID - 1];
+        
+        // Ambil informasi lagu dari playlist dengan ID tertentu
+        address playlistSongs = First((*PlaylistData).A[PlaylistID - 1]);
+
+        // Enqueue semua lagu dari playlist ke dalam antrian
+        while (playlistSongs != NULL) {
+            enqueue(Antrian, Info(playlistSongs));
+            playlistSongs = Next(playlistSongs);
+        }
+
+        printf("Berhasil menambahkan playlist \"");
+        PrintWord(playlistTitle);
+        printf("\" ke queue.\n");
     }
-
-    printf("Berhasil menambahkan playlist \"");
-    PrintWord(playlistTitle);
-    printf("\" ke queue.");
 }
 
 void QueueSwap (Queue *Antrian, Word a, Word b){
