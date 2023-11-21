@@ -90,10 +90,15 @@ void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu) {
 }
 
 void ListPlaylist(ArrayDinWord *PlaylistTitle) {
-    printf("Daftar Playlist Pengguna :\n");
-    for (int i = 0; i < (*PlaylistTitle).Neff; i++) {
-        printf("\n\t%d. ", i+1);
-        PrintWord((*PlaylistTitle).A[i]);
+    printf("Daftar Playlist Pengguna :");
+    int jumlahPlaylist = (*PlaylistTitle).Neff;
+    if (jumlahPlaylist > 0) {
+        for (int i = 0; i < jumlahPlaylist; i++) {
+            printf("\n\t%d. ", i+1);
+            PrintWord((*PlaylistTitle).A[i]);
+        }
+    } else {
+        printf("\nKamu tidak memiliki playlist.");
     }
     printf("\n\n");
 }
