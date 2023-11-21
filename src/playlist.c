@@ -2,9 +2,9 @@
 #include "playlist.h"
 
 void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData) {
-    GetCommand();
     if (WordCompare(toKata("CREATE"), toUpper(AccessCommand(currentWord, 1)))) {
         int nama_playlist_len;
+        boolean playlistNotExist;
         do {
             printf("Masukkan nama playlist yang ingin dibuat : ");
             GetCommand();
@@ -12,8 +12,9 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             for (int i = 0; i < currentWord.Length; i++) {
                 if (currentWord.TabWord[i] != ' ') nama_playlist_len++;
             }
+            playlistNotExist = SearchArrayDinWord(*PlaylistTitle, currentWord) == -1;
             if (nama_playlist_len >= 3) {
-                if (SearchArrayDinWord(*PlaylistTitle, currentWord) == -1) {
+                if (playlistNotExist) {
                     ListLinier newPlaylist;
                     CreateEmptyListLinier(&newPlaylist);
                     InsertLastArrayDinWord(PlaylistTitle, currentWord);
@@ -21,14 +22,14 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
 
                     printf("Playlist ");
                     PrintWord(currentWord);
-                    printf(" berhasil dibuat! Silakan masukkan lagu - lagu artis terkini kesayangan Anda!\n");
+                    printf(" berhasil dibuat! Silakan masukkan lagu - lagu artis terkini kesayangan Anda!\n\n");
                 } else {
                     printf("Sudah ada Playlist dengan nama tersebut! Silakan coba lagi.\n");
                 }
             } else {
                 printf("Minimal terdapat 3 karakter selain whitespace dalam nama playlist. Silakan coba lagi.\n");
             }
-        } while (nama_playlist_len < 3 || SearchArrayDinWord(*PlaylistTitle, currentWord) != -1);
+        } while (nama_playlist_len < 3 || !playlistNotExist);
     } else if (WordCompare(toKata("ADD"), toUpper(AccessCommand(currentWord, 1)))) {
         if (WordCompare(toKata("SONG"), toUpper(AccessCommand(currentWord, 2))) && WordCompare(toKata("ALBUM"), toUpper(AccessCommand(currentWord, 2)))) {
             boolean addSong = false;
