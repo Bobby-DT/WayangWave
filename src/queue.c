@@ -47,7 +47,7 @@ void QueueSong(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu){
     PrintWord(GetLagu(Lagu, AlbumID, LaguID));
     printf("\" oleh \"");
     PrintWord(GetPenyanyi(Penyanyi, PenyanyiID));
-    printf("\" ke queue.\n");
+    printf("\" ke queue.\n\n");
 }
 
 void QueuePlaylist(Queue *Antrian, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData){
@@ -78,7 +78,7 @@ void QueuePlaylist(Queue *Antrian, Map *Lagu, ArrayDinWord *PlaylistTitle, Array
 
         printf("Berhasil menambahkan playlist \"");
         PrintWord(playlistTitle);
-        printf("\" ke queue.\n");
+        printf("\" ke queue.\n\n");
     }
 }
 
@@ -95,7 +95,7 @@ void QueueSwap (Queue *Antrian, Word a, Word b, Map *Lagu){
         PrintWord(GetLagu(Lagu, (*Antrian).buffer[b_int-1].AlbumID, (*Antrian).buffer[b_int-1].LaguID));
         printf("\" berhasil ditukar dengan \"");
         PrintWord(GetLagu(Lagu, (*Antrian).buffer[a_int-1].AlbumID, (*Antrian).buffer[a_int-1].LaguID));
-        printf("\"\n");
+        printf("\"\n\n");
     }
 
     else{
@@ -121,10 +121,10 @@ void QueueRemove(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu, Word 
         PrintWord(GetLagu(Lagu, del.AlbumID, del.LaguID));
         printf("\" oleh \"");
         PrintWord(GetPenyanyi(Penyanyi, del.PenyanyiID));
-        printf("\" telah dihapus dari queue!\n");
+        printf("\" telah dihapus dari queue!\n\n");
     }
     else{
-        printf("Lagu dengan urutan ke %d tidak ada.\n", a_int);
+        printf("Lagu dengan urutan ke %d tidak ada.\n\n", a_int);
     }
 }
 
@@ -134,5 +134,5 @@ void QueueClear(Queue *Antrian){
         Song del;
         dequeue(Antrian, &del);
     }
-    printf("Queue berhasil dikosongkan.\n");
+    printf("Queue berhasil dikosongkan.\n\n");
 }
