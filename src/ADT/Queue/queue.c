@@ -45,7 +45,7 @@ void enqueue(Queue *q, Song val){
 
 void dequeue(Queue *q, Song *val){
     *val = HEAD(*q);
-    if (queue_length(*q) == 1){
+    if (queue_length(*q) <= 1){
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
     }
@@ -59,10 +59,13 @@ void queue_insert(Queue *q, Song X){
         enqueue(q, X);
     }
     else{
+        // Memperbarui idxTail karena satu elemen ditambahkan
         IDX_TAIL(*q) = (IDX_HEAD(*q) + queue_length(*q)) % CAPACITY;
+        // Memindahkan elemen-elemen setelah posisi yang dihapus ke posisi sebelumnya
         for (int i = (*q).idxTail-1 ; i >= 0; i--){
             (*q).buffer[i+1] = (*q).buffer[i];
         }
+        // Memperbarui idx head
         HEAD(*q) = X;
     }
 }
@@ -70,6 +73,7 @@ void queue_insert(Queue *q, Song X){
 boolean queue_IsMember(Queue q, int a){
     boolean member = false;
     if (!queue_isEmpty(q)){
+        // Lokasi yang valid
         if (a >= q.idxHead && a <= q.idxTail){
             member = true;
         }
@@ -83,12 +87,18 @@ void queue_delIn(Queue *q, int a, Song *del){
     // Menghapus elemen pada posisi yang diinginkan dan menyimpannya
     *del = (*q).buffer[currentIdx];
 
-    // Memindahkan elemen-elemen setelah posisi yang dihapus ke posisi sebelumnya
-    while (currentIdx != (*q).idxTail) {
-        (*q).buffer[currentIdx] = (*q).buffer[(currentIdx + 1) % CAPACITY];
-        currentIdx = (currentIdx + 1) % CAPACITY;
+    if (queue_length(*q) <= 1){
+        IDX_HEAD(*q) = IDX_UNDEF;
+        IDX_TAIL(*q) = IDX_UNDEF;
     }
+    else{
+        // Memindahkan elemen-elemen setelah posisi yang dihapus ke posisi sebelumnya
+        while (currentIdx != (*q).idxTail) {
+            (*q).buffer[currentIdx] = (*q).buffer[(currentIdx + 1) % CAPACITY];
+            currentIdx = (currentIdx + 1) % CAPACITY;
+        }
 
-    // Memperbarui idxTail karena satu elemen dihapus
-    (*q).idxTail = ((*q).idxTail - 1 + CAPACITY) % CAPACITY;
+        // Memperbarui idxTail karena satu elemen dihapus
+        (*q).idxTail = ((*q).idxTail - 1 + CAPACITY) % CAPACITY;
+    }
 }
