@@ -23,6 +23,8 @@ Song CreateLagu(int PenyanyiID, int AlbumID, int LaguID, int PlaylistID);
 
 boolean SongIsEqual(Song s1, Song s2);
 
+boolean SongIsEmpty(Song s);
+
 // Fungsi & Prosedur untuk tipe Object
 
 boolean ObjectIsEqual(Object o1, Object o2);

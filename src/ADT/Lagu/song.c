@@ -19,6 +19,10 @@ boolean SongIsEqual(Song s1, Song s2) {
     return (s1.PenyanyiID == s2.PenyanyiID) && (s1.AlbumID == s2.AlbumID) && (s1.LaguID == s2.LaguID) && (s1.PlaylistID == s2.PlaylistID);
 }
 
+boolean SongIsEmpty(Song s) {
+    return (s.PenyanyiID == -1 && s.AlbumID == -1 && s.LaguID == -1 && s.PlaylistID == -1);
+}
+
 // Fungsi & Prosedur untuk tipe Object
 
 boolean ObjectIsEqual(Object o1, Object o2) {

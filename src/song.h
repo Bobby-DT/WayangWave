@@ -1,3 +1,6 @@
+#ifndef songcommand_H
+#define songcommand_H
+
 #include "boolean.h"
 #include "./ADT/Lagu/song.h"
 #include "./ADT/List/array.h"   
@@ -9,3 +12,5 @@
 void SongNext(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, Song *Playing);
 
 void SongPrevious(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, Song *Playing);
+
+#endif
