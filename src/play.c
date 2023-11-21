@@ -16,8 +16,9 @@ void play(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
 
         PrintDaftarAlbum(Penyanyi, Album, PenyanyiID);
         do {
-            printf("Masukkan Judul Album yang dipilih : ");
+            printf("Masukkan Nama Album yang dipilih : ");
             GetCommand();
+            printf("\n");
             if (!MapIsMember(*Lagu, currentWord)) {
                 printf("Album ");
                 PrintWord(currentWord);
@@ -49,11 +50,11 @@ void play(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
             PopStack(Riwayat, &del);
         }
 
-        printf("Memutar lagu \"");
+        printf("\nMemutar lagu \"");
         PrintWord(GetLagu(Lagu, AlbumID, LaguID));
         printf("\" oleh \"");
         PrintWord(GetPenyanyi(Penyanyi, PenyanyiID));
-        printf("\"\n\n");
+        printf("\".\n\n");
     } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 1)))) {
         ListPlaylist(PlaylistTitle);
 

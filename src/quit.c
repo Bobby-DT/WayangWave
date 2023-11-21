@@ -2,11 +2,11 @@
 #include "quit.h"
 
 void quit(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing, boolean *wayangwaveStarted) {
-    printf("Apakah kamu ingin menyimpan data sesi sekarang (y/N)?");
+    printf("Apakah kamu ingin menyimpan data sesi sekarang (Y/N)? ");
     do {
         GetCommand();
         if (!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord))) {
-            printf("Command tidak diketahui! Jawab dengan y/N!\n");
+            printf("Command tidak diketahui! Jawab dengan Y/N!\n");
         } else if (WordCompare(toKata("Y"), toUpper(currentWord))){
             printf("Lokasi penyimpanan data sesi sekarang (contoh: config.txt): \n");
             GetCommand();
@@ -14,5 +14,6 @@ void quit(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
         }
     } while(!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord)));
     *wayangwaveStarted = false;
-    printf("Kamu keluar dari WayangWave.\nDadah ^_^\n");
+    printf("Kamu keluar dari WayangWave.\nDadah ^_^/\n");
 }
+

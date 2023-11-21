@@ -14,8 +14,12 @@ void PrintDaftarAlbum(TabKata *Penyanyi, Map *Album, int PenyanyiID);
 
 void PrintDaftarLagu(TabKata *Penyanyi, Map *Album, Map *Lagu, int PenyanyiID, int AlbumID);
 
+void PrintDaftarLagu2(TabKata *Penyanyi, Map *Album, Map *Lagu, int PenyanyiID, int AlbumID);
+
 void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu);
 
 void ListPlaylist(ArrayDinWord *PlaylistTitle);
+
+void ListPlaylist2(ArrayDinWord *PlaylistTitle);
 
 #endif
