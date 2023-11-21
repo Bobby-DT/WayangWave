@@ -100,13 +100,13 @@ void QueueSwap (Queue *Antrian, Word a, Word b, Map *Lagu){
 
     else{
         if (!queue_IsMember(*Antrian, a_int-1) && !queue_IsMember(*Antrian, b_int-1)){
-            printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue!\n", a_int, b_int);
+            printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue!\n\n", a_int, b_int);
         }
         else if (!queue_IsMember(*Antrian, b_int-1)){
-            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", b_int);
+            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n\n", b_int);
         }
         else if (!queue_IsMember(*Antrian, a_int-1)){
-            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", a_int);
+            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n\n", a_int);
         }
     }
 }
