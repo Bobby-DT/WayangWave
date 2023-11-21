@@ -18,7 +18,7 @@ void QueueSong(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu);
 
 void QueuePlaylist(Queue *Antrian, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData);
 
-void QueueSwap (Queue *Antrian, Word a, Word b);
+void QueueSwap (Queue *Antrian, Word a, Word b, Map *Lagu);
 
 void QueueRemove(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu, Word a);
 
