@@ -16,7 +16,7 @@ void play(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
 
         PrintDaftarAlbum(Penyanyi, Album, PenyanyiID);
         do {
-            printf("Masukkan Judul Album yang dipilih : ");
+            printf("Masukkan Nama Album yang dipilih : ");
             GetCommand();
             printf("\n");
             if (!MapIsMember(*Lagu, currentWord)) {
@@ -28,7 +28,7 @@ void play(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
         int AlbumID = searchMap(*Lagu, currentWord) + 1;
         int AlbumLength = (*Lagu).Elements[AlbumID - 1].Value.length;
 
-        PrintDaftarLagu2(Penyanyi, Album, Lagu, PenyanyiID, AlbumID);
+        PrintDaftarLagu(Penyanyi, Album, Lagu, PenyanyiID, AlbumID);
 
         int LaguID;
         do {
@@ -50,7 +50,7 @@ void play(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
             PopStack(Riwayat, &del);
         }
 
-        printf("Memutar lagu \"");
+        printf("\nMemutar lagu \"");
         PrintWord(GetLagu(Lagu, AlbumID, LaguID));
         printf("\" oleh \"");
         PrintWord(GetPenyanyi(Penyanyi, PenyanyiID));
