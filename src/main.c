@@ -40,7 +40,7 @@ int main() {
 
     while (!wayangwaveStarted) {
         do {
-            printf("[*] >> ENTER COMMAND: ");
+            printf(">> ENTER COMMAND: ");
             GetCommand();
 
             if (WordCompare(toKata("HELP"), toUpper(currentWord))) {
