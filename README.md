@@ -8,7 +8,7 @@ Tugas Besar Algoritma dan Struktur Data
 - Song
   ```
   {
-    int PenyayiID,
+    int PenyanyiID,
     int AlbumID,
     int LaguID,
     int PlaylistID
@@ -38,7 +38,7 @@ Tugas Besar Algoritma dan Struktur Data
   ```
   [
     {
-    Key: Word "Nama Penyayi 1",
+    Key: Word "Nama Penyanyi 1",
     Value" Set [
         Object Album_1 {
             int ID_Album_1,
@@ -50,7 +50,7 @@ Tugas Besar Algoritma dan Struktur Data
         }
     ]
     },{
-    Key: Word "Nama Penyayi 2",
+    Key: Word "Nama Penyanyi 2",
     Value" Set [
         Object Album_1 {
             int ID_Album_1,
@@ -124,7 +124,7 @@ Tugas Besar Algoritma dan Struktur Data
   address (Node Struktur Berkait)
   {
     Song Lagu_Ke-1_Playlist {
-        int PenyayiID,
+        int PenyanyiID,
         int AlbumID,
         int LaguID,
         int PlaylistID

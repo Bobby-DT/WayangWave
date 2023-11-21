@@ -78,6 +78,7 @@ void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu) {
         do {
             printf("Pilih album untuk melihat lagu yang ada di album : ");
             GetCommand();
+            printf("searchMap(*Album, currentWord): %d\n", searchMap(*Album, currentWord));
             if (!MapIsMember(*Album, currentWord)) {
                 printf("\nAlbum ");
                 PrintWord(currentWord);
