@@ -31,7 +31,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             }
         } while (nama_playlist_len < 3 || !playlistNotExist);
     } else if (WordCompare(toKata("ADD"), toUpper(AccessCommand(currentWord, 1)))) {
-        if (WordCompare(toKata("SONG"), toUpper(AccessCommand(currentWord, 2))) && WordCompare(toKata("ALBUM"), toUpper(AccessCommand(currentWord, 2)))) {
+        if (WordCompare(toKata("SONG"), toUpper(AccessCommand(currentWord, 2))) || WordCompare(toKata("ALBUM"), toUpper(AccessCommand(currentWord, 2)))) {
             boolean addSong = false;
             if (WordCompare(toKata("SONG"), toUpper(AccessCommand(currentWord, 2)))) {
                 addSong = true;
