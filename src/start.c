@@ -14,9 +14,7 @@ void start(Word configsrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Ma
         }
         *wayangwaveStarted = true;
     } else {
-        if (isLoad) {
-            printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n\n");
-        } else {
+        if (!isLoad) {
             printf("File konfigurasi sistem gagal dibaca. Silahkan coba lagi.\n\n");
         }
         *wayangwaveStarted = false;
