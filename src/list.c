@@ -90,7 +90,7 @@ void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu) {
 }
 
 void ListPlaylist(ArrayDinWord *PlaylistTitle) {
-    printf("Daftar Playlist Pengguna :");
+    printf("\nDaftar Playlist Pengguna :");
     int jumlahPlaylist = (*PlaylistTitle).Neff;
     if (jumlahPlaylist > 0) {
         for (int i = 0; i < jumlahPlaylist; i++) {
