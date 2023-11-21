@@ -1,3 +1,7 @@
 .DS_Store
 .vscode/*
 *.o
+src/help.c
+src/playlist.c
+src/quit.c
+src/song.c
