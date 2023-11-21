@@ -12,8 +12,12 @@ void SongNext(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, Song
         */
         Song nextSong;
         dequeue(Antrian, &nextSong);
-        PushStack(Riwayat, nextSong);
+        if(!SongIsEmpty(*Playing)){
+            PushStack(Riwayat, *Playing);
+        }
+        
         *Playing = nextSong;
+        
 
         printf("Memutar lagu selanjutnya\n\"");
         PrintWord(GetLagu(Lagu, nextSong.AlbumID, nextSong.LaguID));
