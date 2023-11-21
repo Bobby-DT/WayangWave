@@ -56,36 +56,41 @@ void play(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
         printf("\"\n\n");
     } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 1)))) {
         ListPlaylist(PlaylistTitle);
-        int PlaylistID;
-        do {
-            printf("Masukkan ID Playlist yang dipilih : ");
-            GetCommand();
-            PlaylistID = WordToInt(currentWord);
-            if (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1) {
-                printf("Playlist dengan ID %d tidak ada dalam daftar. Silakan coba lagi.\n", PlaylistID);
-            }
-        } while (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1);
-        Word playlistTitle = (*PlaylistTitle).A[PlaylistID - 1];
-        
-        // Ambil informasi lagu dari playlist dengan ID tertentu
-        address playlistSongs = First((*PlaylistData).A[PlaylistID - 1]);
 
-        *Playing = Info(playlistSongs);
-        playlistSongs = Next(playlistSongs);
-        Stack temp;
-        CreateEmptyStack(&temp);
+        int jumlahPlaylist = (*PlaylistTitle).Neff;
 
-        // Enqueue semua lagu dari playlist ke dalam antrian
-        while (playlistSongs != NULL) {
-            enqueue(Antrian, Info(playlistSongs));
-            PushStack(&temp, Info(playlistSongs));
+        if (jumlahPlaylist > 0){
+            int PlaylistID;
+            do {
+                printf("Masukkan ID Playlist yang dipilih : ");
+                GetCommand();
+                PlaylistID = WordToInt(currentWord);
+                if (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1) {
+                    printf("Playlist dengan ID %d tidak ada dalam daftar. Silakan coba lagi.\n", PlaylistID);
+                }
+            } while (PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1);
+            Word playlistTitle = (*PlaylistTitle).A[PlaylistID - 1];
+            
+            // Ambil informasi lagu dari playlist dengan ID tertentu
+            address playlistSongs = First((*PlaylistData).A[PlaylistID - 1]);
+
+            *Playing = Info(playlistSongs);
             playlistSongs = Next(playlistSongs);
-        }
-        InvesrseStack(&temp, Riwayat);
+            Stack temp;
+            CreateEmptyStack(&temp);
 
-        printf("Berhasil menambahkan playlist \"");
-        PrintWord(playlistTitle);
-        printf("\" ke queue.");
+            // Enqueue semua lagu dari playlist ke dalam antrian
+            while (playlistSongs != NULL) {
+                enqueue(Antrian, Info(playlistSongs));
+                PushStack(&temp, Info(playlistSongs));
+                playlistSongs = Next(playlistSongs);
+            }
+            InvesrseStack(&temp, Riwayat);
+
+            printf("Berhasil menambahkan playlist \"");
+            PrintWord(playlistTitle);
+            printf("\" ke queue.");
+        }
     } else {
         printf("Command tidak diketahui!\n\n");
     }
