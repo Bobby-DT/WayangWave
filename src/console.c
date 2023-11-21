@@ -24,7 +24,7 @@ void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
         } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 1)))) {
             QueuePlaylist(Antrian, Lagu, PlaylistTitle, PlaylistData);
         } else if (WordCompare(toKata("SWAP"), toUpper(AccessCommand(currentWord, 1)))) {
-            QueueSwap(Antrian, AccessCommand(currentWord, 2), AccessCommand(currentWord, 3));
+            QueueSwap(Antrian, AccessCommand(currentWord, 2), AccessCommand(currentWord, 3), Lagu);
         } else if (WordCompare(toKata("REMOVE"), toUpper(AccessCommand(currentWord, 1)))) {
             QueueRemove(Penyanyi, Antrian, Album, Lagu, AccessCommand(currentWord, 2));
         } else if (WordCompare(toKata("CLEAR"), toUpper(AccessCommand(currentWord, 1)))) {

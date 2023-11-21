@@ -82,7 +82,7 @@ void QueuePlaylist(Queue *Antrian, Map *Lagu, ArrayDinWord *PlaylistTitle, Array
     }
 }
 
-void QueueSwap (Queue *Antrian, Word a, Word b){
+void QueueSwap (Queue *Antrian, Word a, Word b, Map *Lagu){
     int a_int = WordToInt(a);
     int b_int = WordToInt(b);
 
@@ -90,17 +90,23 @@ void QueueSwap (Queue *Antrian, Word a, Word b){
         Song temp = (*Antrian).buffer[a_int-1];
         (*Antrian).buffer[a_int-1] = (*Antrian).buffer[b_int-1];
         (*Antrian).buffer[b_int-1] = temp;
+
+        printf("Lagu \"");
+        PrintWord(GetLagu(Lagu, (*Antrian).buffer[b_int-1].AlbumID, (*Antrian).buffer[b_int-1].LaguID));
+        printf("\" berhasil ditukar dengan \"");
+        PrintWord(GetLagu(Lagu, (*Antrian).buffer[a_int-1].AlbumID, (*Antrian).buffer[a_int-1].LaguID));
+        printf("\"\n");
     }
 
     else{
         if (!queue_IsMember(*Antrian, a_int-1) && !queue_IsMember(*Antrian, b_int-1)){
-            printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue!", a_int, b_int);
+            printf("Lagu dengan urutan ke %d dan %d tidak terdapat dalam queue!\n", a_int, b_int);
         }
         else if (!queue_IsMember(*Antrian, b_int-1)){
-            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!", b_int);
+            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", b_int);
         }
         else if (!queue_IsMember(*Antrian, a_int-1)){
-            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!", a_int);
+            printf("Lagu dengan urutan ke %d tidak terdapat dalam queue!\n", a_int);
         }
     }
 }
@@ -118,7 +124,7 @@ void QueueRemove(TabKata *Penyanyi, Queue *Antrian, Map *Album, Map *Lagu, Word 
         printf("\" telah dihapus dari queue!\n");
     }
     else{
-        printf("Lagu dengan urutan ke %d tidak ada.", a_int);
+        printf("Lagu dengan urutan ke %d tidak ada.\n", a_int);
     }
 }
 
