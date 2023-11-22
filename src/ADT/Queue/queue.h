@@ -5,7 +5,7 @@
 #define QUEUE_H
 
 #include "../../boolean.h"
-#include "../Mesin/MesinKata.h"
+#include "../Mesin/mesinkata.h"
 #include "../Lagu/song.h"
 
 #define IDX_UNDEF -1
