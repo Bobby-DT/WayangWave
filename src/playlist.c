@@ -189,7 +189,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             do {
                 printf("Masukkan ID Playlist yang dipilih : ");
                 GetCommand();
-                PlaylistID = WordToInt(currentWord) + 1;
+                PlaylistID = WordToInt(currentWord);
                 invalidPlaylistID = PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1;
                 if (invalidPlaylistID) {
                     printf("Tidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", PlaylistID);
@@ -206,8 +206,6 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             } else {
                 printf(" gagal dihapus.\n");
             }
-        } else {
-            printf("Kamu tidak memiliki playlist.\n\n");
         }
     }
 }

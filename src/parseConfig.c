@@ -27,6 +27,7 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
     if (input == NULL) {
         printf("Save file tidak ditemukan. WayangWave gagal dijalankan.\n\n");
     } else {
+        currentWord.Length = 0;
         STARTWORD(input);
         int jumlahTotalAlbum = 0;
         int jumlahPenyanyi = WordToInt(currentWord);
@@ -68,9 +69,12 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
                 //printf("Nama User: %s\n", WordToStr(currentWord));
                 UserID = createNewUser(User, currentWord);
                 //printf("UserID: %d\n", UserID);
+            }
+            for (int i = 0; i < jumlahUser; i++) {
                 ADVWORD();
                 if (currentChar != ' ') {
                     // Insert Curently Playing Song
+                    //printf("Curently Playing Song: %s\n", WordToStr(currentWord));
                     GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang sedang dimainkan dari save file!"), &((User)->storage[UserID - 1].Playing));
                 } 
                 ADVWORD();
@@ -107,9 +111,9 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
                     // Insert saved playlist
                     jumlahPlaylist = WordToInt(currentWord);
                     //printf("jumlahPlaylist: %d\n", jumlahPlaylist);
-                    jumlahPlaylist = 0;
                     for (int j = 0; j < jumlahPlaylist; j++) {
                         ADVWORD();
+                        //printf("Nama Playlist: %d\n", jumlahPlaylist);
                         int jumlahLaguPlaylist = WordToInt(AccessCommand(currentWord, 0));
                         ListLinier newPlaylist;
                         CreateEmptyListLinier(&newPlaylist);
@@ -118,6 +122,7 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
                         int PlaylistID = (*User).storage[UserID - 1].PlaylistData.Neff;
                         for (int k = 0; k < jumlahLaguPlaylist; k++) {
                             ADVWORD();
+                            //printf("Lagu Of Playlist: %d\n", jumlahPlaylist);
                             Song newLaguPlaylist;
                             CreateEmptyLagu(&newLaguPlaylist);
                             GetIDfromConfig(Penyanyi, Album, Lagu, PlaylistID, toKata("Gagal memuat lagu yang tersimpan di playlist dari save file!"), &newLaguPlaylist);
