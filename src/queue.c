@@ -79,6 +79,8 @@ void QueuePlaylist(Queue *Antrian, Map *Lagu, ArrayDinWord *PlaylistTitle, Array
         printf("Berhasil menambahkan playlist \"");
         PrintWord(playlistTitle);
         printf("\" ke queue.\n\n");
+    } else {
+        printf("Kamu tidak memiliki playlist.\n\n");
     }
 }
 

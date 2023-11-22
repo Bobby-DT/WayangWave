@@ -184,25 +184,30 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
         ListPlaylist(PlaylistTitle);
         int PlaylistID;
         boolean invalidPlaylistID;
-        do {
-            printf("Masukkan ID Playlist yang dipilih : ");
-            GetCommand();
-            PlaylistID = WordToInt(currentWord) + 1;
-            invalidPlaylistID = PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1;
-            if (invalidPlaylistID) {
-                printf("Tidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", PlaylistID);
+        int jumlahPlaylist = (*PlaylistTitle).Neff;
+        if (jumlahPlaylist > 0){
+            do {
+                printf("Masukkan ID Playlist yang dipilih : ");
+                GetCommand();
+                PlaylistID = WordToInt(currentWord) + 1;
+                invalidPlaylistID = PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1;
+                if (invalidPlaylistID) {
+                    printf("Tidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", PlaylistID);
+                }
+            } while (invalidPlaylistID);
+            int jumlahPlaylistSebelumnya = (*PlaylistData).Neff;
+            Word playlistTitle = (*PlaylistTitle).A[PlaylistID - 1];
+            DeleteAtArrayDinWord(PlaylistTitle, PlaylistID - 1);
+            DeleteAtArrayDin(PlaylistData, PlaylistID - 1);
+            printf("Playlist ID %d dengan judul ", PlaylistID);
+            PrintWord(playlistTitle);
+            if ((*PlaylistData).Neff == jumlahPlaylistSebelumnya - 1) {
+                printf(" berhasil dihapus.\n");
+            } else {
+                printf(" gagal dihapus.\n");
             }
-        } while (invalidPlaylistID);
-        int jumlahPlaylistSebelumnya = (*PlaylistData).Neff;
-        Word playlistTitle = (*PlaylistTitle).A[PlaylistID - 1];
-        DeleteAtArrayDinWord(PlaylistTitle, PlaylistID - 1);
-        DeleteAtArrayDin(PlaylistData, PlaylistID - 1);
-        printf("Playlist ID %d dengan judul ", PlaylistID);
-        PrintWord(playlistTitle);
-        if ((*PlaylistData).Neff == jumlahPlaylistSebelumnya - 1) {
-            printf(" berhasil dihapus.\n");
         } else {
-            printf(" gagal dihapus.\n");
+            printf("Kamu tidak memiliki playlist.\n\n");
         }
     }
 }
