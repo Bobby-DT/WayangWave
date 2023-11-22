@@ -1,4 +1,4 @@
-#include "./ADT/Mesin/MesinKata.h"
+#include "./ADT/Mesin/mesinkata.h"
 #include "./ADT/Lagu/song.h"
 #include "./ADT/Lagu/lagu.h"
 #include "./ADT/List/array.h"
