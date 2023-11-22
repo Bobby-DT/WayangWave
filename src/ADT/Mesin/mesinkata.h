@@ -12,8 +12,7 @@
 #define BLANK '\n'
 #define Separator ' '
 
-typedef struct
-{
+typedef struct {
    char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
    int Length;
 } Word;

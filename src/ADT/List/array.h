@@ -10,11 +10,10 @@
 #define IdxMin 0
 #define IdxUndef -999 /* indeks tak terdefinisi*/
 
-typedef struct
-	{
-		Word TK[IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
-		int Neff; /* banyaknya elemen efektif */
-	} TabKata;
+typedef struct {
+	Word TK[IdxMax-IdxMin+1]; /* memori tempat penyimpan elemen (container) */
+	int Neff; /* banyaknya elemen efektif */
+} TabKata;
 
 /* Indeks yang digunakan [IdxMin..IdxMax] */
 /* Jika T adalah TabKata, cara deklarasi dan akses: */
