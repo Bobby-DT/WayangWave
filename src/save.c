@@ -1,11 +1,11 @@
 #include "save.h"
 
 void save(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing) {
-    char dir[50] = "./save/";
+    char dir[50] = "../save/";
     for (int i = 0; i < filesrc.Length; i++) {
-        dir[7 + i] = filesrc.TabWord[i];
+        dir[8 + i] = filesrc.TabWord[i];
     }
-    dir[7 + filesrc.Length] = '\0';
+    dir[8 + filesrc.Length] = '\0';
 
     FILE* file = fopen(dir, "w");
     fprintf(file, "%d\n", (*Penyanyi).Neff);
@@ -60,7 +60,7 @@ void save(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *
             playlistSongs = Next(playlistSongs);
         }
     }
-    fprintf(file, "\n ");
+    fprintf(file, " ");
     fclose(file);
 
     FILE* check = fopen(dir, "r");
