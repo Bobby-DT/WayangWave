@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "console.h"
 
-void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing, boolean *wayangwaveStarted) {
+void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing, boolean *wayangwaveStarted, boolean *quitAfterLoaded, UserStorage *User, int UserID) {
     printf(">> ENTER COMMAND: ");
     GetCommand();
 
@@ -45,11 +45,14 @@ void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
     } else if (WordCompare(toKata("STATUS"), toUpper(currentWord))) {
         status(Penyanyi, Antrian, Album, Lagu, PlaylistTitle, Playing);
     } else if (WordCompare(toKata("SAVE"), toUpper(AccessCommand(currentWord, 0)))) {
-        save(AccessCommand(currentWord, 1), Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData, Playing);
+        save(AccessCommand(currentWord, 1), Penyanyi, Album, Lagu, User, UserID);
     } else if (WordCompare(toKata("QUIT"), toUpper(currentWord))) {
-        quit(Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData, Playing, wayangwaveStarted);
+        quit(Penyanyi, Album, Lagu, User, wayangwaveStarted, UserID);
     } else if (WordCompare(toKata("HELP"), toUpper(currentWord))) {
-        help(true);
+        help(2);
+    } else if (WordCompare(toKata("LOGOUT"), toUpper(currentWord))) {
+        *wayangwaveStarted = false;
+        printf("Berhasil keluar. Login kembali untuk menjalankan WayangWave.\n\n");
     } else {
         printf("Command tidak diketahui!\n\n");
     }

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "quit.h"
 
-void quit(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing, boolean *wayangwaveStarted) {
+void quit(TabKata *Penyanyi, Map *Album, Map *Lagu, UserStorage *User, boolean *wayangwaveStarted, int UserID) {
     printf("Apakah kamu ingin menyimpan data sesi sekarang (Y/N)? ");
     boolean isQuitValid = false;
     do {
@@ -12,7 +12,7 @@ void quit(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
             if (WordCompare(toKata("Y"), toUpper(currentWord))){
                 printf("Lokasi penyimpanan data sesi sekarang (contoh: config.txt): ");
                 GetCommand();
-                save(currentWord, Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData, Playing);
+                save(currentWord, Penyanyi, Album, Lagu, User, UserID);
             }
             isQuitValid = true;
         }

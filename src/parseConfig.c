@@ -15,7 +15,7 @@ void GetIDfromConfig(TabKata *Penyanyi, Map *Album, Map *Lagu, int PlaylistID, W
     }
 }
 
-void parseConfig(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing) {
+void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserStorage *User) {
     char dir[50] = "../save/";
     for (int i = 0; i < filesrc.Length; i++) {
         dir[8 + i] = filesrc.TabWord[i];
@@ -58,57 +58,72 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat
             MapInsert(Album, namaPenyanyi, AlbumofPenyanyi);
         }
         ADVWORD();
-        //printf("%c\n", currentChar);
+        //printf("currentChar: %c\n", currentChar);
+        int UserID, jumlahUser, jumlahAntrian, jumlahRiwayat, jumlahPlaylist;
         if (currentChar != ' ') {
-            // Insert Curently Playing Song
-            GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang sedang dimainkan dari save file!"), Playing);
-        } 
-        ADVWORD();
-        if (currentChar != ' ') {
-            // Insert saved queue
-            int jumlahQueue = WordToInt(currentWord);
-            for (int j = 0; j < jumlahQueue; j++) {
+            jumlahUser = WordToInt(currentWord);
+            //printf("jumlahUser: %d\n", jumlahUser);
+            for (int i = 0; i < jumlahUser; i++) {
                 ADVWORD();
-                Song newLaguQueue;
-                CreateEmptyLagu(&newLaguQueue);
-                GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di antrian dari save file!"), &newLaguQueue);
-                enqueue(Antrian, newLaguQueue);
-            }
-        }
-        ADVWORD();
-        if (currentChar != ' ') {
-            // Insert saved history
-            int jumlahAntrian = WordToInt(currentWord);
-            Stack RiwayatConfig;
-            CreateEmptyStack(&RiwayatConfig);
-            for (int j = 0; j < jumlahAntrian; j++) {
+                //printf("Nama User: %s\n", WordToStr(currentWord));
+                UserID = createNewUser(User, currentWord);
+                //printf("UserID: %d\n", UserID);
                 ADVWORD();
-                Song newLaguAntrian;
-                CreateEmptyLagu(&newLaguAntrian);
-                GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di riwayat dari save file!"), &newLaguAntrian);
-                PushStack(&RiwayatConfig, newLaguAntrian);
-            }
-            InvesrseStack(&RiwayatConfig, Riwayat);
-        }
-        ADVWORD();
-        if (currentChar != ' ') {
-            // Insert saved playlist
-            int jumlahPlaylist = WordToInt(currentWord);
-            //printf("%d\n", jumlahPlaylist);
-            for (int j = 0; j < jumlahPlaylist; j++) {
+                if (currentChar != ' ') {
+                    // Insert Curently Playing Song
+                    GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang sedang dimainkan dari save file!"), &((User)->storage[UserID - 1].Playing));
+                } 
                 ADVWORD();
-                int jumlahLaguPlaylist = WordToInt(AccessCommand(currentWord, 0));
-                ListLinier newPlaylist;
-                CreateEmptyListLinier(&newPlaylist);
-                InsertLastArrayDinWord(PlaylistTitle, AccessConfig(currentWord, 1));
-                InsertLastArrayDin(PlaylistData, newPlaylist);
-                int PlaylistID = (*PlaylistData).Neff;
-                for (int k = 0; k < jumlahLaguPlaylist; k++) {
-                    ADVWORD();
-                    Song newLaguPlaylist;
-                    CreateEmptyLagu(&newLaguPlaylist);
-                    GetIDfromConfig(Penyanyi, Album, Lagu, PlaylistID, toKata("Gagal memuat lagu yang tersimpan di playlist dari save file!"), &newLaguPlaylist);
-                    InsVLastListLinier(&((PlaylistData)->A[PlaylistID - 1]), newLaguPlaylist);
+                if (currentChar != ' ') {
+                    // Insert saved queue
+                    jumlahAntrian = WordToInt(currentWord);
+                    //printf("jumlahAntrian: %d\n", jumlahAntrian);
+                    for (int j = 0; j < jumlahAntrian; j++) {
+                        ADVWORD();
+                        Song newLaguQueue;
+                        CreateEmptyLagu(&newLaguQueue);
+                        GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di antrian dari save file!"), &newLaguQueue);
+                        enqueue(&((User)->storage[UserID - 1].Antrian), newLaguQueue);
+                    }
+                }
+                ADVWORD();
+                if (currentChar != ' ') {
+                    // Insert saved history
+                    jumlahRiwayat = WordToInt(currentWord);
+                    //printf("jumlahRiwayat: %d\n", jumlahRiwayat);
+                    Stack RiwayatConfig;
+                    CreateEmptyStack(&RiwayatConfig);
+                    for (int j = 0; j < jumlahRiwayat; j++) {
+                        ADVWORD();
+                        Song newLaguAntrian;
+                        CreateEmptyLagu(&newLaguAntrian);
+                        GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di riwayat dari save file!"), &newLaguAntrian);
+                        PushStack(&RiwayatConfig, newLaguAntrian);
+                    }
+                    InvesrseStack(&RiwayatConfig, &((User)->storage[UserID - 1].Riwayat));
+                }
+                ADVWORD();
+                if (currentChar != ' ') {
+                    // Insert saved playlist
+                    jumlahPlaylist = WordToInt(currentWord);
+                    //printf("jumlahPlaylist: %d\n", jumlahPlaylist);
+                    jumlahPlaylist = 0;
+                    for (int j = 0; j < jumlahPlaylist; j++) {
+                        ADVWORD();
+                        int jumlahLaguPlaylist = WordToInt(AccessCommand(currentWord, 0));
+                        ListLinier newPlaylist;
+                        CreateEmptyListLinier(&newPlaylist);
+                        InsertLastArrayDinWord(&((User)->storage[UserID - 1].PlaylistTitle), AccessConfig(currentWord, 1));
+                        InsertLastArrayDin(&((User)->storage[UserID - 1].PlaylistData), newPlaylist);
+                        int PlaylistID = (*User).storage[UserID - 1].PlaylistData.Neff;
+                        for (int k = 0; k < jumlahLaguPlaylist; k++) {
+                            ADVWORD();
+                            Song newLaguPlaylist;
+                            CreateEmptyLagu(&newLaguPlaylist);
+                            GetIDfromConfig(Penyanyi, Album, Lagu, PlaylistID, toKata("Gagal memuat lagu yang tersimpan di playlist dari save file!"), &newLaguPlaylist);
+                            InsVLastListLinier(&((User)->storage[UserID - 1].PlaylistData.A[PlaylistID - 1]), newLaguPlaylist);
+                        }
+                    }
                 }
             }
         }

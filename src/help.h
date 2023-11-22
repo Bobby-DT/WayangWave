@@ -5,6 +5,6 @@
 
 #include "boolean.h"
 
-void help(boolean wayangwaveStarted);
+void help(int wayangWaveStage);
 
 #endif /* HELP_H */

@@ -25,6 +25,9 @@ Pretty Visitors
 Do I Wanna Know?
 R U Mine?
 Arabella
+2
+bandung bondowoso
+roro jonggrang
 Arctic Monkeys;AM;R U Mine?
 5
 BLACKPINK;BORN PINK;Typa Girl
@@ -47,4 +50,19 @@ Arctic Monkeys;AM;Arabella
 Arctic Monkeys;Favourite Worst Nightmare;505
 Arctic Monkeys;Humbug;Pretty Visitors
 0 Mixed Playlist
+BLACKPINK;BORN PINK;Pink Venom
+3
+BLACKPINK;BORN PINK;Shut Down
+BLACKPINK;BORN PINK;Typa Girl
+BLACKPINK;BORN PINK;Ready For Love
+3
+BLACKPINK;BORN PINK;Shut Down
+BLACKPINK;BORN PINK;Typa Girl
+BLACKPINK;BORN PINK;Ready For Love
+1
+4 New Playlist
+BLACKPINK;BORN PINK;Pink Venom
+BLACKPINK;BORN PINK;Shut Down
+BLACKPINK;BORN PINK;Typa Girl
+BLACKPINK;BORN PINK;Ready For Love
  

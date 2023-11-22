@@ -12,10 +12,11 @@
 #include "./ADT/List/arraydinword.h"
 #include "./ADT/List/arraydin.h"
 #include "./ADT/Lagu/lagu.h"
+#include "./ADT/User/user.h"
 
 void GetIDfromConfig(TabKata *Penyanyi, Map *Album, Map *Lagu, int PlaylistID, Word failedAlert, Song *Result);
 
-void parseConfig(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing);
+void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserStorage *User);
 /* Melakukan 'load' daftar Penyanyi, album dan lagu ke dalam program */
 
 #endif

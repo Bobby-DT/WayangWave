@@ -3,26 +3,59 @@
 #include "./ADT/Mesin/mesinkata.h"
 #include "console.h"
 
+void userManagement(UserStorage *User, Object *currentUser, boolean *wayangwaveStarted, boolean *quitAfterLoaded) {
+    while (!(*wayangwaveStarted) && !(*quitAfterLoaded)) {
+        printf(">> ENTER COMMAND: ");
+        GetCommand();
+        if (WordCompare(toKata("REGISTER"), toUpper(currentWord))) {
+            printf("Masukkan username baru untuk WayangWave : ");
+            GetCommand();
+            if (searchUser(User, currentWord) == -1) {
+                int UserID = createNewUser(User, currentWord);
+                printf("Berhasil mendaftarkan pengguna. Selamat datang, %s!\n\n", WordToStr(currentWord));
+                *wayangwaveStarted = true;
+                *currentUser = CreateObject(UserID, currentWord);
+            } else {
+                printf("Sudah ada user yang bernama \"%s\". Silahkan coba lagi!\n\n", WordToStr(currentWord));
+            }
+        } else if (WordCompare(toKata("LOGIN"), toUpper(currentWord))) {
+            printf("Masukkan username user WayangWave : ");
+            GetCommand();
+            if (searchUser(User, currentWord) != -1) {
+                int UserID = searchUser(User, currentWord);
+                printf("Berhasil masuk. Selamat datang, %s!\n\n", WordToStr(currentWord));
+                *wayangwaveStarted = true;
+                *currentUser = CreateObject(UserID, currentWord);
+            } else {
+                printf("Tidak ada user dengan username \"%s\". Silahkan coba lagi!\n\n", WordToStr(currentWord));
+            }
+        } else if (WordCompare(toKata("QUIT"), toUpper(currentWord))) {
+            *quitAfterLoaded = true;
+            printf("Kamu keluar dari WayangWave.\nDadah ^_^/\n");
+        } else if (WordCompare(toKata("HELP"), toUpper(currentWord))) {
+            help(1);
+        } else {
+            printf("Command tidak bisa dieksekusi!\n\n");
+        }
+    }
+}
+
 int main() {
     TabKata Penyanyi;
-    Queue Antrian;
-    Stack Riwayat;
     Map Album;
     Map Lagu;
-    ArrayDinWord PlaylistTitle;
-    ArrayDin PlaylistData;
-    Song Playing;
 
     boolean wayangwaveStarted = false;
+    boolean configLoaded = false;
+    boolean quitAfterLoaded = false;
 
     MakeEmpty(&Penyanyi);
-    CreateQueue(&Antrian);
-    CreateEmptyStack(&Riwayat);
     MapCreateEmpty(&Album);
     MapCreateEmpty(&Lagu);
-    PlaylistTitle = MakeArrayDinWord();
-    PlaylistData = MakeArrayDin();
-    CreateEmptyLagu(&Playing);
+
+    UserStorage User;
+    initiateUserStorage(&User);
+    Object currentUser;
     
     printf("888       888                                        888       888\n");                         
     printf("888   o   888                                        888   o   888\n");                         
@@ -38,30 +71,30 @@ int main() {
 
     printf("Welcome to WayangWave\n");
 
-    while (!wayangwaveStarted) {
+    while (!configLoaded) {
         do {
             printf(">> ENTER COMMAND: ");
             GetCommand();
 
             if (WordCompare(toKata("HELP"), toUpper(currentWord))) {
-                help(false);
+                help(0);
             } else if (!WordCompare(toKata("START"), toUpper(currentWord)) && !WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0)))) {
                 printf("Command tidak bisa dieksekusi!\n\n");
             }
         } while (!WordCompare(toKata("START"), toUpper(currentWord)) && !WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0))) && !WordCompare(toKata("HELP"), toUpper(currentWord)));
         
         if (WordCompare(toKata("START"), toUpper(currentWord))) {
-            start(toKata("config.txt"), &Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing, false, &wayangwaveStarted);
+            start(toKata("config.txt"), &Penyanyi, &Album, &Lagu, &User, &currentUser, false, &configLoaded);
         } else if (WordCompare(toKata("LOAD"), toUpper(AccessCommand(currentWord, 0)))) {
-            start(AccessCommand(currentWord, 1), &Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing, true, &wayangwaveStarted);
+            start(AccessCommand(currentWord, 1), &Penyanyi, &Album, &Lagu, &User, &currentUser, true, &configLoaded);
         }
     }
-    if (wayangwaveStarted) {
-        while (wayangwaveStarted) {
-            menu(&Penyanyi, &Antrian, &Riwayat, &Album, &Lagu, &PlaylistTitle, &PlaylistData, &Playing, &wayangwaveStarted);
+    while (!quitAfterLoaded) {
+        if (wayangwaveStarted) {
+            menu(&Penyanyi, &((User).storage[currentUser.ID - 1].Antrian), &((User).storage[currentUser.ID - 1].Riwayat), &Album, &Lagu, &((User).storage[currentUser.ID - 1].PlaylistTitle), &((User).storage[currentUser.ID - 1].PlaylistData), &((User).storage[currentUser.ID - 1].Playing), &wayangwaveStarted, &quitAfterLoaded, &User, currentUser.ID);
+        } else {
+            userManagement(&User, &currentUser, &wayangwaveStarted, &quitAfterLoaded);
         }
-    } else {
-        printf("WayangWave gagal dijalankan.\n\n");
     }
     return 0;
 }

@@ -12,7 +12,8 @@
 #include "./ADT/List/arraydinword.h"
 #include "./ADT/List/arraydin.h"
 #include "./ADT/Lagu/lagu.h"
+#include "./ADT/User/user.h"
 
-void save(Word filesrc, TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, Song *Playing);
+void save(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserStorage *User, int UserID);
 
 #endif
