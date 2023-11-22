@@ -32,19 +32,21 @@ void save(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserStorage *U
         }
         int jumlahAntrian = queue_length((*User).storage[j].Antrian);
         fprintf(file, "%d\n", jumlahAntrian);
-        if ((*User).storage[j].Antrian.idxHead <= (*User).storage[j].Antrian.idxTail) {
-            for (int i = (*User).storage[j].Antrian.idxHead; i <= (*User).storage[j].Antrian.idxTail; i++) {
-                Song printAntrian = (*User).storage[j].Antrian.buffer[i];
-                fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(Lagu, printAntrian.AlbumID, printAntrian.LaguID)));
-            }
-        } else {
-            for (int i = (*User).storage[j].Antrian.idxHead; i < CAPACITY; i++) {
-                Song printAntrian = (*User).storage[j].Antrian.buffer[i];
-                fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(Lagu, printAntrian.AlbumID, printAntrian.LaguID)));       
-            }
-            for (int i = 0; i <= (*User).storage[j].Antrian.idxTail; i++) {
-                Song printAntrian = (*User).storage[j].Antrian.buffer[i];
-                fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(Lagu, printAntrian.AlbumID, printAntrian.LaguID)));
+        if (jumlahAntrian > 0) {
+            if ((*User).storage[j].Antrian.idxHead <= (*User).storage[j].Antrian.idxTail) {
+                for (int i = (*User).storage[j].Antrian.idxHead; i <= (*User).storage[j].Antrian.idxTail; i++) {
+                    Song printAntrian = (*User).storage[j].Antrian.buffer[i];
+                    fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(Lagu, printAntrian.AlbumID, printAntrian.LaguID)));
+                }
+            } else {
+                for (int i = (*User).storage[j].Antrian.idxHead; i < CAPACITY; i++) {
+                    Song printAntrian = (*User).storage[j].Antrian.buffer[i];
+                    fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(Lagu, printAntrian.AlbumID, printAntrian.LaguID)));       
+                }
+                for (int i = 0; i <= (*User).storage[j].Antrian.idxTail; i++) {
+                    Song printAntrian = (*User).storage[j].Antrian.buffer[i];
+                    fprintf(file, "%s;%s;%s\n", WordToStr(GetPenyanyi(Penyanyi, printAntrian.PenyanyiID)), WordToStr(GetAlbum(Lagu, printAntrian.AlbumID)), WordToStr(GetLagu(Lagu, printAntrian.AlbumID, printAntrian.LaguID)));
+                }
             }
         }
         int jumlahRiwayat = Top((*User).storage[j].Riwayat) + 1;

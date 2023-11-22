@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "quit.h"
 
-void quit(TabKata *Penyanyi, Map *Album, Map *Lagu, UserStorage *User, boolean *wayangwaveStarted, int UserID) {
+void quit(TabKata *Penyanyi, Map *Album, Map *Lagu, UserStorage *User, int UserID) {
     printf("Apakah kamu ingin menyimpan data sesi sekarang (Y/N)? ");
     boolean isQuitValid = false;
     do {
@@ -17,7 +17,7 @@ void quit(TabKata *Penyanyi, Map *Album, Map *Lagu, UserStorage *User, boolean *
             isQuitValid = true;
         }
     } while(!isQuitValid);
-    *wayangwaveStarted = false;
+    
     printf("Kamu keluar dari WayangWave.\nDadah ^_^/\n");
 }
 

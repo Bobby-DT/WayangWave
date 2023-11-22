@@ -47,7 +47,8 @@ void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
     } else if (WordCompare(toKata("SAVE"), toUpper(AccessCommand(currentWord, 0)))) {
         save(AccessCommand(currentWord, 1), Penyanyi, Album, Lagu, User, UserID);
     } else if (WordCompare(toKata("QUIT"), toUpper(currentWord))) {
-        quit(Penyanyi, Album, Lagu, User, wayangwaveStarted, UserID);
+        quit(Penyanyi, Album, Lagu, User, UserID);
+        *quitAfterLoaded = true;
     } else if (WordCompare(toKata("HELP"), toUpper(currentWord))) {
         help(2);
     } else if (WordCompare(toKata("LOGOUT"), toUpper(currentWord))) {

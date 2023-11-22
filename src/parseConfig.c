@@ -71,6 +71,7 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
                 //printf("UserID: %d\n", UserID);
             }
             for (int i = 0; i < jumlahUser; i++) {
+                UserID = i+1;
                 ADVWORD();
                 if (currentChar != ' ') {
                     // Insert Curently Playing Song

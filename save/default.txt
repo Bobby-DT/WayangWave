@@ -55,7 +55,8 @@ BLACKPINK;BORN PINK;Pink Venom
 BLACKPINK;BORN PINK;Shut Down
 BLACKPINK;BORN PINK;Typa Girl
 BLACKPINK;BORN PINK;Ready For Love
-0
+1
+Arctic Monkeys;AM;R U Mine?
 1
 4 K-Pop Enjoyer
 BLACKPINK;BORN PINK;Pink Venom
