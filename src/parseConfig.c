@@ -133,6 +133,6 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
                 }
             }
         }
+        fclose(input);
     }
-    fclose(input);
 }
