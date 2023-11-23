@@ -12,7 +12,7 @@ void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
         if (WordCompare(toKata("DEFAULT"), toUpper(AccessCommand(currentWord, 1)))) {
             ListDefault(Penyanyi, Album, Lagu);
         } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 1)))) {
-            ListPlaylist2(PlaylistTitle);
+            ListPlaylist(PlaylistTitle);
         } else {
             printf("Command tidak diketahui!\n\n");
         }

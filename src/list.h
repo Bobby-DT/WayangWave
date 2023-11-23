@@ -20,6 +20,4 @@ void ListDefault(TabKata *Penyanyi, Map *Album, Map *Lagu);
 
 void ListPlaylist(ArrayDinWord *PlaylistTitle);
 
-void ListPlaylist2(ArrayDinWord *PlaylistTitle);
-
 #endif
