@@ -76,7 +76,7 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
                 if (currentChar != ' ') {
                     // Insert Curently Playing Song
                     //printf("Curently Playing Song: %s\n", WordToStr(currentWord));
-                    GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang sedang dimainkan dari save file!"), &((User)->storage[UserID - 1].Playing));
+                    GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang sedang dimainkan dari save file!\n\n"), &((User)->storage[UserID - 1].Playing));
                 } 
                 ADVWORD();
                 if (currentChar != ' ') {
@@ -87,7 +87,7 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
                         ADVWORD();
                         Song newLaguQueue;
                         CreateEmptyLagu(&newLaguQueue);
-                        GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di antrian dari save file!"), &newLaguQueue);
+                        GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di antrian dari save file!\n\n"), &newLaguQueue);
                         enqueue(&((User)->storage[UserID - 1].Antrian), newLaguQueue);
                     }
                 }
@@ -102,7 +102,7 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
                         ADVWORD();
                         Song newLaguAntrian;
                         CreateEmptyLagu(&newLaguAntrian);
-                        GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di riwayat dari save file!"), &newLaguAntrian);
+                        GetIDfromConfig(Penyanyi, Album, Lagu, -1, toKata("Gagal memuat lagu yang tersimpan di riwayat dari save file!\n\n"), &newLaguAntrian);
                         PushStack(&RiwayatConfig, newLaguAntrian);
                     }
                     InvesrseStack(&RiwayatConfig, &((User)->storage[UserID - 1].Riwayat));
@@ -126,7 +126,7 @@ void parseConfig(Word filesrc, TabKata *Penyanyi, Map *Album, Map *Lagu, UserSto
                             //printf("Lagu Of Playlist: %d\n", jumlahPlaylist);
                             Song newLaguPlaylist;
                             CreateEmptyLagu(&newLaguPlaylist);
-                            GetIDfromConfig(Penyanyi, Album, Lagu, PlaylistID, toKata("Gagal memuat lagu yang tersimpan di playlist dari save file!"), &newLaguPlaylist);
+                            GetIDfromConfig(Penyanyi, Album, Lagu, PlaylistID, toKata("Gagal memuat lagu yang tersimpan di playlist dari save file!\n\n"), &newLaguPlaylist);
                             InsVLastListLinier(&((User)->storage[UserID - 1].PlaylistData.A[PlaylistID - 1]), newLaguPlaylist);
                         }
                     }
