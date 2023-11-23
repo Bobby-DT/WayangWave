@@ -1,12 +1,13 @@
 # WayangWave
 Tugas Besar Algoritma dan Struktur Data
 
-*Anggota Kelompok*
-Bobby Dhammawan TANG 		    - 18220037
-Jihan Aurelia 				      - 18222001
-Benedicta Eryka Santosa 		- 18222031
-Firsa Athaya Raissa Alifah 	- 18222051
-Muhammad Faiz Atharrahman 	- 18222063
+**Anggota Kelompok**
+
+- Bobby Dhammawan TANG 		    - 18220037
+- Jihan Aurelia 				      - 18222001
+- Benedicta Eryka Santosa 		- 18222031
+- Firsa Athaya Raissa Alifah 	- 18222051
+- Muhammad Faiz Atharrahman 	- 18222063
 
 ## Deskripsi Program
 WayangWave adalah sebuah aplikasi yang bisa mensimulasikan service  pemutaran musik. Aplikasi ini memiliki fitur utama, yaitu memutar lagu, menampilkan daftar lagu, membuat dan menghapus playlist, mengatur urutan dimainkannya lagu, dan menampilkan status dari aplikasi.
@@ -16,7 +17,7 @@ WayangWave adalah sebuah aplikasi yang bisa mensimulasikan service  pemutaran mu
 ### Di Terminal Windows
 1. Ketik `cd bin` di terminal untuk membuka folder bin
 2. Copy paste kode yang ada pada bagian `make.bat` ke terminal
-3. Ketika `./WayangWave.exe` di terminal
+3. Ketik `./WayangWave.exe` di terminal
 4. Program berhasil dijalankan
 
 ## Data Structures
