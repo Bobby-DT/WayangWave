@@ -44,6 +44,12 @@ void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
         playlist(Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData);
     } else if (WordCompare(toKata("STATUS"), toUpper(currentWord))) {
         status(Penyanyi, Antrian, Album, Lagu, PlaylistTitle, Playing);
+        /*
+        printf("Riwayat: ");
+        Song riwayat = InfoTop(*Riwayat);
+        PrintSong(Penyanyi, Album, Lagu, riwayat.PenyanyiID, riwayat.AlbumID, riwayat.LaguID);
+        printf("\n\n");
+        */
     } else if (WordCompare(toKata("SAVE"), toUpper(AccessCommand(currentWord, 0)))) {
         save(AccessCommand(currentWord, 1), Penyanyi, Album, Lagu, User, UserID);
     } else if (WordCompare(toKata("QUIT"), toUpper(currentWord))) {

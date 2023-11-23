@@ -58,12 +58,15 @@ void PopStack(Stack * S, Song* X)
 }
 
 void InvesrseStack(Stack *Asal, Stack *Tujuan) {
-    int i = 0;
-    int NbAsal = NbElmtStack(*Asal);
-    while (i < NbAsal && !IsFullStack(*Tujuan)) {
+    int jumlahRiwayat = NbElmtStack(*Asal);
+    for (int i = 0; i < jumlahRiwayat; i++) {
+        PushStack(Tujuan, (*Asal).T[i]);
+    }
+    /*
+    while (!IsEmptyStack(*Asal) && !IsFullStack(*Tujuan)) {
         Song temp;
         PopStack(Asal, &temp);
         PushStack(Tujuan, temp);
-        i++;
     }
+    */
 }
