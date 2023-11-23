@@ -128,12 +128,12 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             if (playlistX > jumlahLaguPlaylist || playlistX < 1) {
                 printf("Tidak ada lagu dengan urutan %d di playlist \"", playlistX);
                 PrintWord((*PlaylistTitle).A[PlaylistID - 1]);
-                printf("\"\n");
+                printf("\"\n\n");
             } else {
                 if (playlistY > jumlahLaguPlaylist || playlistY < 1) {
                     printf("Tidak ada lagu dengan urutan %d di playlist \"", playlistY);
                     PrintWord((*PlaylistTitle).A[PlaylistID - 1]);
-                    printf("\"\n");
+                    printf("\"\n\n");
                 } else {
                     Song X = getValAtListLinier((*PlaylistData).A[PlaylistID - 1], playlistX);
                     Song Y = getValAtListLinier((*PlaylistData).A[PlaylistID - 1], playlistY);
@@ -146,13 +146,13 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                     PrintWord(GetLagu(Lagu, Y.AlbumID, Y.LaguID));
                     printf("\" di playlist \"");
                     PrintWord((*PlaylistTitle).A[PlaylistID - 1]);
-                    printf("\"\n");
+                    printf("\"\n\n");
                 }
             }
         } else {
             printf("Tidak ada playlist dengan ID ");
             PrintWord(AccessCommand(currentWord, 2));
-            printf(".\n");
+            printf(".\n\n");
         }
     } else if (WordCompare(toKata("REMOVE"), toUpper(AccessCommand(currentWord, 1)))) {
         int PlaylistID = WordToInt(AccessCommand(currentWord, 2));
@@ -163,7 +163,7 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             if (laguN > jumlahLaguPlaylist || laguN < 1) {
                 printf("Tidak ada lagu dengan urutan %d di playlist \"", laguN);
                 PrintWord((*PlaylistTitle).A[PlaylistID - 1]);
-                printf("\"\n");
+                printf("\"\n\n");
             } else {
                 Song del;
                 //address beforeDel = addrAtListLinier((*PlaylistData).A[PlaylistID - 1], laguN);
@@ -175,10 +175,10 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                 PrintWord(GetPenyanyi(Penyanyi, del.PenyanyiID));
                 printf("\" telah dihapus dari playlist \"");
                 PrintWord((*PlaylistTitle).A[PlaylistID - 1]);
-                printf("\"!");
+                printf("\"!\n\n");
             }
         } else {
-            printf("Tidak ada playlist dengan ID %d.\n", PlaylistID);
+            printf("Tidak ada playlist dengan ID %d.\n\n", PlaylistID);
         }
     } else if (WordCompare(toKata("DELETE"), toUpper(AccessCommand(currentWord, 1)))) {
         ListPlaylist(PlaylistTitle);
@@ -202,9 +202,9 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
             printf("Playlist ID %d dengan judul ", PlaylistID);
             PrintWord(playlistTitle);
             if ((*PlaylistData).Neff == jumlahPlaylistSebelumnya - 1) {
-                printf(" berhasil dihapus.\n");
+                printf(" berhasil dihapus.\n\n");
             } else {
-                printf(" gagal dihapus.\n");
+                printf(" gagal dihapus.\n\n");
             }
         }
     }

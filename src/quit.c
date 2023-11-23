@@ -18,6 +18,6 @@ void quit(TabKata *Penyanyi, Map *Album, Map *Lagu, UserStorage *User, int UserI
         }
     } while(!isQuitValid);
     
-    printf("Kamu keluar dari WayangWave.\nDadah ^_^/\n");
+    printf("Kamu keluar dari WayangWave.\nDadah ^_^/\n\n");
 }
 

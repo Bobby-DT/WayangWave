@@ -69,7 +69,7 @@ int main() {
     printf("                     Y8b d88P                Y8b d88P\n");                                      
     printf("                      \"Y88P\"                  \"Y88P\"\n\n");
 
-    printf("Welcome to WayangWave\n");
+    printf("Welcome to WayangWave\n\n");
 
     while (!configLoaded) {
         do {
