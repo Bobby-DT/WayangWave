@@ -78,6 +78,7 @@ void DeleteAtArrayDinWord(ArrayDinWord *array, int i) {
     if ((*array).Neff > ((*array).Capacity / 4))
     {
         (*array).Neff -= 1;
+        (*array).A[i] = toKata("");
         for (j = i; j < (*array).Neff; j++)
         {
             (*array).A[j] = (*array).A[j + 1];
