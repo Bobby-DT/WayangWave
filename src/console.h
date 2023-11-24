@@ -20,6 +20,7 @@
 #include "parseConfig.h"
 #include "play.h"
 #include "playlist.h"
+#include "enhance.h"
 #include "queue.h"
 #include "quit.h"
 #include "save.h"

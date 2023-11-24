@@ -9,10 +9,10 @@ WayangWave adalah sebuah aplikasi yang bisa mensimulasikan service  pemutaran mu
 |Nama                      |NIM     |
 |--------------------------|--------|
 |Bobby Dhammawan TANG      |18220037|
-|Jihan Aurelia 			   |18222001|
+|Jihan Aurelia 			       |18222001|
 |Benedicta Eryka Santosa   |18222031|
 |Firsa Athaya Raissa Alifah|18222051|
-|Muhammad Faiz A 	       |18222063|
+|Muhammad Faiz A 	         |18222063|
 
 ## Cara Kompilasi
 
