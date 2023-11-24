@@ -209,3 +209,40 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
         }
     }
 }
+
+void isiPlaylist(TabKata *Penyanyi, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData) {
+    do {
+        printf("Ingin melihat isi playlist yang ada?(Y/N): ");
+        GetCommand();
+        if (!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord))) {
+            printf("Command tidak diketahui! Jawab dengan y/N!\n");
+        }
+    } while(!WordCompare(toKata("Y"), toUpper(currentWord)) && !WordCompare(toKata("N"), toUpper(currentWord)));
+    if (WordCompare(toKata("Y"), toUpper(currentWord))) {
+        int PlaylistID;
+        boolean invalidPlaylistID;
+        do {
+            printf("Masukkan ID Playlist yang dipilih : ");
+            GetCommand();
+            PlaylistID = WordToInt(currentWord);
+            invalidPlaylistID = PlaylistID > (*PlaylistTitle).Neff || PlaylistID < 1;
+            if (invalidPlaylistID) {
+                printf("Tidak ada playlist dengan ID %d dalam daftar playlist pengguna. Silakan coba lagi.\n", PlaylistID);
+            }
+        } while (invalidPlaylistID);
+        address playlistSongs = First((*PlaylistData).A[PlaylistID - 1]);
+        printf("Lagu yang berada pada playlist \"%s\": ", WordToStr((*PlaylistTitle).A[PlaylistID - 1]));
+        int laguPlaylistIdx = 1;
+        while (playlistSongs != NULL) {
+            Song laguPlaylist = Info(playlistSongs);
+            printf("\n\t%d. ", laguPlaylistIdx);
+            PrintSong(Penyanyi, Album, Lagu, laguPlaylist.PenyanyiID, laguPlaylist.AlbumID, laguPlaylist.LaguID);
+            playlistSongs = Next(playlistSongs);
+            laguPlaylistIdx++;
+        }
+        if (laguPlaylistIdx == 1) {
+            printf("\nPlaylist Kosong!");
+        }
+        printf("\n\n");
+    }
+}

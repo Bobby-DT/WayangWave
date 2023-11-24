@@ -18,8 +18,8 @@
 
 int randomInt(int max_num);
 
-void addRandomSong(TabKata *Penyanyi, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, int PlaylistID, int playlistSongID);
+void addRandomSong(TabKata *Penyanyi, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData, int PlaylistID, int playlistSongID, int *jumlahLaguRekomendasi);
 
-void enhance(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData);
+void enhance(TabKata *Penyanyi, Stack *Riwayat, Map *Album, Map *Lagu, ArrayDinWord *PlaylistTitle, ArrayDin *PlaylistData);
 
 #endif

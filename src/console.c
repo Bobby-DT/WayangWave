@@ -13,6 +13,7 @@ void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
             ListDefault(Penyanyi, Album, Lagu);
         } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 1)))) {
             ListPlaylist(PlaylistTitle);
+            isiPlaylist(Penyanyi, Album, Lagu, PlaylistTitle, PlaylistData);
         } else {
             printf("Command tidak diketahui!\n\n");
         }
@@ -43,7 +44,7 @@ void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
     } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 0)))) {
         playlist(Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData);
     } else if (WordCompare(toKata("ENHANCE"), toUpper(currentWord))) {
-        enhance(Penyanyi, Antrian, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData);
+        enhance(Penyanyi, Riwayat, Album, Lagu, PlaylistTitle, PlaylistData);
     } else if (WordCompare(toKata("STATUS"), toUpper(currentWord))) {
         status(Penyanyi, Antrian, Album, Lagu, PlaylistTitle, Playing);
         /*
