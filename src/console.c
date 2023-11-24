@@ -13,7 +13,9 @@ void menu(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map *La
             ListDefault(Penyanyi, Album, Lagu);
         } else if (WordCompare(toKata("PLAYLIST"), toUpper(AccessCommand(currentWord, 1)))) {
             ListPlaylist(PlaylistTitle);
-            isiPlaylist(Penyanyi, Album, Lagu, PlaylistTitle, PlaylistData);
+            if ((*PlaylistTitle).Neff > 0) {
+                isiPlaylist(Penyanyi, Album, Lagu, PlaylistTitle, PlaylistData);
+            }
         } else {
             printf("Command tidak diketahui!\n\n");
         }

@@ -207,6 +207,8 @@ void playlist(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Album, Map
                 printf(" gagal dihapus.\n\n");
             }
         }
+    } else {
+        printf("Command tidak diketahui!\n\n");
     }
 }
 

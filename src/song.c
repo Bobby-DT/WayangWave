@@ -26,11 +26,15 @@ void SongNext(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, Song
         printf("\"\n\n");
     }
     else {
-        printf("Queue kosong, memutar kembali lagu\n\"");
-        PrintWord(GetLagu(Lagu, (*Playing).AlbumID, (*Playing).LaguID));
-        printf("\" oleh \"");
-        PrintWord(GetPenyanyi(Penyanyi, (*Playing).PenyanyiID));
-        printf("\"\n\n");
+        if (SongIsEmpty(*Playing)) {
+            printf("Queue kosong dan belum ada lagu yang diputar!\n\n");
+        } else {
+            printf("Queue kosong, memutar kembali lagu\n\"");
+            PrintWord(GetLagu(Lagu, (*Playing).AlbumID, (*Playing).LaguID));
+            printf("\" oleh \"");
+            PrintWord(GetPenyanyi(Penyanyi, (*Playing).PenyanyiID));
+            printf("\"\n\n");
+        }
     }
 }
 
@@ -53,10 +57,14 @@ void SongPrevious(TabKata *Penyanyi, Queue *Antrian, Stack *Riwayat, Map *Lagu, 
         printf("\"\n\n");
     }
     else{
-        printf("Riwayat lagu kosong, memutar kembali lagu\n\"");
-        PrintWord(GetLagu(Lagu, (*Playing).AlbumID, (*Playing).LaguID));
-        printf("\" oleh \"");
-        PrintWord(GetPenyanyi(Penyanyi, (*Playing).PenyanyiID));
-        printf("\"\n\n");
+        if (SongIsEmpty(*Playing)) {
+            printf("Riwayat lagu kosong dan belum ada lagu yang diputar!\n\n");
+        } else {
+            printf("Riwayat lagu kosong, memutar kembali lagu\n\"");
+            PrintWord(GetLagu(Lagu, (*Playing).AlbumID, (*Playing).LaguID));
+            printf("\" oleh \"");
+            PrintWord(GetPenyanyi(Penyanyi, (*Playing).PenyanyiID));
+            printf("\"\n\n");
+        }
     }
 }
